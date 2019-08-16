@@ -8,6 +8,7 @@
 	<meta name="description" content="@yield('description', 'Flundr')" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="stylesheet" type="text/css" media="all" href="/styles/css/main.css" />
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i|Fira+Sans:400,400i,700,700i&display=swap" rel="stylesheet">	
 	<link rel="shortcut icon" href="/styles/img/flundr.svg" />
 	<script type="text/javascript" src="/styles/js/app.js"></script>
 </head>

@@ -8,11 +8,11 @@ use Faker\Generator as Faker;
 $factory->define(Ticker::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->sentence(6,1),
+        'name' => $faker->sentence(4,1),
 		'typ' => $faker->randomElement(['standard','fussball']),
 		'start' => $faker->datetime('Y-m-d'),
 		'ressort' => $faker->randomElement(['Lokales','Sport', '5vor7']),
-		'headline' => $faker->sentence(9,1),
+		'headline' => $faker->sentence(7,1),
         'posts' => implode(',', $faker->shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])),
         'status' => $faker->randomElement([0,1]),
         'author_id' => $faker->randomElement([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]),

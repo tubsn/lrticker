@@ -49,7 +49,7 @@ nav ul {margin:0; padding:0;}
 nav ul li {list-style-type: none; display:inline-block;}
 nav a {text-decoration: none; display:block; padding:5px 10px;}
 nav a:hover {background-color:#eee;}
-nav a:visited {color:inherit;}
+nav a:visited {color:white;}
 
 ul.clean {margin:0;padding:0}
 ul.clean li {list-style-type: none;}
