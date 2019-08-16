@@ -7,7 +7,7 @@
 
 /* Body Reset */
 body {margin:3%; padding:0;}
-body {font: 1.3em/140% var(--font-body); color:#111;}
+body {font: 1.2em/140% var(--font-body); color:#111;}
 
 h1 {font-size:3em; line-height: 1.05em}
 h2 {font-size:2.25em; line-height: 1.25em}
@@ -226,7 +226,7 @@ grid-template-areas:
 }
 
 .nav-top .left {grid-area: left; align-self:center; justify-self: start}
-.nav-top .nav-headline {grid-area: title; justify-self: center; align-self:center; color:white;}
+.nav-top .nav-headline {grid-area: title; justify-self: center; align-self:center; color:white; font-family: var(--font-highlight);}
 .nav-top .right {grid-area: right; justify-self: end; align-self:center}
 
 
@@ -311,8 +311,6 @@ background-color: var(--light-background);
 }
 
 
-
-
 /* Detail Page */
 .ticker-area {grid-area: ticker}
 .autor-area {grid-area: autor}
@@ -353,11 +351,10 @@ background-color: var(--light-background);}
 .ticker-meta {display:none;}
 
 
-
 /* Ticker Editor */
 .ticker-editor {margin-bottom:4em;}
 .ticker-headline {text-align:center; margin-bottom:.5em;}
-.ticker-textarea {min-height: 160px; margin-bottom:.75em; padding:0.5em; border:1px solid black;}
+.ticker-textarea {min-height: 160px; margin-bottom:.75em; padding:0.5em; border:1px solid #999;}
 .ticker-textarea:focus {border-color: var(--lrblau)}
 
 .ticker-editor button {padding:0.4em 0.6em;}

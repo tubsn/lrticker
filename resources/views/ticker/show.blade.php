@@ -2,7 +2,7 @@
 
 @section('title', 'Ticker: ' . $ticker->name . ' (ID:' . $ticker->id . ')')
 @section('description', $ticker->headline)
-@section('navtitle', 'Liveticker: ' . $ticker->name . ' (ID: ' . $ticker->id . ')')
+@section('navtitle', $ticker->name . ' (ID: ' . $ticker->id . ')')
 
 @section('main')
 
@@ -11,7 +11,7 @@
 <div class="ticker-area">
 
 <section class="ticker-editor">
-<h1 class="ticker-headline">{{ $ticker->headline }}</h1>
+<h2 class="ticker-headline">{{ $ticker->headline }}</h2>
 
 <form action="/ticker/{{ $ticker->id }}/addpost" method="post">
 	@csrf
@@ -42,13 +42,15 @@
 
 <section class="posts" v-for="post, postKey in posts">
 <div class="post-layout">
-	<div class="post-content" v-html="post.content"></div>
+	<!--<div class="post-content" v-html="post.content"></div>-->
+	<editor @onClick="editPost" class="post-content" v-model="post.content" :init="tinyMainConfig"></editor>
 	<aside class="post-time"><span>@{{post.time}}</span> {{($ticker->typ == 'fussball') ? 'min' : 'Uhr'}}</aside>
 	<aside class="post-date">Datum: <span>@{{post.date}}</span></aside>
 	<aside class="post-autor">
 		Autor: <span>@{{(post.author) ? post.author.username : 'Redaktion'}}</span></aside>
 	<aside class="post-move">::</aside>
 	<aside class="post-delete" v-on:click="delete_post(post,postKey)"></aside>
+	<div v-on:click="editPost" >blaaaaa</div>
 </div>
 </section>
 
