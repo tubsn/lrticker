@@ -109090,11 +109090,15 @@ document.addEventListener("DOMContentLoaded", function () {
         quickbars_insert_toolbar: '',
         //quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
         quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | forecolor backcolor | removeformat',
-        contextmenu: 'hr link | inserttable | cell row column deletetable | code removeformat',
+        contextmenu: 'hr link | paste pastetext inserttable | cell row column deletetable | code removeformat',
         relative_urls: false,
         remove_script_host: false,
         link_assume_external_targets: true,
-        valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th'
+        paste_enable_default_filters: false,
+        paste_word_valid_elements: "b,strong,i,em,h1,h2,p",
+        invalid_elements: 'div',
+        //valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
+        extended_valid_elements: 'a[href|target=_blank]'
       }
     },
     components: {
@@ -109208,21 +109212,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return submitPost;
       }(),
-      editPost: function editPost(post) {
-        //const response = await axios.post('/ticker/'+this.tickerID+'/addpost', {'content': this.newPost});
-        console.log(post);
-      }
+      editPost: function editPost(event) {
+        var element = event.currentTarget;
+        var postID = element.parentElement.getAttribute('data-post-id');
+        tinymce.init({
+          target: element,
+          menubar: false,
+          inline: true,
+          toolbar: false,
+          plugins: ['autolink', 'link', 'lists', 'media', 'table', 'quickbars', 'code', 'paste'],
+          quickbars_insert_toolbar: '',
+          //quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
+          quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | forecolor backcolor | removeformat',
+          contextmenu: 'hr link | inserttable | cell row column deletetable | code removeformat',
+          relative_urls: false,
+          remove_script_host: false,
+          link_assume_external_targets: true,
+          //valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
+          extended_valid_elements: 'a[href|target=_blank]',
+          paste_enable_default_filters: false,
+          paste_word_valid_elements: "b,strong,i,em,h1,h2"
+          /*
+          init_instance_callback: function (editor) {
+          	editor.on('blur', function () {
+          		console.log('blub');
+          	});
+          },
+          */
+
+        }); //console.log(event.currentTarget);
+      },
+      savePost: function () {
+        var _savePost = _asyncToGenerator(
+        /*#__PURE__*/
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(event) {
+          var element, postID, response;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  element = event.currentTarget;
+                  postID = element.parentElement.getAttribute('data-post-id');
+                  _context4.next = 4;
+                  return axios.patch('/ticker/' + this.tickerID + '/' + postID, {
+                    'content': element.innerHTML
+                  });
+
+                case 4:
+                  response = _context4.sent;
+
+                case 5:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4, this);
+        }));
+
+        function savePost(_x3) {
+          return _savePost.apply(this, arguments);
+        }
+
+        return savePost;
+      }()
     }
   }); // End Vue
-
-  /*
-  async function refreshPosts() {
-  	const Posts = await axios.get('http://test.lr-cottbus.de/ticker/3/refresh');
-  	console.log(Posts); // Async
-  
-  }
-  refreshPosts();
-  */
 }); // End Document Rdy
 
 /***/ }),
@@ -109279,7 +109333,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! c:\Online\websites\test\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! d:\webserver\lrapps\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

@@ -51,6 +51,13 @@ class Ticker extends Model
 
 	}
 
+	public function edit_post($postID, $request) {
+		$post = Post::find($postID);
+		$post->content = $request->content;
+		$post->save();
+	}
+
+
 	public function delete_post($postID) {
 
 		if (Post::find($postID)->delete()) {

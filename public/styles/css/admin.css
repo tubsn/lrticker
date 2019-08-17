@@ -7,14 +7,14 @@
 
 /* Body Reset */
 body {margin:3%; padding:0;}
-body {font: 1.2em/140% var(--font-body); color:#111;}
+body {font: 1em/140% var(--font-body); color:#111;}
 
-h1 {font-size:3em; line-height: 1.05em}
-h2 {font-size:2.25em; line-height: 1.25em}
-h3 {font-size:1.75em; line-height: 1.25em}
-h4 {font-size:1.125em; line-height: 1.22222222em}
+h1 {font-size:2em; line-height: 1.25em}
+h2 {font-size:1.625em; line-height: 1.15384615em}
+h3 {font-size:1.375em; line-height: 1.13636364em}
+h4 {font-size:1.125em; line-height: 1.11111111}
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 720px) {
 	body {font-size: 1.125em;}
 	h1 {font-size:2.5em; line-height: 1.125em}
 	h2 {font-size:2em; line-height: 1.25em}
@@ -22,12 +22,16 @@ h4 {font-size:1.125em; line-height: 1.22222222em}
 	h4 {font-size:1.125em; line-height: 1.22222222}
 }
 
-@media only screen and (max-width: 720px) {
-	body {font-size: 1em;}
-	h1 {font-size:2em; line-height: 1.25em}
-	h2 {font-size:1.625em; line-height: 1.15384615em}
-	h3 {font-size:1.375em; line-height: 1.13636364em}
-	h4 {font-size:1.125em; line-height: 1.11111111}
+@media only screen and (min-width: 1200px) {
+	body {font-size: 1.2em;}
+}
+
+@media only screen and (min-width: 1920px) {
+	body {font-size: 1.3em;}
+	h1 {font-size:3em; line-height: 1.05em}
+	h2 {font-size:2.25em; line-height: 1.25em}
+	h3 {font-size:1.75em; line-height: 1.25em}
+	h4 {font-size:1.125em; line-height: 1.22222222em}
 }
 
 /* clearfix */

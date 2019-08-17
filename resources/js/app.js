@@ -43,11 +43,25 @@ data: {
 		quickbars_insert_toolbar: '',
 		//quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
 		quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | forecolor backcolor | removeformat',
-		contextmenu: 'hr link | inserttable | cell row column deletetable | code removeformat',
+		contextmenu: 'hr link | paste pastetext inserttable | cell row column deletetable | code removeformat',
 		relative_urls: false,
 		remove_script_host: false,
 		link_assume_external_targets: true,
-		valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
+
+		paste_enable_default_filters: false,
+		paste_word_valid_elements: "b,strong,i,em,h1,h2,p",
+		invalid_elements : 'div',
+
+		//valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
+		extended_valid_elements : 'a[href|target=_blank]',
+
+
+
+
+
+
+
+
 
 	},
 },
@@ -86,29 +100,51 @@ methods: {
 			this.$refs.newPost.$el.focus();
 		}
 	},
-	editPost: function(post) {
-		//const response = await axios.post('/ticker/'+this.tickerID+'/addpost', {'content': this.newPost});
-		console.log(post);
+	editPost: function(event) {
+		const element = event.currentTarget;
+		const postID = element.parentElement.getAttribute('data-post-id');
 
+		tinymce.init({
+		target: element,
+		menubar: false,
+		inline: true,
+		toolbar: false,
+		plugins: ['autolink','link','lists','media','table','quickbars','code','paste'],
+		quickbars_insert_toolbar: '',
+		//quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
+		quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | forecolor backcolor | removeformat',
+		contextmenu: 'hr link | inserttable | cell row column deletetable | code removeformat',
+		relative_urls: false,
+		remove_script_host: false,
+		link_assume_external_targets: true,
+		//valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
+		extended_valid_elements : 'a[href|target=_blank]',
+		paste_enable_default_filters: false,
+		paste_word_valid_elements: "b,strong,i,em,h1,h2",
 
+		/*
+		init_instance_callback: function (editor) {
+			editor.on('blur', function () {
+				console.log('blub');
+			});
+		},
+		*/
+
+		});
+
+		//console.log(event.currentTarget);
+
+	},
+	savePost: async function(event) {
+		const element = event.currentTarget;
+		const postID = element.parentElement.getAttribute('data-post-id');
+		const response = await axios.patch('/ticker/'+this.tickerID+'/'+postID, {'content': element.innerHTML});
 	}
 }
 
 }) // End Vue
 
 
-
-
-
-
-/*
-async function refreshPosts() {
-	const Posts = await axios.get('http://test.lr-cottbus.de/ticker/3/refresh');
-	console.log(Posts); // Async
-
-}
-refreshPosts();
-*/
 
 
 }); // End Document Rdy

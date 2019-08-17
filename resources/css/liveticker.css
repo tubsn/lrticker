@@ -11,7 +11,7 @@
 /* Body */
 body {margin:0;}
 main {width:80%; margin-left: auto; margin-right: auto; transition: width 0.3s;}
-@media only screen and (max-width: 1600px) {main {width:90%;}}
+@media only screen and (max-width: 1600px) {body {} main {width:90%;}}
 footer {margin-bottom:2em;}
 
 /* Top - Navigation */
@@ -87,8 +87,8 @@ table.styled th:first-child, table.styled th:last-child {text-align:center; opac
 table.styled td:last-child,
 table.styled td:first-child {font-size:0.8em; font-family:'Fira Sans Condensed'; font-style: italic;}
 
-table.styled tr:nth-child(2n+1) {background-color:#e7f2fa}
-table.styled tr:hover {background-color:#cfe6f7}
+table.styled tr:nth-child(2n+1) {background-color:#eaeaea}
+table.styled tr:hover {background-color:#d0dce6}
 table.styled tr:hover a:hover {color:#0059a9}
 
 table.styled th {background-color:var(--highlight); color:white;}
@@ -190,7 +190,7 @@ white-space: nowrap; color:#999; font-size:0.7em; padding:0 .5em;}
 .post-autor {text-align:right;}
 .post-time span, .post-date span, .post-autor span {color: var(--lrblau)}
 .post-content {border:1px solid #ddd; padding:.5em; align-self: center;}
-
+.post-content:focus {border:1px solid var(--lrblau)}
 .post-content iframe {margin:0 auto; display:block;}
 
 .post-move, .post-delete {align-self: center;}

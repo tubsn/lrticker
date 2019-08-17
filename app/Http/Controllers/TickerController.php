@@ -47,6 +47,11 @@ class TickerController extends Controller
 		//return redirect('/ticker/' . $ticker->id);
 	}
 
+	public function edit_post(Ticker $ticker, $postID, Request $request) {
+		$ticker->edit_post($postID, $request);
+		return ['post' => $postID, 'edited' => 1];
+	}
+
 	public function delete_post(Ticker $ticker, $postID) {
 		return $ticker->delete_post($postID);
 		//return ['ticker' => $ticker->id, 'deleted' => 1];
