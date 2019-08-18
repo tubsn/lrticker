@@ -39,7 +39,7 @@
 <tr>
 	<td>{{ $ticker->id }}</td>
 	<td><a href="/ticker/{{ $ticker->id }}">{{ $ticker->name }}</a></td>
-	<td><a href="/ticker/{{ $ticker->id }}" class="vorschau">Link</a></td>
+	<td><a href="/ticker/{{ $ticker->id }}/preview" class="vorschau">Link</a></td>
 	<td>{{ ($ticker->author) ? $ticker->author->username : 'Redaktion' }}</td>
 	<td>{{ ($ticker->status) ? 'aktiv' : 'beendet' }}</td>
 	<td>{{ $ticker->typ }}</td>

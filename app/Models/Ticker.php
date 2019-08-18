@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Events\TickerUpdated;
 
 class Ticker extends Model
 {
@@ -11,73 +11,74 @@ class Ticker extends Model
     protected $guarded = ['id', '_token', 'author'];
     protected $casts = ['start' => 'datetime'];
 	protected $dates = ['start'];
+    protected $dispatchesEvents = [
+        'saved' => TickerUpdated::class,
+    ];
 
-	public function refreshPosts() {
-		// with Author Username
+	public function refresh_posts() {
 		return $this->posts()->load('author:id,username');
-
 	}
 
+	public function update_cachefile() {
+		\Storage::disk('ticker')->put($this->id . '.js', $this->as_json_with_posts());
+	}
 
 	public function posts() {
 
-		if (empty($this->posts)) {
-			return [];
-		}
+		// Attention posts() is a Method!
+		//this is no eloquent relationship
 
-		$postIDs = explode(',',$this->posts);
-		return Post::whereIn('id', $postIDs)->orderByRaw('FIELD (id, '.$this->posts.')')->get();
+		if (empty($this->post_ids)) {return [];}
+		$postIDs = explode(',', $this->post_ids);
 
-		// Find won´t work because it is not considering the ID order :(
-		// return Post::find(explode(',',$this->posts));
+		return Post::whereIn('id', $postIDs)->orderByRaw('FIELD (id, '.$this->post_ids.')')->get();
 	}
 
-	public function add_post($request) {
+	public function attach_post($postID) {
 
-		$newPost = new Post();
-		$newPost->content = $request->content;
-		$newPost->time = date('G:i');
-		$newPost->date = now();
-		$newPost->save();
-
-		if (empty($this->posts)) {
-			$this->posts = $newPost->id;
+		if (empty($this->post_ids)) {
+			$this->post_ids = $postID;
 		}
 		else {
-			$this->posts = $newPost->id . ',' . $this->posts;
+			$this->post_ids = $postID . ',' . $this->post_ids;
 		}
 
 		$this->save();
 
 	}
 
-	public function edit_post($postID, $request) {
-		$post = Post::find($postID);
-		$post->content = $request->content;
-		$post->save();
-	}
+	public function detach_post($postID) {
 
+		// Find and remove given PostID
+		$posts = explode(",", $this->post_ids);
+		$key = array_search($postID,$posts);
+		unset($posts[$key]);
 
-	public function delete_post($postID) {
-
-		if (Post::find($postID)->delete()) {
-			return [
-				'message' => 'Post ' . $postID . ' deleted',
-				'deleted' => true
-			];
-		}
-
-		else {
-			return [
-				'message' => 'Post ' . $postID . ' could not be deleted',
-				'deleted' => false
-			];
-		}
-
+		// Save to "," seperated list
+		$this->post_ids = implode(",", $posts);
+		$this->save();
 	}
 
 	public function author() {
-		return $this->hasOne(User::class, 'id', 'author_id');
+		return $this->hasOne(User::class, 'id', 'author_id')->withDefault([
+			'username' => 'Unbekannt',
+			'description' => 'keine Angaben',
+			'thumbnail' => '/styles/img/icons/no-thumb.svg',
+		]);
+	}
+
+
+	private function as_json_with_posts() {
+
+		if ($this->posts()) {
+			$posts = $this->posts()->load('author:id,username')->toArray();
+		}
+		else { $posts = '';}
+
+		return json_encode([
+			'ticker' => $this->load('author:id,username'),
+			'posts' => $posts,
+		]);
 	}
 
 }

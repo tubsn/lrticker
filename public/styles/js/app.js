@@ -109151,11 +109151,11 @@ document.addEventListener("DOMContentLoaded", function () {
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return axios["delete"]('/ticker/' + this.tickerID + '/' + post.id);
+                  return axios["delete"]('/post/' + post.id);
 
                 case 2:
                   response = _context2.sent;
-                  console.log(response.data.message);
+                  console.log(response.data);
 
                   if (response.data.deleted) {
                     this.$delete(this.posts, postKey);
@@ -109184,13 +109184,16 @@ document.addEventListener("DOMContentLoaded", function () {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
-                  _context3.next = 2;
-                  return axios.post('/ticker/' + this.tickerID + '/addpost', {
-                    'content': this.newPost
+                  _context3.prev = 0;
+                  _context3.next = 3;
+                  return axios.post('/post', {
+                    'content': this.newPost,
+                    'ticker_id': this.tickerID
                   });
 
-                case 2:
+                case 3:
                   response = _context3.sent;
+                  console.log(response);
 
                   if (response.data.added) {
                     this.refresh();
@@ -109198,12 +109201,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.$refs.newPost.$el.focus();
                   }
 
-                case 4:
+                  _context3.next = 11;
+                  break;
+
+                case 8:
+                  _context3.prev = 8;
+                  _context3.t0 = _context3["catch"](0);
+                  console.error(_context3.t0);
+
+                case 11:
                 case "end":
                   return _context3.stop();
               }
             }
-          }, _callee3, this);
+          }, _callee3, this, [[0, 8]]);
         }));
 
         function submitPost() {
@@ -109254,7 +109265,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   element = event.currentTarget;
                   postID = element.parentElement.getAttribute('data-post-id');
                   _context4.next = 4;
-                  return axios.patch('/ticker/' + this.tickerID + '/' + postID, {
+                  return axios.patch('/post/' + postID, {
                     'content': element.innerHTML
                   });
 
@@ -109266,7 +109277,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   return _context4.stop();
               }
             }
-          }, _callee4, this);
+          }, _callee4);
         }));
 
         function savePost(_x3) {

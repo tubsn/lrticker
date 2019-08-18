@@ -47,7 +47,7 @@
 	<aside class="post-time"><span>@{{post.time}}</span> {{($ticker->typ == 'fussball') ? 'min' : 'Uhr'}}</aside>
 	<aside class="post-date">Datum: <span>@{{post.date}}</span></aside>
 	<aside class="post-autor">
-		Autor: <span>@{{(post.author) ? post.author.username : 'Redaktion'}}</span></aside>
+		Autor: <span>@{{post.author.username}}</span></aside>
 	<aside class="post-move">::</aside>
 	<aside class="post-delete" v-on:click="delete_post(post,postKey)"></aside>
 </div>
@@ -74,9 +74,9 @@
 </div> <!-- end Ticker Area -->
 
 <aside class="autor-area">
-	<img class="autor-image" src="{{ ($ticker->author) ? $ticker->author->thumbnail : '' }}">
-	<h3 class="autor-headline">{{ ($ticker->author) ? $ticker->author->username : 'Redaktion' }}</h3>
-	<p class="autor-desc">({{ ($ticker->author) ? $ticker->author->description : 'Sport Redaktion' }})</p>
+	<img class="autor-image" src="{{ $ticker->author->thumbnail }}">
+	<h3 class="autor-headline">{{ $ticker->author->username }}</h3>
+	<p class="autor-desc">({{ $ticker->author->description }})</p>
 </aside>
 
 <aside class="fav-area">
@@ -92,9 +92,10 @@ Typ: {{ $ticker->typ }}<br />
 Start: {{ !is_null($ticker->start) ? $ticker->start->format('d.m.Y') : 'keine Angabe' }}<br />
 Titel: {{ $ticker->headline }}<br />
 Status: {{ $ticker->status }}<br />
-Erstellt von: {{ ($ticker->author) ? $ticker->author->username : 'Redaktion' }}<br />
+Erstellt von: {{ $ticker->author->username }}<br />
 </p>
 <a class="button block mb" href="{{ $ticker->id }}/edit">Ticker editieren</a>
+<a class="button block mb" href="{{ $ticker->id }}/preview/">Preview</a>
 
 </aside>
 

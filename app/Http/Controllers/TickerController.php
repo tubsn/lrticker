@@ -8,14 +8,31 @@ use Illuminate\Http\Request;
 
 class TickerController extends Controller
 {
+
+	function __construct() {
+
+		$this->middleware('auth')->except('index');
+
+	}
+
     public function index(Ticker $ticker) {
     	return view('ticker/index')->with(
 			['tickers' => $ticker->orderBy('id','desc')->get()]
 		);
     }
 
+	public function preview($tickerID) {
+
+		$tickerJson = \Storage::disk('ticker')->get($tickerID . '.js');
+		$ticker = json_decode($tickerJson, true);
+
+    	return view('ticker/preview')->with([
+			'ticker' => $ticker
+		]);
+	}
+
 	public function get_live_posts(Ticker $ticker) {
-		return $ticker->refreshPosts();
+		return $ticker->refresh_posts();
 	}
 
     public function create() {
@@ -37,26 +54,6 @@ class TickerController extends Controller
     public function edit(Ticker $ticker) {
         return view('ticker/edit-ticker')->with(['ticker' => $ticker]);
     }
-
-	public function add_post(Request $request, Ticker $ticker) {
-		$request->validate([
-			'content' => 'required',
-		]);
-		$ticker->add_post($request);
-		return ['ticker' => $ticker->id, 'added' => 1];
-		//return redirect('/ticker/' . $ticker->id);
-	}
-
-	public function edit_post(Ticker $ticker, $postID, Request $request) {
-		$ticker->edit_post($postID, $request);
-		return ['post' => $postID, 'edited' => 1];
-	}
-
-	public function delete_post(Ticker $ticker, $postID) {
-		return $ticker->delete_post($postID);
-		//return ['ticker' => $ticker->id, 'deleted' => 1];
-	}
-
 
     public function update(Request $request, Ticker $ticker) {
 		$request->validate([

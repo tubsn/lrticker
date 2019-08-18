@@ -391,10 +391,10 @@ grid-template-areas:
 white-space: nowrap; color:#999; font-size:0.7em; padding:0 .5em;}
 
 .post-date {text-align:center;}
-
 .post-autor {text-align:right;}
 .post-time span, .post-date span, .post-autor span {color: var(--lrblau)}
 .post-content {border:1px solid #ddd; padding:.5em; align-self: center;}
+.post-content:focus {border:1px solid var(--lrblau)}
 .post-content iframe {margin:0 auto; display:block;}
 
 .post-move, .post-delete {align-self: center;}

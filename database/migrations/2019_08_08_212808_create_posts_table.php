@@ -24,7 +24,7 @@ class CreatePostsTable extends Migration
 			$table->date('date')->nullable();
 			$table->string('time', 120)->nullable();
 			$table->index('ticker_id');
-			//$table->foreign('ticker_id')->references('id')->on('ticker');
+			//$table->foreign('ticker_id')->references('id')->on('tickers')->onDelete('cascade');
 			//$table->foreign('author')->references('id')->on('users');
         });
     }

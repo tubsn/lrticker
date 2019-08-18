@@ -55,14 +55,6 @@ data: {
 		//valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
 		extended_valid_elements : 'a[href|target=_blank]',
 
-
-
-
-
-
-
-
-
 	},
 },
 
@@ -86,19 +78,27 @@ methods: {
 		this.posts = response.data;
 	},
 	delete_post: async function (post, postKey) {
-		const response = await axios.delete('/ticker/'+this.tickerID+'/'+post.id);
-		console.log(response.data.message);
+		const response = await axios.delete('/post/'+post.id);
+		console.log(response.data);
 		if (response.data.deleted) {
 			this.$delete(this.posts, postKey);
 		}
 	},
 	submitPost: async function() {
-		const response = await axios.post('/ticker/'+this.tickerID+'/addpost', {'content': this.newPost});
-		if (response.data.added) {
-			this.refresh();
-			this.newPost = '';
-			this.$refs.newPost.$el.focus();
+		try {
+			const response = await axios.post('/post', {'content': this.newPost, 'ticker_id': this.tickerID});
+
+			console.log(response);
+			if (response.data.added) {
+				this.refresh();
+				this.newPost = '';
+				this.$refs.newPost.$el.focus();
+			}
+
+		} catch (error) {
+			console.error(error);
 		}
+
 	},
 	editPost: function(event) {
 		const element = event.currentTarget;
@@ -138,7 +138,7 @@ methods: {
 	savePost: async function(event) {
 		const element = event.currentTarget;
 		const postID = element.parentElement.getAttribute('data-post-id');
-		const response = await axios.patch('/ticker/'+this.tickerID+'/'+postID, {'content': element.innerHTML});
+		const response = await axios.patch('/post/'+postID, {'content': element.innerHTML});
 	}
 }
 
