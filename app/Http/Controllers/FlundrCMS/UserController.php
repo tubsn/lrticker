@@ -16,7 +16,7 @@ class UserController extends Controller
     }
 
     public function create() {
-        return view('flundrcms/user/create');
+        return view('FlundrCMS/user/create');
     }
 
     public function store(Request $request) {
@@ -36,7 +36,7 @@ class UserController extends Controller
     }
 
     public function edit(User $user) {
-		return view('flundrcms/user/edit')->with(['user' => $user]);
+		return view('FlundrCMS/user/edit')->with(['user' => $user]);
     }
 
     public function update(Request $request, User $user) {

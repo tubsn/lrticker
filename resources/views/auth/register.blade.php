@@ -2,16 +2,15 @@
 
 @section('body')
 
-<main class="layout-login">
+<main class="layout-auth">
 
-<header class="area-logo">
-	<h1>Registrieren</h1>
-</header>
+<div class="centered-box">
+<h1>Registrierung</h1>
 
 <form method="POST" action="{{ route('register') }}">
     @csrf
 
-	<label>Username:
+	<label>Benutzername:
     <input id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus></label>
 
     @error('name')
@@ -43,7 +42,7 @@
     @enderror
 
 
-	<label>Password bestätigen
+	<label>Password bestätigen:
     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 	</label>
 
@@ -64,5 +63,7 @@
 
 
 </form>
+</div>
+</main>
 
 @endsection

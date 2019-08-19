@@ -10,7 +10,7 @@ class FlundrController extends Controller
 {
 
     public function index() {
-		return view('flundrcms.user.index')->with(
+		return view('FlundrCMS.user.index')->with(
 			['users' => User::all()]
 		);
 	}

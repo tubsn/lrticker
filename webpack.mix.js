@@ -15,7 +15,8 @@ mix.js('resources/js/app.js', 'public/styles/js')
 
 mix.styles([
     'resources/css/default/defaults.css',
-    'resources/css/liveticker.css'
+    'resources/css/liveticker.css',
+	'resources/css/auth.css'
 ], 'public/styles/css/main.css')
 	.styles([
     'resources/css/default/defaults.css',

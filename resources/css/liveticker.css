@@ -31,6 +31,11 @@ grid-template-areas:
 
 
 /* Layouts */
+
+.layout-home {
+	margin-top:2em;
+}
+
 .layout-index {
 display:grid;
 grid-gap: 2em;

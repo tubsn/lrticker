@@ -1,0 +1,18 @@
+.layout-auth { display:grid; width:100%; min-height: 100vh; background-color: #e8e8e8;}
+.centered-box {width:100%; max-width:800px; padding:2em; box-sizing: border-box;}
+
+@media only screen and (min-width: 720px) {
+	.layout-auth {justify-items: center; align-items: center;}
+	.centered-box {
+	width:70%; max-width:800px;
+	background-color:white; border: 1px solid #cecece;
+	box-shadow: 0 0 1.5em 0 rgba(0,0,0,0.3);}
+}
+
+@media only screen and (min-width: 720px) and (min-height: 900px) {
+	.centered-box {transform: translateY(-20%);}
+}
+
+.layout-auth form {width:100%;}
+.layout-auth form label {font-size: 1em;}
+.layout-auth form input:focus {background:#fff8e5;}

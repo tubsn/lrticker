@@ -122,10 +122,18 @@ ul:last-of-type, ol:last-of-type {margin-bottom:0;}
 .text-center {text-align:center}
 .text-right {text-align:right}
 .nowrap {white-space: nowrap;}
+.pointer {cursor:pointer;}
+.block {display:block;}
 
 /* Box */
 .box {margin-top:1em; margin-bottom:1em; padding:1em; background-color:#f3f3f3}
 .box.red {background-color: #ae2d2d; color:white;}
+
+/* Alerts & form Control */
+.alert {margin-top:1em; margin-bottom:1em; padding:1em; background-color:#f3f3f3}
+.alert-success {background-color: #3aae2d; color:white;}
+.alert-fail {background-color: #ae2d2d; color:white;}
+.form-control.is-invalid {border:1px solid red; background-color:#ffd4d4}
 
 /* Load Indicators */
 .loadIndicator {position:relative; top:2px; text-align: center; line-height:0;

@@ -11,7 +11,7 @@ class UserProfileController extends Controller
 
 	public function index() {
 
-		print_r(auth()->user()->username);
+		print_r(auth()->user());
 
 	}
 
