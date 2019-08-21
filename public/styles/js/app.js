@@ -1845,8 +1845,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.posts, function(post) {
-      return _c("ticker-post", { attrs: { post: post } })
+    _vm._l(_vm.posts, function(post, postKey) {
+      return _c("ticker-post", { key: postKey, attrs: { post: post } })
     }),
     1
   )
@@ -2150,7 +2150,6 @@ document.addEventListener("DOMContentLoaded", function () {
       'editor': Editor,
       'ticker-list': TickerList
     },
-    created: function created() {},
     mounted: function mounted() {
       this.tickerID = this.$el.getAttribute('data-tickerID');
     },

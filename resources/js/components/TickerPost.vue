@@ -12,7 +12,7 @@
 
 <script>
 	export default {
-		props: ['post'],
+		props: ['post','key'],
 		data: function () {
 			return {
 				isVivible: true
@@ -39,6 +39,7 @@
 				console.log(response.data);
 				if (response.data.deleted) {
 					this.isVivible = false;
+					//console.log(this.$parent.posts[this.key]);
 				}
 			},
 

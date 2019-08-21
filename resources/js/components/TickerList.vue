@@ -1,6 +1,6 @@
 <template>
 <div>
-	<ticker-post v-for="post in posts" v-bind:post=post></ticker-post>
+	<ticker-post v-for="post, postKey in posts" v-bind:post="post" v-bind:key="postKey"></ticker-post>
 </div>
 
 </template>

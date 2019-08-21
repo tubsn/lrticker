@@ -57,10 +57,6 @@ components: {
 	'ticker-list': TickerList
 },
 
-created: function() {
-
-},
-
 mounted: function () {
 	this.tickerID = this.$el.getAttribute('data-tickerID');
 },
