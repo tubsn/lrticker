@@ -1,5 +1,7 @@
 {
     "/styles/js/app.js": "/styles/js/app.js",
+    "/styles/js/manifest.js": "/styles/js/manifest.js",
+    "/styles/js/vendor.js": "/styles/js/vendor.js",
     "/styles/css/main.css": "/styles/css/main.css",
     "/styles/css/admin.css": "/styles/css/admin.css"
 }

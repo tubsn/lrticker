@@ -17,8 +17,7 @@
 	@csrf
 
 	<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
-
-	<editor class="ticker-textarea" v-model="newPost" :init="tinyMainConfig" ref="newPost"></editor>
+	<editor class="ticker-textarea" v-model="newPost" :init="tinyConfig" ref="newPost"></editor>
 
 	<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
 	<button type="button" v-on:click="submitPost">Nachricht senden</button>
@@ -40,10 +39,14 @@
 </section>
 
 
+<ticker-list tickerid="{{ $ticker->id }}" class="posts" ref="ticker"></ticker-list>
+
+
+
+{{--
 <section class="posts" v-for="post, postKey in posts">
 <div class="post-layout" v-bind:data-post-id="post.id">
 	<div @mouseover.once="editPost" @blur="savePost" class="post-content" v-html="post.content"></div>
-	{{--<editor @onClick="editPost" class="post-content" v-model="post.content" :init="tinyMainConfig"></editor> --}}
 	<aside class="post-time"><span>@{{post.time}}</span> {{($ticker->typ == 'fussball') ? 'min' : 'Uhr'}}</aside>
 	<aside class="post-date">Datum: <span>@{{post.date}}</span></aside>
 	<aside class="post-autor">
@@ -52,6 +55,10 @@
 	<aside class="post-delete" v-on:click="delete_post(post,postKey)"></aside>
 </div>
 </section>
+--}}
+
+
+
 
 {{--
 <section class="posts">

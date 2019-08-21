@@ -40,3 +40,26 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+
+// Tiny
+window.TinyMCE = require('tinymce');
+window.TinyMCE.baseURL = "/styles/libs/tiny/";// trailing slash important
+require('tinymce/themes/silver');
+require('tinymce/plugins/autolink');
+require('tinymce/plugins/link');
+require('tinymce/plugins/lists');
+require('tinymce/plugins/media');
+require('tinymce/plugins/table');
+require('tinymce/plugins/quickbars');
+require('tinymce/plugins/code');
+require('tinymce/plugins/paste');
+
+
+// Vue Instance
+window.Vue = require('vue');
+
+// Vue Components
+window.Editor = require('@tinymce/tinymce-vue').default;
+window.TickerList = require('./components/TickerList.vue').default;
+window.TickerPost = require('./components/TickerPost.vue').default;

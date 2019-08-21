@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/styles/js')
+mix.js('resources/js/app.js', 'public/styles/js').extract(['lodash','axios','vue', 'tinymce']);
 
 mix.styles([
     'resources/css/default/defaults.css',
@@ -24,5 +24,4 @@ mix.styles([
 ], 'public/styles/css/admin.css');
 
 mix.copyDirectory('resources/img', 'public/styles/img');
-
 mix.copyDirectory('node_modules/tinymce/skins', 'public/styles/libs/tiny/skins');
