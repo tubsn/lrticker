@@ -11,9 +11,10 @@ Route::get('/', 'HomeController@index');
 //Route::redirect('/', '/ticker');
 Route::resource('/post', 'PostController');
 Route::resource('/ticker', 'TickerController');
-Route::post('/ticker/{ticker}/addpost', 'TickerController@add_post');
-Route::delete('/ticker/{ticker}/{post}', 'TickerController@delete_post');
-Route::patch('/ticker/{ticker}/{post}', 'TickerController@edit_post');
+//Route::post('/ticker/{ticker}/addpost', 'TickerController@add_post');
+//Route::delete('/ticker/{ticker}/{post}', 'TickerController@delete_post');
+//Route::patch('/ticker/{ticker}/{post}', 'TickerController@edit_post');
+Route::patch('/ticker/{ticker}/reorder', 'TickerController@reorder_posts');
 Route::get('/ticker/{ticker}/refresh', 'TickerController@get_live_posts');
 Route::get('/ticker/{tickerID}/preview', 'TickerController@preview');
 

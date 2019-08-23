@@ -1,8 +1,7 @@
 <template>
-<div>
+<section>
 	<ticker-post v-for="post, postKey in posts" v-bind:post="post" v-bind:key="postKey"></ticker-post>
-</div>
-
+</section>
 </template>
 
 <script>
@@ -29,6 +28,9 @@
 		computed: {
 			tinyConfig: function () {
 				return this.$parent.tinyConfig;
+			},
+			postList: function () {
+				return this.posts.map((post) => {return post.id;});
 			}
 
 		},

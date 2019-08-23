@@ -411,7 +411,7 @@ white-space: nowrap; color:#999; font-size:0.7em; padding:0 .5em;}
 .post-content iframe {margin:0 auto; display:block;}
 
 .post-move, .post-delete {align-self: center;}
-.post-move {margin-right: 1em; opacity:0.5; cursor:grab}
+.post-move {margin-right: 1em; opacity:0.5; cursor:grab; padding:0.5em;}
 .post-delete { margin-left:1em;}
 .post-delete { cursor:pointer; display:block; width:25px; height:25px; opacity:0.3;
 background-image: url('/styles/img/icons/icon-delete.svg');}

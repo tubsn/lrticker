@@ -21,12 +21,6 @@ class Post extends Model
 		return $this->hasOne(Ticker::class, 'id', 'ticker_id')->withDefault();
 	}
 
-	public function save(array $options = []) {
-		$saved = parent::save($options); // Save first to get ID
-		$this->ticker->attach_post($this->id);
-		return $saved;
-	}
-
     public function delete() {
 		$this->ticker->detach_post($this->id);
 		return parent::delete();

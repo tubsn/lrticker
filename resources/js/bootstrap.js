@@ -55,6 +55,26 @@ require('tinymce/plugins/quickbars');
 require('tinymce/plugins/code');
 require('tinymce/plugins/paste');
 
+window.tinyMCEConfig = {
+		menubar: false,
+		inline: true,
+		toolbar: false,
+		plugins: ['autolink','link','lists','media','table','quickbars','code','paste'],
+		quickbars_insert_toolbar: '',
+		//quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
+		quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | forecolor backcolor | removeformat',
+		contextmenu: 'hr link | paste pastetext inserttable | cell row column deletetable | code removeformat',
+		relative_urls: false,
+		remove_script_host: false,
+		link_assume_external_targets: true,
+
+		paste_enable_default_filters: false,
+		paste_word_valid_elements: "b,strong,i,em,h1,h2,p",
+		invalid_elements : 'div',
+
+		//valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
+		extended_valid_elements : 'a[href|target=_blank]'
+}
 
 // Vue Instance
 window.Vue = require('vue');

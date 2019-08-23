@@ -35,6 +35,16 @@ class TickerController extends Controller
 		return $ticker->refresh_posts();
 	}
 
+    public function reorder_posts(Request $request, Ticker $ticker) {
+
+		$ticker->update($request->all());
+		return [
+			'message' => 'Posts rearranged in Ticker: ' . $ticker->id,
+			'success' => true
+		];
+
+    }
+
     public function create() {
         return view('ticker/create-ticker');
     }

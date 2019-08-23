@@ -31,9 +31,11 @@ class PostController extends Controller
 		$newPost->date = now();
 		$newPost->save();
 
+		$newPost->ticker->attach_post($newPost->id);
+
 		return [
 			'message' => 'New Post added ID:' . $newPost->id,
-			'added' => true
+			'success' => true
 		];
     }
 
@@ -50,7 +52,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post) {
 		$post->content = $request->content;
 		$post->save();
-		event(new TickerUpdated($post->ticker)); 
+		event(new TickerUpdated($post->ticker));
     }
 
     public function destroy(Post $post){
@@ -58,14 +60,14 @@ class PostController extends Controller
 		if ($post->delete()) {
 			return [
 				'message' => 'Post ' . $post->id . ' deleted',
-				'deleted' => true
+				'success' => true
 			];
 		}
 
 		else {
 			return [
 				'message' => 'Post ' . $post->id . ' could not be deleted',
-				'deleted' => false
+				'success' => false
 			];
 		}
 
