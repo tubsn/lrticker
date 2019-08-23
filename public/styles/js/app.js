@@ -705,7 +705,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.post-layout.is-dragged {opacity:.3; background:#fff1cf;}\n.post-layout.is-target {opacity:.8; background:#fff1cf;}\n.post-layout.is-target > * {pointer-events: none !important;}\n", ""]);
+exports.push([module.i, "\n.post-layout.is-dragged {opacity:.3; background:#fff1cf;}\n.post-layout.is-target {opacity:.8; background:#fff1cf;}\n.post-layout.is-target > * {pointer-events: none !important;}\r\n", ""]);
 
 // exports
 
@@ -2650,7 +2650,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("aside", { staticClass: "post-autor" }, [
-            _vm._v("\n\t\tAutor: "),
+            _vm._v("\r\n\t\tAutor: "),
             _c("span", [_vm._v(_vm._s(_vm.post.author.username))])
           ]),
           _vm._v(" "),
@@ -3119,15 +3119,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/components/TickerPost.vue ***!
   \************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TickerPost_vue_vue_type_template_id_f4d5cb16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TickerPost.vue?vue&type=template&id=f4d5cb16& */ "./resources/js/components/TickerPost.vue?vue&type=template&id=f4d5cb16&");
 /* harmony import */ var _TickerPost_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TickerPost.vue?vue&type=script&lang=js& */ "./resources/js/components/TickerPost.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _TickerPost_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _TickerPost_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _TickerPost_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TickerPost.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/TickerPost.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TickerPost_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TickerPost.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/TickerPost.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -3159,7 +3158,7 @@ component.options.__file = "resources/js/components/TickerPost.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/TickerPost.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3210,7 +3209,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! d:\webserver\lrapps\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Online\websites\test\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

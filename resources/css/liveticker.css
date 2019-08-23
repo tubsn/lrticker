@@ -160,7 +160,10 @@ background-color: var(--light-background);}
 .ticker-editor {margin-bottom:4em;}
 .ticker-headline {text-align:center; margin-bottom:.5em;}
 .ticker-textarea {min-height: 160px; margin-bottom:.75em; padding:0.5em; border:1px solid #999;}
+.ticker-textarea:hover {resize: vertical; overflow: auto;}
 .ticker-textarea:focus {border-color: var(--lrblau)}
+
+
 
 .ticker-editor button {padding:0.4em 0.6em;}
 button.minor {background-color:#c8c8c8; color: white; }
@@ -195,6 +198,7 @@ white-space: nowrap; color:#999; font-size:0.7em; padding:0 .5em;}
 .post-autor {text-align:right;}
 .post-time span, .post-date span, .post-autor span {color: var(--lrblau)}
 .post-content {border:1px solid #ddd; padding:.5em; align-self: center;}
+.post-content:hover {resize: vertical; overflow: auto;}
 .post-content:focus {border:1px solid var(--lrblau)}
 .post-content iframe {margin:0 auto; display:block;}
 
