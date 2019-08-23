@@ -83,3 +83,4 @@ window.Vue = require('vue');
 window.Editor = require('@tinymce/tinymce-vue').default;
 window.TickerList = require('./components/TickerList.vue').default;
 window.TickerPost = require('./components/TickerPost.vue').default;
+window.FileUploadButton = require('./components/FileUploadButton.vue').default;

@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
 const livetickerAPP = new Vue({
 el: '#liveticker',
 data: {
@@ -33,7 +34,8 @@ data: {
 
 components: {
 	'editor': Editor,
-	'ticker-list': TickerList
+	'ticker-list': TickerList,
+	'file-upload': FileUploadButton,
 },
 
 mounted: function () {
@@ -55,6 +57,23 @@ methods: {
 		} catch (error) {
 			console.error(error);
 		}
+
+	},
+
+	createImagePost: function(attachments) {
+
+		let images;
+
+		attachments.forEach(attachment => {
+			images = images + `<img src="/storage/uploads/${attachment.url}">`;
+		});
+
+
+
+		this.newPost = images;
+
+
+
 
 	},
 

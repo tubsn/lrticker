@@ -21,10 +21,11 @@
 
 	<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
 	<button type="button" v-on:click="submitPost">Nachricht senden</button>
-	<button class="minor">Bild</button>
+	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="createImagePost">Bild</file-upload>
 	<button class="minor">Youtube</button>
 	<button class="minor">HTML</button>
 </form>
+
 
 @if ($errors->any())
 <div class="box mb red">
@@ -40,8 +41,6 @@
 
 
 <ticker-list tickerid="{{ $ticker->id }}" class="posts" ref="ticker"></ticker-list>
-
-
 
 {{--
 <section class="posts" v-for="post, postKey in posts">

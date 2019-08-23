@@ -5,21 +5,23 @@ Auth::routes();
 Route::get('/profil/', 'Auth\UserProfileController@index');
 
 /* Home */
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 /* Ticker Stuff */
 //Route::redirect('/', '/ticker');
 Route::resource('/post', 'PostController');
 Route::resource('/ticker', 'TickerController');
-//Route::post('/ticker/{ticker}/addpost', 'TickerController@add_post');
-//Route::delete('/ticker/{ticker}/{post}', 'TickerController@delete_post');
-//Route::patch('/ticker/{ticker}/{post}', 'TickerController@edit_post');
+Route::resource('/attachment', 'AttachmentController');
+
 Route::patch('/ticker/{ticker}/reorder', 'TickerController@reorder_posts');
 Route::get('/ticker/{ticker}/refresh', 'TickerController@get_live_posts');
 Route::get('/ticker/{tickerID}/preview', 'TickerController@preview');
 
 
+/* Uploads */
+
+
 /* FlundrCMS Default Routes */
-Route::get('/admin', 'FlundrCMS\FlundrController@index');
+Route::get('/admin', 'FlundrCMS\FlundrController@index')->name('admin.home');
 Route::resource('/admin/user', 'FlundrCMS\UserController');
 
