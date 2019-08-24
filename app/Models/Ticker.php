@@ -16,7 +16,11 @@ class Ticker extends Model
     ];
 
 	public function refresh_posts() {
-		return $this->posts()->load('author:id,username');
+
+		if (count($this->posts()) > 0) {
+			return $this->posts()->load('author:id,username');
+		}
+		
 	}
 
 	public function update_cachefile() {

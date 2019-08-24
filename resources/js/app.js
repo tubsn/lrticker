@@ -8,26 +8,13 @@ require('./bootstrap');
 
 
 
-/*
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-const app = new Vue({
-    el: '#app',
-});
-*/
-
-
-//Document Ready
-document.addEventListener("DOMContentLoaded", function() {
-
-
-
-
 const livetickerAPP = new Vue({
 el: '#liveticker',
 data: {
 	tickerID: '',
 	posts: '',
-	newPost: '',
+	newPostContent: '',
+	newPostType: 'standard',
 	tinyConfig: tinyMCEConfig,
 
 },
@@ -43,15 +30,13 @@ mounted: function () {
 },
 
 methods: {
-	submitPost: async function() {
-		try {
-			const response = await axios.post('/post', {'content': this.newPost, 'ticker_id': this.tickerID});
 
-			console.log(response);
+	savePost: async function(data) {
+
+		try {
+			const response = await axios.post('/post', data);
 			if (response.data.success) {
-				this.$refs.ticker.refresh();
-				this.newPost = '';
-				this.$refs.newPost.$el.focus();
+				return true;
 			}
 
 		} catch (error) {
@@ -60,7 +45,45 @@ methods: {
 
 	},
 
-	createImagePost: function(attachments) {
+	submitPost: async function() {
+
+		let data = {
+			'type': 'standard',
+			'content': this.newPostContent,
+			'ticker_id': this.tickerID
+		}
+
+		if (await this.savePost(data)) {
+			this.$refs.ticker.refresh();
+			this.newPostContent = '';
+			this.$refs.newPost.$el.focus();
+		}
+
+	},
+
+	postImage: async function(attachments) {
+
+		let attachment = attachments[0];
+
+			let data = {
+				'type': 'image',
+				'content': `<img src="/storage/uploads/${attachment.url}">`,
+				'ticker_id': this.tickerID
+			}
+
+			await this.savePost(data);
+
+
+		this.$refs.ticker.refresh();
+		this.$refs.newPost.$el.focus();
+
+	},
+
+
+
+
+	/*
+	addImagesToPost: function(attachments) {
 
 		let images;
 
@@ -68,22 +91,12 @@ methods: {
 			images = images + `<img src="/storage/uploads/${attachment.url}">`;
 		});
 
-
-
-		this.newPost = images;
-
-
-
+		this.newPostContent = images;
 
 	},
-
+	*/
 
 }
 
 }) // End Vue
-
-
-
-
-}); // End Document Rdy
 

@@ -11,6 +11,7 @@
 
 <form action="/ticker" method="post">
 @csrf
+<input type="hidden" name="author_id" value="{{auth()->user()->id}}">
 
 @include('ticker/elements/errorhandler')
 

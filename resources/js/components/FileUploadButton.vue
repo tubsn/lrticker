@@ -1,7 +1,7 @@
 <template>
 	<span>
 		<button @click="openFileSelector"><slot></slot></button>
-		<input @change="onFilesSelected" type="file" multiple ref="fileSelector">
+		<input @change="onFilesSelected" type="file" ref="fileSelector">
 	</span>
 </template>
 

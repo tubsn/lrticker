@@ -26,9 +26,12 @@ class PostController extends Controller
 
 		$newPost = new Post();
 		$newPost->content = $request->content;
+		$newPost->type = $request->type;
 		$newPost->ticker_id = $request->ticker_id;
+		$newPost->author_id = auth()->user()->id;
 		$newPost->time = date('G:i');
 		$newPost->date = now();
+
 		$newPost->save();
 
 		$newPost->ticker->attach_post($newPost->id);

@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
 			$table->integer('ticker_id')->nullable();
 			$table->string('headline')->nullable();
 			$table->text('content')->nullable();
-			$table->string('typ', 120)->nullable();
+			$table->string('type', 120)->nullable();
 			$table->integer('author_id')->nullable();
 			$table->date('date')->nullable();
 			$table->string('time', 120)->nullable();

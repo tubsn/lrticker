@@ -17,11 +17,11 @@
 	@csrf
 
 	<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
-	<editor class="ticker-textarea" v-model="newPost" :init="tinyConfig" ref="newPost"></editor>
-
+	<editor class="ticker-textarea" v-model="newPostContent" :init="tinyConfig" ref="newPost"></editor>
 	<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
-	<button type="button" v-on:click="submitPost">Nachricht senden</button>
-	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="createImagePost">Bild</file-upload>
+
+	<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
+	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="postImage">Bild</file-upload>
 	<button class="minor">Youtube</button>
 	<button class="minor">HTML</button>
 </form>
@@ -80,9 +80,9 @@
 </div> <!-- end Ticker Area -->
 
 <aside class="autor-area">
-	<img class="autor-image" src="{{ $ticker->author->thumbnail }}">
-	<h3 class="autor-headline">{{ $ticker->author->username }}</h3>
-	<p class="autor-desc">({{ $ticker->author->description }})</p>
+	<img class="autor-image" src="{{ auth()->user()->thumbnail }}">
+	<h3 class="autor-headline">{{ auth()->user()->username  }}</h3>
+	<p class="autor-desc">({{ auth()->user()->description }})</p>
 </aside>
 
 <aside class="fav-area">

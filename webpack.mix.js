@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/styles/js').extract(['lodash','axios','vue', 'tinymce']);
 
+mix.scripts('resources/js/preview.js', 'public/styles/js/lr-ticker.js');
+
 mix.styles([
     'resources/css/default/defaults.css',
     'resources/css/liveticker.css',
@@ -21,7 +23,11 @@ mix.styles([
 	.styles([
     'resources/css/default/defaults.css',
     'resources/css/adminarea.css'
-], 'public/styles/css/admin.css');
+], 'public/styles/css/admin.css')
+	.styles([
+    'resources/css/default/defaults.css',
+    'resources/css/preview.css'
+], 'public/styles/css/tickerembed.css');
 
 mix.copyDirectory('resources/img', 'public/styles/img');
 mix.copyDirectory('node_modules/tinymce/skins', 'public/styles/libs/tiny/skins');

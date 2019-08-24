@@ -1,7 +1,11 @@
 <template>
 <div :class="['post-layout' , isDragged ? 'is-dragged' :'', isDragTarget ? 'is-target' :'']" v-if="isVisible"
 	@drop="drop" @dragover="dragover" @dragenter="dragenter" @dragleave="dragleave" :id="post.id">
-	<div class="post-content" @mouseover.once="initTiny" @blur="savePost" v-html="post.content"></div>
+
+	<div v-if="(post.type == 'image')" class="post-content image" v-html="post.content"></div>
+	<div v-else-if="(post.type == 'video')" class="post-content video">Video</div>
+	<div v-else class="post-content" @mouseenter.once="initTiny" @blur="savePost" v-html="post.content"></div>
+
 	<aside class="post-time"><span>{{post.time}}</span> min</aside>
 	<aside class="post-date">Datum: <span>{{post.date}}</span></aside>
 	<aside class="post-autor">
@@ -25,7 +29,13 @@
 		},
 
 		computed: {
-			postList: function () {return this.$parent.postList;}
+			postList: function () {return this.$parent.postList;},
+			isImage: function () {
+				if (this.post.type == 'image') {
+					return true
+				}
+				else {return false}
+			}
 		},
 
 		methods: {

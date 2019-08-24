@@ -1,16 +1,28 @@
-@extends('ticker.layout.default')
-{{--
-@section('title', 'Ticker: ' . $ticker->name . ' (ID:' . $ticker->id . ')')
-@section('description', $ticker->headline)
-@section('navtitle', '<a href="preview" target="_blank">'.$ticker->name . ' (ID: ' . $ticker->id . ')</a>')
---}}
-@section('main')
-<main>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<title> Page Title </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+	<meta name="author" content="Tub" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" type="text/css" media="all" href="/styles/css/tickerembed.css" />
+	<link rel="shortcut icon" href="" />
+	<script type="text/javascript" src="/styles/js/lr-ticker.js"></script>
+</head>
+<body>
 
-<pre>
-{{ print_r($ticker) }}
-</pre>
+<div id="liveticker"><h1 class="tickerTitle">{{$ticker['ticker']['headline']}}</h1>
+	<div class="tickerItems">
+	@foreach ($ticker['posts'] as $post)
+		<div class="tickerPost" id="{{$post['id']}}" data-update="2019-06-18 10:36:39"><span class="tickerTime">{{$post['time']}}<span class="tickerDate">Dienstag</span></span><p>{!!$post['content']!!}</p></div>
+	@endforeach
+</div>
+</div>
 
 
-</main>
-@endsection()
+
+
+
+</body>
+</html>

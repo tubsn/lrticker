@@ -642,6 +642,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post'],
   data: function data() {
@@ -654,6 +658,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     postList: function postList() {
       return this.$parent.postList;
+    },
+    isImage: function isImage() {
+      if (this.post.type == 'image') {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   methods: {
@@ -2759,7 +2770,7 @@ var render = function() {
     _vm._v(" "),
     _c("input", {
       ref: "fileSelector",
-      attrs: { type: "file", multiple: "" },
+      attrs: { type: "file" },
       on: { change: _vm.onFilesSelected }
     })
   ])
@@ -2834,16 +2845,25 @@ var render = function() {
           }
         },
         [
-          _c("div", {
-            staticClass: "post-content",
-            domProps: { innerHTML: _vm._s(_vm.post.content) },
-            on: {
-              "~mouseover": function($event) {
-                return _vm.initTiny($event)
-              },
-              blur: _vm.savePost
-            }
-          }),
+          _vm.post.type == "image"
+            ? _c("div", {
+                staticClass: "post-content image",
+                domProps: { innerHTML: _vm._s(_vm.post.content) }
+              })
+            : _vm.post.type == "video"
+            ? _c("div", { staticClass: "post-content video" }, [
+                _vm._v("Video")
+              ])
+            : _c("div", {
+                staticClass: "post-content",
+                domProps: { innerHTML: _vm._s(_vm.post.content) },
+                on: {
+                  "~mouseenter": function($event) {
+                    return _vm.initTiny($event)
+                  },
+                  blur: _vm.savePost
+                }
+              }),
           _vm._v(" "),
           _c("aside", { staticClass: "post-time" }, [
             _c("span", [_vm._v(_vm._s(_vm.post.time))]),
@@ -3079,91 +3099,164 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  * application frontend using useful Laravel and JavaScript libraries.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/*
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-const app = new Vue({
-    el: '#app',
-});
-*/
-//Document Ready
 
+var livetickerAPP = new Vue({
+  el: '#liveticker',
+  data: {
+    tickerID: '',
+    posts: '',
+    newPostContent: '',
+    newPostType: 'standard',
+    tinyConfig: tinyMCEConfig
+  },
+  components: {
+    'editor': Editor,
+    'ticker-list': TickerList,
+    'file-upload': FileUploadButton
+  },
+  mounted: function mounted() {
+    this.tickerID = this.$el.getAttribute('data-tickerID');
+  },
+  methods: {
+    savePost: function () {
+      var _savePost = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(data) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post('/post', data);
 
-document.addEventListener("DOMContentLoaded", function () {
-  var livetickerAPP = new Vue({
-    el: '#liveticker',
-    data: {
-      tickerID: '',
-      posts: '',
-      newPost: '',
-      tinyConfig: tinyMCEConfig
-    },
-    components: {
-      'editor': Editor,
-      'ticker-list': TickerList,
-      'file-upload': FileUploadButton
-    },
-    mounted: function mounted() {
-      this.tickerID = this.$el.getAttribute('data-tickerID');
-    },
-    methods: {
-      submitPost: function () {
-        var _submitPost = _asyncToGenerator(
-        /*#__PURE__*/
-        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-          var response;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.prev = 0;
-                  _context.next = 3;
-                  return axios.post('/post', {
-                    'content': this.newPost,
-                    'ticker_id': this.tickerID
-                  });
+              case 3:
+                response = _context.sent;
 
-                case 3:
-                  response = _context.sent;
-                  console.log(response);
-
-                  if (response.data.success) {
-                    this.$refs.ticker.refresh();
-                    this.newPost = '';
-                    this.$refs.newPost.$el.focus();
-                  }
-
-                  _context.next = 11;
+                if (!response.data.success) {
+                  _context.next = 6;
                   break;
+                }
 
-                case 8:
-                  _context.prev = 8;
-                  _context.t0 = _context["catch"](0);
-                  console.error(_context.t0);
+                return _context.abrupt("return", true);
 
-                case 11:
-                case "end":
-                  return _context.stop();
-              }
+              case 6:
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
             }
-          }, _callee, this, [[0, 8]]);
-        }));
+          }
+        }, _callee, null, [[0, 8]]);
+      }));
 
-        function submitPost() {
-          return _submitPost.apply(this, arguments);
-        }
-
-        return submitPost;
-      }(),
-      createImagePost: function createImagePost(attachments) {
-        var images;
-        attachments.forEach(function (attachment) {
-          images = images + "<img src=\"/storage/uploads/".concat(attachment.url, "\">");
-        });
-        this.newPost = images;
+      function savePost(_x) {
+        return _savePost.apply(this, arguments);
       }
-    }
-  }); // End Vue
-}); // End Document Rdy
+
+      return savePost;
+    }(),
+    submitPost: function () {
+      var _submitPost = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                data = {
+                  'type': 'standard',
+                  'content': this.newPostContent,
+                  'ticker_id': this.tickerID
+                };
+                _context2.next = 3;
+                return this.savePost(data);
+
+              case 3:
+                if (!_context2.sent) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                this.$refs.ticker.refresh();
+                this.newPostContent = '';
+                this.$refs.newPost.$el.focus();
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function submitPost() {
+        return _submitPost.apply(this, arguments);
+      }
+
+      return submitPost;
+    }(),
+    postImage: function () {
+      var _postImage = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(attachments) {
+        var attachment, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                attachment = attachments[0];
+                data = {
+                  'type': 'image',
+                  'content': "<img src=\"/storage/uploads/".concat(attachment.url, "\">"),
+                  'ticker_id': this.tickerID
+                };
+                _context3.next = 4;
+                return this.savePost(data);
+
+              case 4:
+                this.$refs.ticker.refresh();
+                this.$refs.newPost.$el.focus();
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function postImage(_x2) {
+        return _postImage.apply(this, arguments);
+      }
+
+      return postImage;
+    }()
+    /*
+    addImagesToPost: function(attachments) {
+    
+    	let images;
+    
+    	attachments.forEach(attachment => {
+    		images = images + `<img src="/storage/uploads/${attachment.url}">`;
+    	});
+    
+    	this.newPostContent = images;
+    
+    },
+    */
+
+  }
+}); // End Vue
 
 /***/ }),
 

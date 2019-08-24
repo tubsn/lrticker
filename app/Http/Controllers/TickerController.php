@@ -53,6 +53,7 @@ class TickerController extends Controller
 		$request->validate([
 			'name' => ['required','min:3'],
 		]);
+	
 		$newTicker = Ticker::create($request->all());
 		return redirect('/ticker/' . $newTicker->id);
     }

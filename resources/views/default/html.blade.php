@@ -11,13 +11,15 @@
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,700,700i|Fira+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" href="{{ asset('img/flundr.svg') }}" />
-	<script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
 @yield('body')
 @yield('footer')
+
+<script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>
 
