@@ -1,7 +1,7 @@
 <template>
 	<span>
 		<button @click="openFileSelector"><slot></slot></button>
-		<input @change="onFilesSelected" type="file" ref="fileSelector">
+		<input @change="onFilesSelected" type="file" multiple ref="fileSelector">
 	</span>
 </template>
 
@@ -13,7 +13,7 @@
 
 		data: function () {
 			return {
-				maxFileSize: 2 * 1024*1024,
+				maxFileSize: 5 * 1024*1024,
 				allowedFormats : ['image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/png', 'image/bmp'],
 			}
 		},

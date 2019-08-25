@@ -55,14 +55,14 @@ require('tinymce/plugins/quickbars');
 require('tinymce/plugins/code');
 require('tinymce/plugins/paste');
 
-window.tinyMCEConfig = {
+window.globalTinyConfig = {
 		menubar: false,
 		inline: true,
 		toolbar: false,
 		plugins: ['autolink','link','lists','media','table','quickbars','code','paste'],
 		quickbars_insert_toolbar: '',
 		//quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
-		quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | forecolor backcolor | removeformat',
+		quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | alignleft aligncenter alignright | forecolor backcolor | removeformat',
 		contextmenu: 'hr link | paste pastetext inserttable | cell row column deletetable | code removeformat',
 		relative_urls: false,
 		remove_script_host: false,
@@ -79,8 +79,4 @@ window.tinyMCEConfig = {
 // Vue Instance
 window.Vue = require('vue');
 
-// Vue Components
-window.Editor = require('@tinymce/tinymce-vue').default;
-window.TickerList = require('./components/TickerList.vue').default;
-window.TickerPost = require('./components/TickerPost.vue').default;
-window.FileUploadButton = require('./components/FileUploadButton.vue').default;
+

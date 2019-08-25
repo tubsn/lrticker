@@ -2,9 +2,10 @@
 <div :class="['post-layout' , isDragged ? 'is-dragged' :'', isDragTarget ? 'is-target' :'']" v-if="isVisible"
 	@drop="drop" @dragover="dragover" @dragenter="dragenter" @dragleave="dragleave" :id="post.id">
 
-	<div v-if="(post.type == 'image')" class="post-content image" v-html="post.content"></div>
-	<div v-else-if="(post.type == 'video')" class="post-content video">Video</div>
-	<div v-else class="post-content" @mouseenter.once="initTiny" @blur="savePost" v-html="post.content"></div>
+	<div class="post-content" >
+		<div class="post-media" v-if="post.media" v-html="post.media"></div>
+		<div class="post-editor" @mouseenter.once="initTiny" @blur="savePost" v-html="post.content"></div>
+	</div>
 
 	<aside class="post-time"><span>{{post.time}}</span> min</aside>
 	<aside class="post-date">Datum: <span>{{post.date}}</span></aside>
@@ -12,6 +13,7 @@
 		Autor: <span>{{post.author.username}}</span></aside>
 	<aside class="post-move" draggable="true" @dragstart="dragstart" @dragend="dragend">::</aside>
 	<aside class="post-delete" v-on:click="deletePost"></aside>
+
 </div>
 </template>
 
@@ -29,6 +31,7 @@
 		},
 
 		computed: {
+			tickerID: function () {return this.$parent.tickerID;},
 			postList: function () {return this.$parent.postList;},
 			isImage: function () {
 				if (this.post.type == 'image') {
@@ -36,6 +39,7 @@
 				}
 				else {return false}
 			}
+
 		},
 
 		methods: {
@@ -88,10 +92,9 @@
 				this.reorderTicker();
 			},
 
-
 			initTiny: function(event) {
 				let element = event.currentTarget;
-				let tinyConfig = this.$parent.tinyConfig;
+				let tinyConfig = window.globalTinyConfig;
 				tinyConfig.target = element; // Extending Config with TinyMCE Target
 				tinymce.init(tinyConfig);
 			},
@@ -102,7 +105,7 @@
 			},
 
 			reorderTicker: async function() {
-				const response = await axios.patch('/ticker/'+this.$parent.tickerid+'/reorder', {'post_ids': this.postList.join(',')});
+				const response = await axios.patch('/ticker/'+this.tickerID+'/reorder', {'post_ids': this.postList.join(',')});
 
 				if (response.data.success) {
 					console.log(response.data.message);

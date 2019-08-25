@@ -20,13 +20,13 @@ class PostController extends Controller
     public function store(Request $request){
 
 		$request->validate([
-			'content' => ['required'],
+			//'content' => ['required'],
 			'ticker_id' => ['required'],
 		]);
 
 		$newPost = new Post();
 		$newPost->content = $request->content;
-		$newPost->type = $request->type;
+		$newPost->media = $request->media;
 		$newPost->ticker_id = $request->ticker_id;
 		$newPost->author_id = auth()->user()->id;
 		$newPost->time = date('G:i');

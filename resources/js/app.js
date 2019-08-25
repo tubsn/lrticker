@@ -6,97 +6,30 @@
 
 require('./bootstrap');
 
+// Vue Components
+let TickerEditor = require('./components/TickerEditor.vue').default;
+let TickerList = require('./components/TickerList.vue').default;
 
+// Main Vue Instance
+let livetickerAPP = new Vue({
 
-const livetickerAPP = new Vue({
-el: '#liveticker',
-data: {
-	tickerID: '',
-	posts: '',
-	newPostContent: '',
-	newPostType: 'standard',
-	tinyConfig: tinyMCEConfig,
+	el: '#liveticker',
+	data: {},
 
-},
-
-components: {
-	'editor': Editor,
-	'ticker-list': TickerList,
-	'file-upload': FileUploadButton,
-},
-
-mounted: function () {
-	this.tickerID = this.$el.getAttribute('data-tickerID');
-},
-
-methods: {
-
-	savePost: async function(data) {
-
-		try {
-			const response = await axios.post('/post', data);
-			if (response.data.success) {
-				return true;
-			}
-
-		} catch (error) {
-			console.error(error);
-		}
-
+	components: {
+		'ticker-editor': TickerEditor,
+		'ticker-list': TickerList,
 	},
 
-	submitPost: async function() {
-
-		let data = {
-			'type': 'standard',
-			'content': this.newPostContent,
-			'ticker_id': this.tickerID
-		}
-
-		if (await this.savePost(data)) {
-			this.$refs.ticker.refresh();
-			this.newPostContent = '';
-			this.$refs.newPost.$el.focus();
-		}
-
+	beforeMount: function () {
+		this.tickerID = this.$el.getAttribute('data-tickerID');
 	},
 
-	postImage: async function(attachments) {
-
-		let attachment = attachments[0];
-
-			let data = {
-				'type': 'image',
-				'content': `<img src="/storage/uploads/${attachment.url}">`,
-				'ticker_id': this.tickerID
-			}
-
-			await this.savePost(data);
-
-
-		this.$refs.ticker.refresh();
-		this.$refs.newPost.$el.focus();
-
-	},
-
-
-
-
-	/*
-	addImagesToPost: function(attachments) {
-
-		let images;
-
-		attachments.forEach(attachment => {
-			images = images + `<img src="/storage/uploads/${attachment.url}">`;
-		});
-
-		this.newPostContent = images;
-
-	},
-	*/
-
-}
+	methods: {
+		refresh_list : function () {
+			this.$refs.list.refresh();
+		},
+	}
 
 }) // End Vue
 

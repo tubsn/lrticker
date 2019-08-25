@@ -1,6 +1,6 @@
 <template>
-<section>
-	<ticker-post v-for="post, postKey in posts" v-bind:post="post" :key="postKey"></ticker-post>
+<section class="posts">
+	<ticker-post v-for="(post, index) in posts" v-bind:post="post" :key="index"></ticker-post>
 </section>
 </template>
 
@@ -18,7 +18,6 @@
 			this.refresh();
 		},
 
-		props: ['tickerid'],
 		data: function () {
 			return {
 				posts: ''
@@ -26,19 +25,14 @@
 		},
 
 		computed: {
-			tinyConfig: function () {
-				return this.$parent.tinyConfig;
-			},
-			postList: function () {
-				return this.posts.map((post) => {return post.id;});
-			}
-
+			tickerID : function () { return this.$parent.tickerID; },
+			postList: function () {	return this.posts.map((post) => { return post.id; }) ;}
 		},
 
 		methods: {
 			refresh: async function () {
-				if (this.tickerid) {
-					const response = await axios.get('/ticker/'+this.tickerid+'/refresh');
+				if (this.tickerID) {
+					const response = await axios.get('/ticker/'+this.tickerID+'/refresh');
 					this.posts = response.data;
 				}
 			},

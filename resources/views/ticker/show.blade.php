@@ -10,37 +10,38 @@
 
 <div class="ticker-area">
 
-<section class="ticker-editor">
-<h2 class="ticker-headline">{{ $ticker->headline }}</h2>
+	<ticker-editor @submitted="refresh_list">{{ $ticker->headline }}</ticker-editor>
+	<ticker-list ref="list"></ticker-list>
 
-<form action="/ticker/{{ $ticker->id }}/addpost" method="post">
-	@csrf
+</div> <!-- end Ticker Area -->
 
-	<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
-	<editor class="ticker-textarea" v-model="newPostContent" :init="tinyConfig" ref="newPost"></editor>
-	<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
+<aside class="autor-area">
+	<img class="autor-image" src="{{ auth()->user()->thumbnail }}">
+	<h3 class="autor-headline">{{ auth()->user()->username }}</h3>
+	<p class="autor-desc">({{ auth()->user()->description }})</p>
+</aside>
 
-	<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
-	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="postImage">Bild</file-upload>
-	<button class="minor">Youtube</button>
-	<button class="minor">HTML</button>
-</form>
+<aside class="fav-area">
+	<h3 class="fav-headline">Favoriten</h3>
+	<p>www.energie.de<br />
+	www.youtube.com/lr
+	</p>
+	<p>
+	Name: {{ $ticker->name }}<br />
+	Typ: {{ $ticker->typ }}<br />
+	Start: {{ !is_null($ticker->start) ? $ticker->start->format('d.m.Y') : 'keine Angabe' }}<br />
+	Titel: {{ $ticker->headline }}<br />
+	Status: {{ $ticker->status }}<br />
+	Erstellt von: {{ $ticker->author->username }}<br />
+	</p>
+	<a class="button block mb" href="{{ $ticker->id }}/edit">Ticker editieren</a>
+	<a class="button block mb" href="{{ $ticker->id }}/preview/">Preview</a>
+</aside>
+
+</main>
 
 
-@if ($errors->any())
-<div class="box mb red">
-<ul class="clean">
-	@foreach ($errors->all() as $error)
-	<li>{{ $error }}</li>
-	@endforeach
-</ul>
-</div>
-@endif
 
-</section>
-
-
-<ticker-list tickerid="{{ $ticker->id }}" class="posts" ref="ticker"></ticker-list>
 
 {{--
 <section class="posts" v-for="post, postKey in posts">
@@ -55,9 +56,6 @@
 </div>
 </section>
 --}}
-
-
-
 
 {{--
 <section class="posts">
@@ -77,33 +75,9 @@
 </section>
 --}}
 
-</div> <!-- end Ticker Area -->
-
-<aside class="autor-area">
-	<img class="autor-image" src="{{ auth()->user()->thumbnail }}">
-	<h3 class="autor-headline">{{ auth()->user()->username  }}</h3>
-	<p class="autor-desc">({{ auth()->user()->description }})</p>
-</aside>
-
-<aside class="fav-area">
-	<h3 class="fav-headline">Favoriten</h3>
-	<p>www.energie.de<br />
-	www.youtube.com/lr
-	</p>
 
 
-<p>
-Name: {{ $ticker->name }}<br />
-Typ: {{ $ticker->typ }}<br />
-Start: {{ !is_null($ticker->start) ? $ticker->start->format('d.m.Y') : 'keine Angabe' }}<br />
-Titel: {{ $ticker->headline }}<br />
-Status: {{ $ticker->status }}<br />
-Erstellt von: {{ $ticker->author->username }}<br />
-</p>
-<a class="button block mb" href="{{ $ticker->id }}/edit">Ticker editieren</a>
-<a class="button block mb" href="{{ $ticker->id }}/preview/">Preview</a>
 
-</aside>
 
-</main>
+
 @endsection()
