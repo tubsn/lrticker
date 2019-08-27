@@ -237,8 +237,9 @@ background-image: url('/styles/img/icons/icon-delete.svg');}
 	.post-time span {font-size:1.5em;}
 	.post-date {align-self: end; text-align:left; line-height: 50%;}
 	.post-autor {align-self: start; text-align:left;}
+	.post-editor {padding:1em;}
 
-	.post-time, .post-date, .post-autor {background-color:transparent; padding:0; font-size:0.6em; opacity:0.3;}
+	.post-time, .post-date, .post-autor {background-color:transparent; padding:0; font-size:0.6em; opacity:1;}
 	.post-delete, .post-move {visibility: hidden; margin:0;}
 	.post-layout:hover .post-delete, .post-layout:hover .post-move {visibility: visible;}
 	.post-layout:hover .post-time, .post-layout:hover .post-date, .post-layout:hover .post-autor {opacity:1;}
@@ -249,3 +250,7 @@ background-image: url('/styles/img/icons/icon-delete.svg');}
 /* Post Types */
 .post-content.image {}
 .post-content.image img {width:100%;}
+
+
+/* Post Mini Icons */
+img.ball {margin: 0 0.3em; position:relative;top:0.5em;}

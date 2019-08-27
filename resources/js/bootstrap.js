@@ -42,14 +42,18 @@ if (token) {
 // });
 
 
+
+// Vue Picture Swipe
+window.VuePictureSwipe = require('vue-picture-swipe');
+
 // Tiny
 window.TinyMCE = require('tinymce');
 window.TinyMCE.baseURL = "/styles/libs/tiny/";// trailing slash important
 require('tinymce/themes/silver');
 require('tinymce/plugins/autolink');
 require('tinymce/plugins/link');
-require('tinymce/plugins/lists');
-require('tinymce/plugins/media');
+//require('tinymce/plugins/lists');
+//require('tinymce/plugins/media');
 require('tinymce/plugins/table');
 require('tinymce/plugins/quickbars');
 require('tinymce/plugins/code');
@@ -59,21 +63,31 @@ window.globalTinyConfig = {
 		menubar: false,
 		inline: true,
 		toolbar: false,
-		plugins: ['autolink','link','lists','media','table','quickbars','code','paste'],
+		plugins: ['autolink','link','table','quickbars','code','paste'],
 		quickbars_insert_toolbar: '',
 		//quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
-		quickbars_selection_toolbar: 'quicklink | bold italic strikethrough bullist | alignleft aligncenter alignright | forecolor backcolor | removeformat',
-		contextmenu: 'hr link | paste pastetext inserttable | cell row column deletetable | code removeformat',
+		quickbars_selection_toolbar: 'bold italic strikethrough | blockquote | alignleft aligncenter alignright | forecolor backcolor | quicklink removeformat',
+		contextmenu: 'hr link | inserttable cell row column deletetable | code removeformat',
 		relative_urls: false,
 		remove_script_host: false,
 		link_assume_external_targets: true,
 
 		paste_enable_default_filters: false,
-		paste_word_valid_elements: "b,strong,i,em,h1,h2,p",
-		invalid_elements : 'div',
+		paste_word_valid_elements: "b,strong,i,em,p",
+		invalid_elements : 'div, aside, section, article, iframe, span, ul, li, ol',
+		fix_list_elements : true,
 
-		//valid_elements: 'a[href|target=_blank],span,b,strong,i,em,p,br,ul,li,table,td,tr,th',
-		extended_valid_elements : 'a[href|target=_blank]'
+		extended_valid_elements : 'a[href|target=_blank]', // Converts all Links to target _blank
+
+		formats: {
+			removeformat: [
+				{ selector: 'b,strong,span,em,i,font,u,strike,blockquote,sub,sup,dfn,code,samp,kbd,var,cite,mark,q,del,ins,h1,h2,h3,a,ul,li,ol',
+				split: true, block_expand: true, expand: false, deep: true, remove: 'all' },
+				{ selector: '*', attributes: ['style', 'class'], split: false, expand: false, deep: true }
+			]
+		}
+
+
 }
 
 // Vue Instance

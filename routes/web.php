@@ -17,10 +17,6 @@ Route::patch('/ticker/{ticker}/reorder', 'TickerController@reorder_posts');
 Route::get('/ticker/{ticker}/refresh', 'TickerController@get_live_posts');
 Route::get('/ticker/{tickerID}/preview', 'TickerController@preview');
 
-
-/* Uploads */
-
-
 /* FlundrCMS Default Routes */
 Route::get('/admin', 'FlundrCMS\FlundrController@index')->name('admin.home');
 Route::resource('/admin/user', 'FlundrCMS\UserController');

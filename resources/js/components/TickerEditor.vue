@@ -19,6 +19,7 @@
 	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
 	<dialog-button @submit="add_youtube_video" class="minor">Youtube</dialog-button>
 	<button class="minor">HTML</button>
+	<img class="ball" src="/styles/img/ticker-icons/soccer.png">
 </form>
 
 

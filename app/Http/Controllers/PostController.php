@@ -34,6 +34,10 @@ class PostController extends Controller
 
 		$newPost->save();
 
+		if (empty($newPost->id)) {
+			abort(500, 'Post could not be saved');
+		}
+
 		$newPost->ticker->attach_post($newPost->id);
 
 		return [

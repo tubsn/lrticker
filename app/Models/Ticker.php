@@ -20,7 +20,7 @@ class Ticker extends Model
 		if (count($this->posts()) > 0) {
 			return $this->posts()->load('author:id,username');
 		}
-		
+
 	}
 
 	public function update_cachefile() {
