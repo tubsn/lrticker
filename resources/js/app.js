@@ -9,7 +9,6 @@ require('./bootstrap');
 // Vue Components
 let TickerEditor = require('./components/TickerEditor.vue').default;
 let TickerList = require('./components/TickerList.vue').default;
-let PhotoGallery = require('./components/Photogallery.vue').default;
 
 // Main Vue Instance
 let livetickerAPP = new Vue({
@@ -20,7 +19,6 @@ let livetickerAPP = new Vue({
 	components: {
 		'ticker-editor': TickerEditor,
 		'ticker-list': TickerList,
-		'photo-gallery': PhotoGallery,
 	},
 
 	beforeMount: function () {

@@ -13,12 +13,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/styles/js').extract(['lodash','axios','vue', 'tinymce']);
 
-mix.scripts('resources/js/preview.js', 'public/styles/js/lr-ticker.js');
+mix.scripts(['resources/js/preview.js', 'node_modules/flickity/dist/flickity.pkgd.js'], 'public/styles/js/lr-ticker.js');
 
 mix.styles([
     'resources/css/default/defaults.css',
     'resources/css/liveticker.css',
-	'resources/css/auth.css'
+	'resources/css/auth.css',
+	'node_modules/flickity/dist/flickity.css'
 ], 'public/styles/css/main.css')
 	.styles([
     'resources/css/default/defaults.css',

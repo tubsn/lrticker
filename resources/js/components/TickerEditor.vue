@@ -14,7 +14,6 @@
 
 	<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
 
-
 	<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
 	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
 	<dialog-button @submit="add_youtube_video" class="minor">Youtube</dialog-button>
@@ -112,7 +111,6 @@
 
 					await this.savePost(data);
 
-
 				this.$refs.ticker.refresh();
 				this.$refs.contentEditor.$el.focus();
 
@@ -126,6 +124,10 @@
 				attachments.forEach(attachment => {
 					images = images + `<img src="/storage/uploads/${attachment.url}">`;
 				});
+
+				if (attachments.length > 1) {
+					images = '<div class="ticker-slider">' + images + '</div>';
+				}
 
 				this.newPostMedia = images;
 

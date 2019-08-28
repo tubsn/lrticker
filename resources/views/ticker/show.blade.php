@@ -11,9 +11,6 @@
 <div class="ticker-area">
 
 	<ticker-editor @submitted="refresh_list">{{ $ticker->headline }}</ticker-editor>
-
-	<photo-gallery></photo-gallery>
-
 	<ticker-list ref="list"></ticker-list>
 
 </div> <!-- end Ticker Area -->

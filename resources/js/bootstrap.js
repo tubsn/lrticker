@@ -43,9 +43,6 @@ if (token) {
 
 
 
-// Vue Picture Swipe
-window.VuePictureSwipe = require('vue-picture-swipe');
-
 // Tiny
 window.TinyMCE = require('tinymce');
 window.TinyMCE.baseURL = "/styles/libs/tiny/";// trailing slash important
