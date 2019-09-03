@@ -87,6 +87,9 @@ window.globalTinyConfig = {
 
 }
 
+
+
+
 // Vue Instance
 window.Vue = require('vue');
 

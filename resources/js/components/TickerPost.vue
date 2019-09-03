@@ -2,7 +2,7 @@
 <div :class="['post-layout' , isDragged ? 'is-dragged' :'', isDragTarget ? 'is-target' :'']" v-if="isVisible"
 	@drop="drop" @dragover="dragover" @dragenter="dragenter" @dragleave="dragleave" :id="post.id">
 
-	<div class="post-content" >
+	<div class="post-content">
 		<div class="post-media" v-if="mediaGallery">
 			<ticker-gallery :images="mediaGallery"></ticker-gallery>
 		</div>
@@ -12,8 +12,7 @@
 
 	<aside class="post-time"><span>{{post.time}}</span> min</aside>
 	<aside class="post-date">Datum: <span>{{post.date}}</span></aside>
-	<aside class="post-autor">
-		Autor: <span>{{post.author.username}}</span></aside>
+	<aside class="post-autor">Autor: <span>{{post.author.username}}</span></aside>
 	<aside class="post-move" draggable="true" @dragstart="dragstart" @dragend="dragend">::</aside>
 	<aside class="post-delete" v-on:click="deletePost"></aside>
 </div>
@@ -53,6 +52,8 @@ export default {
 
 			if (!this.post.media) {return null}
 			let elements = this.stringToTemplate(this.post.media);
+
+			// Check if Media Elements are in Slider Div
 			if (elements[0].classList.contains('ticker-slider')) {
 				return elements[0].children;
 			}
@@ -117,11 +118,9 @@ export default {
 		},
 
 		stringToTemplate: function(htmlString) {
-
 			let template = document.createElement('template');
 			template.innerHTML = htmlString;
 			return template.content.childNodes;
-
 		},
 
 		initTiny: function(event) {

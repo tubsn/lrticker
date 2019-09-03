@@ -423,8 +423,8 @@ white-space: nowrap; color:#999; font-size:0.7em; padding:0 .5em;}
 .post-time span, .post-date span, .post-autor span {color: var(--lrblau)}
 .post-content {align-self: center;}
 
-.post-media {margin-bottom:0; line-height:0;}
-.post-media img {margin-bottom: 1em;}
+.post-media {margin-bottom:0; }
+.post-media img {margin-bottom: 1em;display:block;}
 .post-media img:last-child {margin-bottom:0;}
 
 .post-editor {border:1px solid #ddd; min-height:2.3em; padding:.5em; box-sizing: border-box; overflow: auto;}

@@ -16,8 +16,8 @@
 
 	<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
 	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
-	<dialog-button @submit="add_youtube_video" class="minor">Youtube</dialog-button>
-	<button class="minor">HTML</button>
+	<video-button @submit="add_youtube_video" class="minor">Youtube</video-button>
+	<html-button @submit="add_html" class="minor">HTML</html-button>
 	<img class="ball" src="/styles/img/ticker-icons/soccer.png">
 </form>
 
@@ -29,14 +29,16 @@
 
 	let Editor = require('@tinymce/tinymce-vue').default;
 	let FileUploadButton = require('./FileUploadButton.vue').default;
-	let DialogButton = require('./DialogButton.vue').default;
+	let VideoButton = require('./TickerVideoButton.vue').default;
+	let HTMLButton = require('./TickerHtmlButton.vue').default;
 
 	export default {
 
 		components: {
 			'editor': Editor,
 			'file-upload': FileUploadButton,
-			'dialog-button': DialogButton,
+			'video-button': VideoButton,
+			'html-button': HTMLButton,
 		},
 
 		data: function () {
@@ -153,6 +155,11 @@
 
 				this.newPostMedia = embedCode;
 
+			},
+
+
+			add_html: function(embed) {
+				this.newPostMedia = embed;
 			},
 
 

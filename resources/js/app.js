@@ -9,8 +9,31 @@ require('./bootstrap');
 // Vue Components
 let TickerEditor = require('./components/TickerEditor.vue').default;
 let TickerList = require('./components/TickerList.vue').default;
+let FlundrDialog = require('./components/flDialog.vue').default;
 
-// Main Vue Instance
+// Forms Vue Instance
+let formular = new Vue({
+
+	el: '.ticker-forms',
+	data: {},
+
+	components: {
+		'fl-dialog': FlundrDialog,
+	},
+
+	mounted: function () {
+
+	},
+
+	methods: {
+	}
+
+}) // End Forms Vue
+
+
+
+
+// Liveticker Vue Instance
 let livetickerAPP = new Vue({
 
 	el: '#liveticker',
@@ -31,5 +54,5 @@ let livetickerAPP = new Vue({
 		},
 	}
 
-}) // End Vue
+}) // End Liveticker Vue
 

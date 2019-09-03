@@ -33,7 +33,12 @@
 			openDialog: function(event) {
 				document.body.appendChild(this.$refs.modalContainer);
 				this.isVisible = true;
-				//this.$refs.input.focus();
+
+				let focusElement = this.$refs.input;
+				_.delay(function() {
+					focusElement.focus();
+				}, 5);
+
 			},
 
 
