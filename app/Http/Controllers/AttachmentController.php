@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\models\Attachment;
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
