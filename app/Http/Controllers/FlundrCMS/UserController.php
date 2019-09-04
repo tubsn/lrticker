@@ -51,7 +51,16 @@ class UserController extends Controller
     }
 
     public function destroy(User $user) {
-        $user->delete();
-		return redirect('/admin');
+
+		$id = $user->id;
+		$user->delete();
+		//return redirect('/admin');
+
+		return [
+			'message' => 'User ' . $id  . 'deleted',
+			'success' => true
+		];
+
+
     }
 }

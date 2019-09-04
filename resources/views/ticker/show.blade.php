@@ -6,7 +6,7 @@
 
 @section('main')
 
-<main class="layout-detail" id="liveticker" data-tickerID="{{ $ticker->id }}">
+<main class="layout-detail" id="liveticker" v-cloak data-tickerID="{{ $ticker->id }}">
 
 <div class="ticker-area">
 

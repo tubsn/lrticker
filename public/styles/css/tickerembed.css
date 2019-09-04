@@ -156,6 +156,10 @@ animation: spinnerAnimation 1.2s infinite ease-in-out;}
 
 button > .loadIndicator {position:relative;bottom:-1px; right:-2px}
 
+/* Vue Helpers */
+[v-cloak] > * { display:none }
+/*[v-cloak]::before { content: "loading…" }*/
+
 /* Layouts */
 .col-2 {display:grid; grid-template-columns: 1fr 1fr; grid-gap:2vw;}}
 
@@ -195,6 +199,8 @@ form button[type='submit']:hover, form button[type='submit']:focus {background-c
 button.block, .button.block {display:inline-block;}
 button.light {color:#555; background-color:#f3f3f3}
 button.danger:hover {background-color:#ae2d2d !important; color:white !important;}
+button.danger:focus {background-color:#ca4b4b; color:white}
+button.minor, .minor button {background-color:#c8c8c8; color: white; }
 
 /* Tables */
 table {border-spacing:0; border-collapse: collapse; margin-bottom:1em;}

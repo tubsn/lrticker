@@ -1,25 +1,19 @@
 <template>
-	<span>
-		<button @click="openDialog" type="button"><slot></slot></button>
-
+	<div @click="openDialog">
+		<button class="button minor danger">{{ button }}</button>
 		<div v-show="isVisible" class="modal-container" ref="modalContainer" @click.self="destroyModal">
-
 			<div class="centered-box">
-				<h2>Youtube Link eingeben:</h2>
-				<label>Hier nicht den Embed Code sondern einfach den Link einfügen
-					<input v-model="embed" placeholder="z.B. https://www.youtube.com/watch?v=e7KjEpNDZTI" ref="input">
-				</label>
-				<button class="button" type="button" @click="submit">Einfügen</button>
-				<button class="button minor" @click="destroyModal">abbrechen</button>
+				<slot></slot>
 			</div>
-
 		</div>
-	</span>
+	</div>
 </template>
 
 <script>
 
 	export default {
+
+		props: ['button'],
 
 		data: function () {
 			return {

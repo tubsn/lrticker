@@ -7,15 +7,21 @@
 
 @include('FlundrCMS.navigation.main')
 
-<main>
-
+<main class="flundrApp" v-cloak>
 
 <aside style="float:right">
-<form method="post" action="/admin/user/{{$user->id}}">
-@method('delete')
-@csrf
-<button type="submit" class="mt light danger">Account löschen</button>
-</form>
+	<fl-dialog
+		action="/admin/user/{{$user->id}}"
+		method="post"
+		submit="Ja, löschen"
+		cancel="Nein, abbrechen"
+		redirect="/admin">
+		<template v-slot:button>
+			<button class="mt button light danger">Account löschen</button>
+		</template>
+		<h2>Löschen bestätigen:</h2>
+		<p>Möchten Sie {{$user->username}} tatsächlich löschen?</p>
+	</fl-dialog>
 </aside>
 
 <h1>User Editieren</h1>

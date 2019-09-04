@@ -38,7 +38,7 @@ export default {
 			// so that image heights are available
 			_.delay(function() {
 				flkty.resize();
-			}, 5);
+			}, 10);
 
 		},
 	},
