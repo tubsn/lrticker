@@ -23,8 +23,8 @@
 			button: {type: String, default: 'Öffnen'},
 			submit:{type: String, default: 'Ok'},
 			cancel:{type: String, default: 'Abbrechen'},
-			method:{type: String},
-			action:{type: String, default: 'post'},
+			method:{type: String, default: 'post'},
+			action:{type: String, required: true},
 			redirect:{type: String,	default: ''}
 		},
 
@@ -79,7 +79,7 @@ width:100%; min-height: 100vh; background-color: #00000055;}
 .modal-container.fade-enter-active, .modal-container.fade-leave-active {
   transition: opacity .2s;
 }
-.modal-container.fade-enter, .modal-container.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.modal-container.fade-enter, .modal-container.fade-leave-to {
   opacity: 0;
 }
 

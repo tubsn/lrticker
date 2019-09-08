@@ -113,7 +113,6 @@
 
 					await this.savePost(data);
 
-				this.$refs.ticker.refresh();
 				this.$refs.contentEditor.$el.focus();
 
 			},

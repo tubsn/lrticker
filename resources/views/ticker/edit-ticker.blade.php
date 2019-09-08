@@ -4,14 +4,21 @@
 @section('description', $ticker->headline)
 
 @section('main')
-<main>
+<main class="flundrApp" v-cloak>
 
 <aside style="float:right">
-<form method="post" action="/ticker/{{ $ticker->id }}">
-@method('delete')
-@csrf
-<button type="submit" class="mt light danger">Ticker löschen</button>
-</form>
+	<fl-dialog
+		action="/ticker/{{ $ticker->id }}"
+		method="delete"
+		submit="Ja, löschen"
+		cancel="Nein, abbrechen"
+		redirect="/ticker">
+		<template v-slot:button>
+			<button class="mt button light danger">Ticker löschen</button>
+		</template>
+		<h2>Löschen bestätigen:</h2>
+		<p>Möchten Sie <b>{{ $ticker->name }}</b> tatsächlich löschen?</p>
+	</fl-dialog>
 </aside>
 
 

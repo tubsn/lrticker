@@ -28,8 +28,8 @@ let livetickerAPP = new Vue({
 	},
 
 	methods: {
-		refresh_list : function () {
-			this.$refs.list.refresh();
+		refresh_list : async function () {
+			await this.$refs.list.refresh();
 		},
 	}
 

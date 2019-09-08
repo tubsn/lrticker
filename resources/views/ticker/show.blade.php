@@ -34,50 +34,10 @@
 	Status: {{ $ticker->status }}<br />
 	Erstellt von: {{ $ticker->author->username }}<br />
 	</p>
-	<a class="button block mb" href="{{ $ticker->id }}/edit">Ticker editieren</a>
+	<a class="button block mb" href="{{ $ticker->id }}/edit">Einstellungen</a>
 	<a class="button block mb" href="{{ $ticker->id }}/preview/">Preview</a>
 </aside>
 
 </main>
-
-
-
-
-{{--
-<section class="posts" v-for="post, postKey in posts">
-<div class="post-layout" v-bind:data-post-id="post.id">
-	<div @mouseover.once="editPost" @blur="savePost" class="post-content" v-html="post.content"></div>
-	<aside class="post-time"><span>@{{post.time}}</span> {{($ticker->typ == 'fussball') ? 'min' : 'Uhr'}}</aside>
-	<aside class="post-date">Datum: <span>@{{post.date}}</span></aside>
-	<aside class="post-autor">
-		Autor: <span>@{{post.author.username}}</span></aside>
-	<aside class="post-move">::</aside>
-	<aside class="post-delete" v-on:click="delete_post(post,postKey)"></aside>
-</div>
-</section>
---}}
-
-{{--
-<section class="posts">
-
-@foreach ($ticker->posts() as $post)
-<div class="post-layout">
-	<div class="post-content">{{ $post->content }}</div>
-	<aside class="post-time"><span>{{ $post->created_at->format('G:i') }}</span> Uhr</aside>
-	<aside class="post-date">Datum: <span>{{ $post->created_at->format('d.M.Y') }}</span></aside>
-	<aside class="post-autor">
-		Autor: <span>{{ ($post->author) ? $post->author->username : 'Redaktion' }}</span></aside>
-	<aside class="post-move">::</aside>
-	<aside class="post-delete"></aside>
-</div>
-@endforeach
-
-</section>
---}}
-
-
-
-
-
 
 @endsection()

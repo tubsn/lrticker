@@ -1,7 +1,7 @@
 <template>
 	<span>
 		<button @click="openDialog" type="button"><slot></slot></button>
-
+		<transition name="fade">
 		<div v-show="isVisible" class="modal-container" ref="modalContainer" @click.self="destroyModal">
 
 			<div class="centered-box">
@@ -14,6 +14,7 @@
 			</div>
 
 		</div>
+		</transition>
 	</span>
 </template>
 
@@ -61,6 +62,13 @@
 h2 {margin-bottom:0;}
 .modal-container {left:0; top:0; position:fixed; z-index:999; display:grid;
 width:100%; min-height: 100vh; background-color: #00000055;}
+
+.modal-container.fade-enter-active, .modal-container.fade-leave-active {
+  transition: opacity .2s;
+}
+.modal-container.fade-enter, .modal-container.fade-leave-to {
+  opacity: 0;
+}
 
 .centered-box {width:100%; max-width:800px; padding:2em; box-sizing: border-box;}
 

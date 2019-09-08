@@ -53,7 +53,7 @@ class TickerController extends Controller
 		$request->validate([
 			'name' => ['required','min:3'],
 		]);
-	
+
 		$newTicker = Ticker::create($request->all());
 		return redirect('/ticker/' . $newTicker->id);
     }
@@ -75,7 +75,14 @@ class TickerController extends Controller
     }
 
     public function destroy(Ticker $ticker) {
-        $ticker->delete();
-		return redirect('/ticker/');
+		$id = $ticker->id;
+		$ticker->delete();
+		//return redirect('/ticker/');
+		return [
+			'message' => 'Ticker ' . $id  . 'deleted',
+			'success' => true
+		];
+
+
     }
 }

@@ -388,6 +388,9 @@ background-color: var(--light-background);}
 .ticker-textarea:hover {resize: vertical;}
 .ticker-textarea:focus {border-color: var(--lrblau)}
 
+input:focus {border-color: var(--lrblau)}
+textarea:focus {border-color: var(--lrblau)}
+
 .ticker-editor button {padding:0.4em 0.6em;}
 button.minor, .minor button {background-color:#c8c8c8; color: white; }
 
