@@ -29,6 +29,17 @@
 			}
 		},
 
+		watch: {
+			isVisible(isVisible) {
+				if (isVisible) {
+					document.addEventListener('keyup', this.listenForClose);
+				}
+				else {
+					document.removeEventListener('keyup', this.listenForClose);
+				}
+			},
+		},
+
 		methods: {
 
 			openDialog: function(event) {
@@ -42,6 +53,11 @@
 
 			},
 
+			listenForClose(event) {
+				if (event.type == 'keyup' && event.key == 'Escape') {
+					this.destroyModal();
+				}
+			},
 
 			destroyModal: function() {
 				this.isVisible = false;

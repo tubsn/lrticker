@@ -11,7 +11,6 @@ require('./flundr');
 let TickerEditor = require('./components/TickerEditor.vue').default;
 let TickerList = require('./components/TickerList.vue').default;
 
-
 // Liveticker Vue Instance
 let livetickerAPP = new Vue({
 

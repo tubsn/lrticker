@@ -1,5 +1,5 @@
 <template>
-	<span @click="openDialog" @keyup.esc="destroyModal">
+	<span @click="openDialog">
 		<slot name="button"><button class="button">{{ button }}</button></slot>
 		<transition name="fade">
 		<div v-show="isVisible" class="modal-container" ref="modalContainer" @click.self="destroyModal">
@@ -28,6 +28,17 @@
 			redirect:{type: String,	default: ''}
 		},
 
+		watch: {
+			isVisible(isVisible) {
+				if (isVisible) {
+					document.addEventListener('keyup', this.listenForClose);
+				}
+				else {
+					document.removeEventListener('keyup', this.listenForClose);
+				}
+			},
+		},
+
 		data: function () {
 			return {
 				isVisible : false,
@@ -41,6 +52,12 @@
 				event.preventDefault();
 				document.body.appendChild(this.$refs.modalContainer);
 				this.isVisible = true;
+			},
+
+			listenForClose(event) {
+				if (event.type == 'keyup' && event.key == 'Escape') {
+					this.destroyModal();
+				}
 			},
 
 			destroyModal: function() {

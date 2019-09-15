@@ -22,6 +22,17 @@
 			}
 		},
 
+		watch: {
+			isVisible(isVisible) {
+				if (isVisible) {
+					document.addEventListener('keyup', this.listenForClose);
+				}
+				else {
+					document.removeEventListener('keyup', this.listenForClose);
+				}
+			},
+		},
+
 		methods: {
 
 			openDialog: function(event) {
@@ -33,6 +44,12 @@
 					focusElement.focus();
 				}, 5);
 
+			},
+
+			listenForClose(event) {
+				if (event.type == 'keyup' && event.key == 'Escape') {
+					this.destroyModal();
+				}
 			},
 
 

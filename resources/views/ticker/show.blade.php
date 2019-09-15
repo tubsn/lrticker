@@ -9,10 +9,8 @@
 <main class="layout-detail" id="liveticker" v-cloak data-tickerID="{{ $ticker->id }}">
 
 <div class="ticker-area">
-
 	<ticker-editor @submitted="refresh_list">{{ $ticker->headline }}</ticker-editor>
 	<ticker-list ref="list"></ticker-list>
-
 </div> <!-- end Ticker Area -->
 
 <aside class="autor-area">
