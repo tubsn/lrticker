@@ -11,7 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
+
 mix.js('resources/js/app.js', 'public/styles/js').extract(['lodash','axios','vue', 'tinymce']);
+
+// Flundr Build Process
+//mix.js('resources/js/flundr.js', 'public/styles/js/flundr').extract(['lodash','axios','vue']);
 
 mix.scripts(['resources/js/preview.js', 'node_modules/flickity/dist/flickity.pkgd.js'], 'public/styles/js/lr-ticker.js');
 

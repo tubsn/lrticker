@@ -1,28 +1,21 @@
 <template>
-<section class="ticker-editor">
-<h2 class="ticker-headline"><slot></slot></h2>
+	<form>
+		<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
+		<editor class="ticker-textarea" v-model="newPostContent" :init="tinyConfig" @onInit="focusIT" ref="contentEditor"></editor>
 
+		<aside v-if ="newPostMedia" class="media-block">
+			<p>Anhänge:</p>
+			<div class="media-holder" v-html="newPostMedia"></div>
+		</aside>
 
-<form>
-	<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
-	<editor class="ticker-textarea" v-model="newPostContent" :init="tinyConfig" @onInit="focusIT" ref="contentEditor"></editor>
+		<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
 
-	<aside v-if ="newPostMedia" class="media-block">
-		<p>Anhänge:</p>
-		<div class="media-holder" v-html="newPostMedia"></div>
-	</aside>
-
-	<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
-
-	<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
-	<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
-	<video-button @submit="add_youtube_video" class="minor">Youtube</video-button>
-	<html-button @submit="add_html" class="minor">HTML</html-button>
-	<img class="ball" src="/styles/img/ticker-icons/soccer.png">
-</form>
-
-
-</section>
+		<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
+		<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
+		<video-button @submit="add_youtube_video" class="minor">Youtube</video-button>
+		<html-button @submit="add_html" class="minor">HTML</html-button>
+		<img class="ball" src="/styles/img/ticker-icons/soccer.png">
+	</form>
 </template>
 
 <script>
@@ -59,7 +52,6 @@
 		},
 
 		mounted: function () {
-
 		},
 
 

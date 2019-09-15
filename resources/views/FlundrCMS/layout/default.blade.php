@@ -11,12 +11,15 @@
 	<link rel="shortcut icon" href="{{ asset('img/flundr.svg') }}" />
 </head>
 <body>
+
+<div id="App">
 @yield('body')
 @yield('footer')
+</div>
 
-<script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/flundr/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/flundr/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/flundr/flundr.js') }}"></script>
 
 </body>
 </html>

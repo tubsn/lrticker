@@ -3126,10 +3126,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerEditor.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TickerEditor.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerApp.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TickerApp.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3150,6 +3150,73 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+// Vue Components
+var TickerEditor = __webpack_require__(/*! ./TickerEditor.vue */ "./resources/js/components/TickerEditor.vue")["default"];
+
+var TickerList = __webpack_require__(/*! ./TickerList.vue */ "./resources/js/components/TickerList.vue")["default"];
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'ticker-editor': TickerEditor,
+    'ticker-list': TickerList
+  },
+  props: ['id'],
+  computed: {
+    tickerID: function tickerID() {
+      return this.id;
+    }
+  },
+  methods: {
+    refresh_list: function () {
+      var _refresh_list = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.$refs.list.refresh();
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function refresh_list() {
+        return _refresh_list.apply(this, arguments);
+      }
+
+      return refresh_list;
+    }()
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerEditor.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TickerEditor.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -7549,6 +7616,48 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerApp.vue?vue&type=template&id=0d45b95c&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TickerApp.vue?vue&type=template&id=0d45b95c& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "ticker-area" },
+    [
+      _c(
+        "section",
+        { staticClass: "ticker-editor" },
+        [
+          _c("h2", { staticClass: "ticker-headline" }, [_vm._t("default")], 2),
+          _vm._v(" "),
+          _c("ticker-editor", { on: { submitted: _vm.refresh_list } })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("ticker-list", { ref: "list" })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerEditor.vue?vue&type=template&id=1332ccfc&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TickerEditor.vue?vue&type=template&id=1332ccfc& ***!
@@ -7564,78 +7673,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "ticker-editor" }, [
-    _c("h2", { staticClass: "ticker-headline" }, [_vm._t("default")], 2),
-    _vm._v(" "),
-    _c(
-      "form",
-      [
-        _c("editor", {
-          ref: "contentEditor",
-          staticClass: "ticker-textarea",
-          attrs: { init: _vm.tinyConfig },
-          on: { onInit: _vm.focusIT },
-          model: {
-            value: _vm.newPostContent,
-            callback: function($$v) {
-              _vm.newPostContent = $$v
-            },
-            expression: "newPostContent"
-          }
-        }),
-        _vm._v(" "),
-        _vm.newPostMedia
-          ? _c("aside", { staticClass: "media-block" }, [
-              _c("p", [_vm._v("Anhänge:")]),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "media-holder",
-                domProps: { innerHTML: _vm._s(_vm.newPostMedia) }
-              })
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "button",
-          { attrs: { type: "button" }, on: { click: _vm.submitPost } },
-          [
-            _c("span", { staticClass: "hide-mobile" }, [_vm._v("Nachricht ")]),
-            _vm._v("senden")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "file-upload",
-          {
-            staticClass: "minor",
-            attrs: { action: "/attachment", method: "post" },
-            on: { fileuploaded: _vm.add_images_to_media }
+  return _c(
+    "form",
+    [
+      _c("editor", {
+        ref: "contentEditor",
+        staticClass: "ticker-textarea",
+        attrs: { init: _vm.tinyConfig },
+        on: { onInit: _vm.focusIT },
+        model: {
+          value: _vm.newPostContent,
+          callback: function($$v) {
+            _vm.newPostContent = $$v
           },
-          [_vm._v("Bilder")]
-        ),
-        _vm._v(" "),
-        _c(
-          "video-button",
-          { staticClass: "minor", on: { submit: _vm.add_youtube_video } },
-          [_vm._v("Youtube")]
-        ),
-        _vm._v(" "),
-        _c(
-          "html-button",
-          { staticClass: "minor", on: { submit: _vm.add_html } },
-          [_vm._v("HTML")]
-        ),
-        _vm._v(" "),
-        _c("img", {
-          staticClass: "ball",
-          attrs: { src: "/styles/img/ticker-icons/soccer.png" }
-        })
-      ],
-      1
-    )
-  ])
+          expression: "newPostContent"
+        }
+      }),
+      _vm._v(" "),
+      _vm.newPostMedia
+        ? _c("aside", { staticClass: "media-block" }, [
+            _c("p", [_vm._v("Anhänge:")]),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "media-holder",
+              domProps: { innerHTML: _vm._s(_vm.newPostMedia) }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "button",
+        { attrs: { type: "button" }, on: { click: _vm.submitPost } },
+        [
+          _c("span", { staticClass: "hide-mobile" }, [_vm._v("Nachricht ")]),
+          _vm._v("senden")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "file-upload",
+        {
+          staticClass: "minor",
+          attrs: { action: "/attachment", method: "post" },
+          on: { fileuploaded: _vm.add_images_to_media }
+        },
+        [_vm._v("Bilder")]
+      ),
+      _vm._v(" "),
+      _c(
+        "video-button",
+        { staticClass: "minor", on: { submit: _vm.add_youtube_video } },
+        [_vm._v("Youtube")]
+      ),
+      _vm._v(" "),
+      _c(
+        "html-button",
+        { staticClass: "minor", on: { submit: _vm.add_html } },
+        [_vm._v("HTML")]
+      ),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "ball",
+        attrs: { src: "/styles/img/ticker-icons/soccer.png" }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -8395,72 +8500,31 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Flundr Components
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+var FlundrDialog = __webpack_require__(/*! ./components/flundr/flDialog.vue */ "./resources/js/components/flundr/flDialog.vue")["default"];
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+var FlundrMenu = __webpack_require__(/*! ./components/flundr/flMenu.vue */ "./resources/js/components/flundr/flMenu.vue")["default"];
 
-/**
- * First, we will load all of this project's Javascript utilities and other
- * dependencies. Then, we will be ready to develop a robust and powerful
- * application frontend using useful Laravel and JavaScript libraries.
- */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-__webpack_require__(/*! ./flundr */ "./resources/js/flundr.js"); // Vue Components
+var FlundrMenuItem = __webpack_require__(/*! ./components/flundr/flMenuItem.vue */ "./resources/js/components/flundr/flMenuItem.vue")["default"]; // Ticker Components
 
 
-var TickerEditor = __webpack_require__(/*! ./components/TickerEditor.vue */ "./resources/js/components/TickerEditor.vue")["default"];
-
-var TickerList = __webpack_require__(/*! ./components/TickerList.vue */ "./resources/js/components/TickerList.vue")["default"]; // Liveticker Vue Instance
+var TickerApp = __webpack_require__(/*! ./components/TickerApp.vue */ "./resources/js/components/TickerApp.vue")["default"]; // Main Vue Instance
 
 
 var livetickerAPP = new Vue({
-  el: '#liveticker',
-  data: {},
+  el: '#App',
   components: {
-    'ticker-editor': TickerEditor,
-    'ticker-list': TickerList
-  },
-  beforeMount: function beforeMount() {
-    this.tickerID = this.$el.getAttribute('data-tickerID');
-  },
-  methods: {
-    refresh_list: function () {
-      var _refresh_list = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.$refs.list.refresh();
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function refresh_list() {
-        return _refresh_list.apply(this, arguments);
-      }
-
-      return refresh_list;
-    }()
+    'ticker-app': TickerApp,
+    'fl-dialog': FlundrDialog,
+    'fl-menu': FlundrMenu,
+    'menu-item': FlundrMenuItem
   }
-}); // End Liveticker Vue
+}); // End Main Vue
 
 /***/ }),
 
@@ -8650,6 +8714,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUploadButton_vue_vue_type_template_id_30a6af1a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FileUploadButton_vue_vue_type_template_id_30a6af1a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TickerApp.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/TickerApp.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TickerApp_vue_vue_type_template_id_0d45b95c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TickerApp.vue?vue&type=template&id=0d45b95c& */ "./resources/js/components/TickerApp.vue?vue&type=template&id=0d45b95c&");
+/* harmony import */ var _TickerApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TickerApp.vue?vue&type=script&lang=js& */ "./resources/js/components/TickerApp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TickerApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TickerApp_vue_vue_type_template_id_0d45b95c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TickerApp_vue_vue_type_template_id_0d45b95c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TickerApp.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TickerApp.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/TickerApp.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TickerApp.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerApp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TickerApp.vue?vue&type=template&id=0d45b95c&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/TickerApp.vue?vue&type=template&id=0d45b95c& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerApp_vue_vue_type_template_id_0d45b95c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TickerApp.vue?vue&type=template&id=0d45b95c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TickerApp.vue?vue&type=template&id=0d45b95c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerApp_vue_vue_type_template_id_0d45b95c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TickerApp_vue_vue_type_template_id_0d45b95c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -9381,34 +9514,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_flMenuItem_vue_vue_type_template_id_61a12e42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/flundr.js":
-/*!********************************!*\
-  !*** ./resources/js/flundr.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var FlundrDialog = __webpack_require__(/*! ./components/flundr/flDialog.vue */ "./resources/js/components/flundr/flDialog.vue")["default"];
-
-var FlundrMenu = __webpack_require__(/*! ./components/flundr/flMenu.vue */ "./resources/js/components/flundr/flMenu.vue")["default"];
-
-var FlundrMenuItem = __webpack_require__(/*! ./components/flundr/flMenuItem.vue */ "./resources/js/components/flundr/flMenuItem.vue")["default"]; // Flundr Vue Instance
-
-
-var FlundrApp = new Vue({
-  el: '.flundrApp',
-  data: {},
-  components: {
-    'fl-dialog': FlundrDialog,
-    'fl-menu': FlundrMenu,
-    'menu-item': FlundrMenuItem
-  },
-  mounted: function mounted() {},
-  methods: {}
-}); // End Flundr
 
 /***/ }),
 

@@ -1,36 +1,21 @@
-/**
- * First, we will load all of this project's Javascript utilities and other
- * dependencies. Then, we will be ready to develop a robust and powerful
- * application frontend using useful Laravel and JavaScript libraries.
- */
-
 require('./bootstrap');
-require('./flundr');
 
-// Vue Components
-let TickerEditor = require('./components/TickerEditor.vue').default;
-let TickerList = require('./components/TickerList.vue').default;
+// Flundr Components
+let FlundrDialog = require('./components/flundr/flDialog.vue').default;
+let FlundrMenu = require('./components/flundr/flMenu.vue').default;
+let FlundrMenuItem = require('./components/flundr/flMenuItem.vue').default;
 
-// Liveticker Vue Instance
+// Ticker Components
+let TickerApp = require('./components/TickerApp.vue').default;
+
+// Main Vue Instance
 let livetickerAPP = new Vue({
-
-	el: '#liveticker',
-	data: {},
-
+	el: '#App',
 	components: {
-		'ticker-editor': TickerEditor,
-		'ticker-list': TickerList,
+		'ticker-app': TickerApp,
+		'fl-dialog': FlundrDialog,
+		'fl-menu': FlundrMenu,
+		'menu-item': FlundrMenuItem
 	},
-
-	beforeMount: function () {
-		this.tickerID = this.$el.getAttribute('data-tickerID');
-	},
-
-	methods: {
-		refresh_list : async function () {
-			await this.$refs.list.refresh();
-		},
-	}
-
-}) // End Liveticker Vue
+}) // End Main Vue
 

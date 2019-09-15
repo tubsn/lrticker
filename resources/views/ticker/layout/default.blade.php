@@ -4,8 +4,10 @@
 
 @section('body')
 
+<div id="App">
 @include('ticker.navigation.main')
 
 @yield('main')
+</div>
 
 @endsection()

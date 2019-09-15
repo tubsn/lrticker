@@ -1,4 +1,4 @@
-<nav class="nav-top flundrApp">
+<nav class="nav-top">
 	<ul class="left">
 		<li><a href="/ticker">LR - Liveticker</a></li>
 	</ul>
@@ -16,5 +16,4 @@
 		</menu-item>
 		@endauth
 	</fl-menu>
-
 </nav>

@@ -7,7 +7,7 @@
 
 @include('FlundrCMS.navigation.main')
 
-<main class="flundrApp" v-cloak>
+<main>
 
 <aside style="float:right">
 	<fl-dialog
@@ -15,7 +15,9 @@
 		method="post"
 		submit="Ja, löschen"
 		cancel="Nein, abbrechen"
-		redirect="/admin">
+		redirect="/admin"
+		v-cloak
+		>
 		<template v-slot:button>
 			<button class="mt button light danger">Account löschen</button>
 		</template>

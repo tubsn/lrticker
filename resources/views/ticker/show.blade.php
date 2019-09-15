@@ -6,12 +6,9 @@
 
 @section('main')
 
-<main class="layout-detail" id="liveticker" v-cloak data-tickerID="{{ $ticker->id }}">
+<main class="layout-detail">
 
-<div class="ticker-area">
-	<ticker-editor @submitted="refresh_list">{{ $ticker->headline }}</ticker-editor>
-	<ticker-list ref="list"></ticker-list>
-</div> <!-- end Ticker Area -->
+<ticker-app id="{{ $ticker->id }}" v-cloak>{{ $ticker->headline }}</ticker-app>
 
 <aside class="autor-area">
 	<img class="autor-image" src="{{ auth()->user()->thumbnail }}">
