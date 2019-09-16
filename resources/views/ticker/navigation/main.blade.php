@@ -7,6 +7,9 @@
 
 	<fl-menu class="right" direction="left" background="var(--lrblau)" v-cloak>
 		<menu-item href="/ticker/create">Neuer Ticker</menu-item>
+		@if (isset($ticker))
+		<menu-item href="/ticker/{{ $ticker->id }}/edit">Einstellungen</menu-item>
+		@endif
 		<menu-item href="/profil">Profil</menu-item>
 		<menu-item href="/admin">Admin</menu-item>
 		@auth

@@ -2,7 +2,9 @@
 
 /* Authentication Routes */
 Auth::routes();
-Route::get('/profil/', 'Auth\UserProfileController@index');
+Route::get('/profil', 'Auth\UserProfileController@index')->name('profile');
+Route::get('/profil/edit', 'Auth\UserProfileController@edit')->name('profile.edit');
+Route::patch('/profil', 'Auth\UserProfileController@update')->name('profile.update');
 
 /* Home */
 Route::get('/', 'HomeController@index')->name('home');

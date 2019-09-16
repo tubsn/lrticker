@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
 			$table->string('vorname', 120)->nullable();
 			$table->string('nachname', 120)->nullable();
-			$table->string('description', 255)->nullable();
+			$table->string('info', 255)->nullable();
 			$table->string('thumbnail', 120)->nullable();
 			$table->string('rights', 120)->nullable();
 			$table->boolean('admin',1)->nullable();

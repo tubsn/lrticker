@@ -13,7 +13,7 @@
 <aside class="autor-area">
 	<img class="autor-image" src="{{ auth()->user()->thumbnail }}">
 	<h3 class="autor-headline">{{ auth()->user()->username }}</h3>
-	<p class="autor-desc">({{ auth()->user()->description }})</p>
+	<p class="autor-desc">({{ auth()->user()->info }})</p>
 </aside>
 
 <aside class="fav-area">
