@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FlundrCMS;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -27,6 +28,10 @@ class UserController extends Controller
 			'email' => ['nullable','email']
 		]);
 
+		$request->merge([
+			'password' => Hash::make($request->password)
+		]);
+
 		User::create($request->all());
 		return redirect('/admin');
     }
@@ -45,6 +50,17 @@ class UserController extends Controller
 			'username' => 'required',
 			'email' => ['nullable','email']
 		]);
+
+		if ($request->filled('password')) {
+			$request->validate(['password' => 'min:5']);
+			$request->merge([
+				'password' => Hash::make($request->password)
+			]);
+			$user->update($request->all());
+		}
+		else {
+			$user->update($request->except('password'));
+		}
 
 		$user->update($request->all());
 		return redirect('/admin');

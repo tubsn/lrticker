@@ -12,10 +12,6 @@
 @csrf
 @method('patch')
 
-{{--<input type="text" name="name" value="{{ $user->name ?? old('name')}}">--}}
-
-
-
 @if ($errors->any())
 <div class="box mb red">
 <ul class="clean">

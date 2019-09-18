@@ -77,6 +77,9 @@ class TickerController extends Controller
     public function destroy(Ticker $ticker) {
 		$id = $ticker->id;
 		$ticker->delete();
+
+		Post::where('ticker_id', $id)->delete();
+	
 		//return redirect('/ticker/');
 		return [
 			'message' => 'Ticker ' . $id  . 'deleted',

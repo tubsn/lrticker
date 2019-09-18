@@ -28,8 +28,8 @@ export default {
 	},
 
 	methods: {
-		refresh_list : async function () {
-			await this.$refs.list.refresh();
+		refresh_list : function () {
+			this.$refs.list.refresh();
 		},
 	}
 }

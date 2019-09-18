@@ -12,7 +12,7 @@
 <aside style="float:right">
 	<fl-dialog
 		action="/admin/user/{{$user->id}}"
-		method="post"
+		method="delete"
 		submit="Ja, löschen"
 		cancel="Nein, abbrechen"
 		redirect="/admin"

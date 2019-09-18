@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Ticker;
+use App\Models\Post;
 
 class UserProfileController extends Controller
 {
@@ -18,9 +20,11 @@ class UserProfileController extends Controller
 
 	public function index() {
 
-		return view('user.profile')->with(
-			['user' => auth()->user()]
-		);
+		$user = auth()->user();
+		$user->tickercount = Ticker::where('author_id', $user->id)->count();
+		$user->postcount = Post::where('author_id', $user->id)->count();
+
+		return view('user.profile')->with('user', $user);
 	}
 
 	public function edit() {
@@ -59,6 +63,13 @@ class UserProfileController extends Controller
 		return redirect('/profil');
 
     }
+
+
+	public function add_thumbnail(Request $request) {
+
+		echo 'to be done';
+
+	}
 
 
 

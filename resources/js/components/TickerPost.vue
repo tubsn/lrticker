@@ -148,7 +148,8 @@ export default {
 			const response = await axios.delete('/post/'+this.post.id);
 			console.log(response.data);
 			if (response.data.success) {
-				this.isVisible = false;
+				//this.isVisible = false;
+				this.$parent.refresh();
 			}
 		},
 

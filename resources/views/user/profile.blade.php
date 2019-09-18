@@ -4,10 +4,63 @@
 @section('description', 'Blub')
 
 @section('main')
-<main>
+<main class="layout-profile">
+
+
 
 <h1>Userprofil: {{ $user->username }}</h1>
 
+<article class="user-card">
+
+	<figure class="user-thumb">
+		@if ($user->thumbnail)
+		<div id="profile-thumb-upload" class="wrapper" title="Bild hochladen"></div>
+		<fl-upload trigger="#profile-thumb-upload"></fl-upload>
+		<img src="{{$user->thumbnail}}">
+		@else
+		<img src="/img/icons/no-thumb.svg">
+		@endif
+	</figure>
+
+	<div class="user-info">
+		<div>
+			<span>Benutzername:</span>
+			{{$user->username}}
+		</div>
+		<div>
+			<span>ID:</span>
+			{{$user->id}}
+		</div>
+		<div>
+			<span>Name:</span>
+			{{$user->vorname}} {{$user->nachname}}
+		</div>
+		<div>
+			<span>Rights:</span>
+			{{$user->rights}}
+		</div>
+		<div>
+			<span>E-Mail:</span>
+			{{$user->email}}
+		</div>
+		<div>
+			<span>Erstellte Ticker/Einträge:</span>
+			{{$user->tickercount}} / {{$user->postcount}}
+		</div>
+		<div class="fullwidth">
+			<span>Infos:</span>
+			{{$user->info}}
+		</div>
+
+	</div>
+</article>
+		<a class="button block" href="/profil/edit">Profil bearbeiten</a>
+
+		<a class="button block" href="/logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+		</a>
+
+{{--
 <table class="fancy" style="width:100%; margin-bottom:2em;">
 
 	<tr>
@@ -47,10 +100,8 @@
 <img style="max-width:300px" src="{{$user->thumbnail}}">
 </aside>
 
-<a class="button block" href="/profil/edit">Profil bearbeiten</a>
-<a class="button block" href="/logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout
-	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-</a>
+--}}
+
 
 
 </main>

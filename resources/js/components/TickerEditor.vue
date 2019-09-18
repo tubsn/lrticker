@@ -78,6 +78,8 @@
 
 			submitPost: async function() {
 
+				if (this.newPostMedia == '' && this.newPostContent == '') {return;}
+
 				let data = {
 					'media': this.newPostMedia,
 					'content': this.newPostContent,

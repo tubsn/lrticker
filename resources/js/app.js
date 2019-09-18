@@ -4,6 +4,8 @@ require('./bootstrap');
 let FlundrDialog = require('./components/flundr/flDialog.vue').default;
 let FlundrMenu = require('./components/flundr/flMenu.vue').default;
 let FlundrMenuItem = require('./components/flundr/flMenuItem.vue').default;
+let FlundrFileUpload = require('./components/flundr/flFileUpload.vue').default;
+
 
 // Ticker Components
 let TickerApp = require('./components/TickerApp.vue').default;
@@ -14,6 +16,7 @@ let livetickerAPP = new Vue({
 	components: {
 		'ticker-app': TickerApp,
 		'fl-dialog': FlundrDialog,
+		'fl-upload': FlundrFileUpload,
 		'fl-menu': FlundrMenu,
 		'menu-item': FlundrMenuItem
 	},
