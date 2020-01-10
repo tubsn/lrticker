@@ -67,7 +67,14 @@ class UserProfileController extends Controller
 
 	public function add_thumbnail(Request $request) {
 
-		echo 'to be done';
+		$currentUserID = auth()->user()->id;
+		$user = User::find($currentUserID);
+
+		$user->thumbnail = '/storage/uploads/'.$request->thumbnail;
+		$user->save();
+
+		//echo $request->thumbnail;
+		//dd($request);
 
 	}
 

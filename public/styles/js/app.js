@@ -4225,7 +4225,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 _context2.prev = 1;
                 _context2.next = 4;
-                return axios.patch('/user', data);
+                return axios.patch('/profil/thumbnail', data);
 
               case 4:
                 response = _context2.sent;

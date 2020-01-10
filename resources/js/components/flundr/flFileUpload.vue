@@ -100,7 +100,7 @@
 				let data = {'thumbnail' : url};
 
 				try {
-					const response = await axios.patch('/user', data);
+					const response = await axios.patch('/profil/thumbnail', data);
 					if (response.data.success) {
 						return true;
 					}

@@ -1,10 +1,11 @@
 <?php
 
-/* Authentication Routes */
+/* Authentication and Userprofile Routes */
 Auth::routes();
 Route::get('/profil', 'Auth\UserProfileController@index')->name('profile');
 Route::get('/profil/edit', 'Auth\UserProfileController@edit')->name('profile.edit');
 Route::patch('/profil', 'Auth\UserProfileController@update')->name('profile.update');
+Route::patch('/profil/thumbnail', 'Auth\UserProfileController@add_thumbnail');
 
 /* Home */
 Route::get('/', 'HomeController@index')->name('home');
