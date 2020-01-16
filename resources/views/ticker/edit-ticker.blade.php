@@ -23,36 +23,65 @@
 
 
 <h1>ID: {{ $ticker->id }} - {{ $ticker->name }} editieren</h1>
-
 <form action="/ticker/{{ $ticker->id }}" method="post">
 @csrf
 @method('patch')
+
+<fieldset class="mb">
+<label>Ticker-Status:
+	<select name="status">
+		<option {{ $ticker->status ? 'selected ' : ''}}value="1">Aktiv</option>
+		<option {{ $ticker->status ? '' : 'selected '}}value="0">Beendet</option>
+	</select>
+</label>
+</fieldset>
+
+
+<fieldset class="mb">
+<label>Überschrift:
+	<input type="text" name="headline" value="{{ $ticker->headline ?? old('headline')}}">
+</label>
+
+<label>Ortsmarke / Location:
+	<input type="text" name="location" value="{{ $ticker->location ?? old('location') }}">
+</label>
+
+<label>Mehrere Autoren:
+	<select name="multiauthor">
+		<option {{ $ticker->multiauthor ? 'selected ' : ''}}value="1">Autorenfotos Anzeigen</option>
+		<option {{ $ticker->multiauthor ? '' : 'selected '}}value="0">Autorenfotos deaktivieren</option>
+	</select>
+</label>
+
+</fieldset>
+<!--
+<label>Startzeit:
+	<input type="date" name="start" value="{{ !is_null($ticker->start) ? $ticker->start->format('Y-m-d') : '' }}">
+</label>
+-->
+
+
+<fieldset>
 
 <label>Interner Name:
 	<input type="text" name="name" value="{{ $ticker->name ?? old('name')}}">
 </label>
 
-<label>Überschrift:
-	<input type="text" name="headline" value="{{ $ticker->headline ?? old('headline')}}">
+
+<label>Ticker-Typ:
+	<select name="typ">
+		<option {{ ($ticker->typ == 'Standard') ? 'selected ' : ''}}value="Standard">Standard</option>
+		<option {{ ($ticker->typ == 'Fussball') ? 'selected ' : ''}}value="Fussball">Fussball</option>
+	</select>
 </label>
 
-<label>Startzeit:
-	<input type="date" name="start" value="{{ !is_null($ticker->start) ? $ticker->start->format('Y-m-d') : '' }}">
-</label>
 
-<button type="submit">Speichern</button>
+</fieldset>
+
+
+<button class="mt" type="submit">Ticker speichern</button>
+<a class="ml" href="/ticker/{{ $ticker->id }}">oder zurück</a>
 </form>
-
-{{--
-Name: {{ $ticker->name }}<br />
-Typ: {{ $ticker->typ }}<br />
-Start: {{ $ticker->start }}<br />
-Titel: {{ $ticker->headline }}<br />
-Status: {{ $ticker->status }}<br />
-Erstellt von: {{ ($ticker->author) ? $ticker->author->username : 'Redaktion' }}<br />
---}}
-
-
 
 
 </main>

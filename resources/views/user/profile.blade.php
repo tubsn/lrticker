@@ -13,13 +13,9 @@
 <article class="user-card">
 
 	<figure class="user-thumb">
-		@if ($user->thumbnail)
 		<div id="profile-thumb-upload" class="wrapper" title="Bild hochladen"></div>
 		<fl-upload trigger="#profile-thumb-upload"></fl-upload>
-		<img src="{{$user->thumbnail}}">
-		@else
-		<img src="/img/icons/no-thumb.svg">
-		@endif
+		<img src="{{$user->thumbnail ?? '/styles/img/icons/no-thumb.svg' }}">
 	</figure>
 
 	<div class="user-info">

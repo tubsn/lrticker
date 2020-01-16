@@ -3034,7 +3034,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['action', 'method'],
   data: function data() {
     return {
-      maxFileSize: 5 * 1024 * 1024,
+      maxFileSize: 25 * 1024 * 1024,
       allowedFormats: ['image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/png', 'image/bmp']
     };
   },
@@ -3056,14 +3056,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var acceptedFiles = files.filter(function (file) {
         // Check for Filesize
         if (file.size > _this.maxFileSize) {
-          file.reason = 'File is too big';
+          file.reason = 'Datei zu Groß';
           rescrictedFiles.push(file);
           return;
         } // Check for Extensions
 
 
         if (!_this.allowedFormats.includes(file.type)) {
-          file.reason = 'Filetype not allowed';
+          file.reason = 'Dateityp nicht erlaubt';
           rescrictedFiles.push(file);
           return;
         }
@@ -3075,7 +3075,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     announceRescrited: function announceRescrited(files) {
       files.forEach(function (file) {
-        console.warn("\"".concat(file.name, "\" rejected | ").concat(file.reason));
+        //console.warn(`"${file.name}" rejected | ${file.reason}`);
+        alert("\"".concat(file.name, "\" abgelehnt | ").concat(file.reason));
       });
     },
     uploadFiles: function () {
@@ -3135,6 +3136,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3155,16 +3164,57 @@ var TickerList = __webpack_require__(/*! ./TickerList.vue */ "./resources/js/com
     'ticker-editor': TickerEditor,
     'ticker-list': TickerList
   },
-  props: ['id'],
+  props: ['id', 'tickerStatus', 'tickerTyp'],
   computed: {
     tickerID: function tickerID() {
       return this.id;
+    },
+    active: function active() {
+      return this.tickerStatus;
+    },
+    showTimer: function showTimer() {
+      if (this.tickerTyp == 'Fussball') {
+        return true;
+      }
     }
   },
   methods: {
     refresh_list: function refresh_list() {
       this.$refs.list.refresh();
-    }
+    },
+    saveHeadline: function () {
+      var _saveHeadline = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
+        var element, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                element = event.currentTarget;
+                _context.next = 3;
+                return axios.patch('/ticker/' + this.id, {
+                  'headline': element.innerText,
+                  'js': true
+                });
+
+              case 3:
+                response = _context.sent;
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function saveHeadline(_x) {
+        return _saveHeadline.apply(this, arguments);
+      }
+
+      return saveHeadline;
+    }()
   }
 });
 
@@ -3207,6 +3257,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 var Editor = __webpack_require__(/*! @tinymce/tinymce-vue */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/index.js")["default"];
 
 var FileUploadButton = __webpack_require__(/*! ./FileUploadButton.vue */ "./resources/js/components/FileUploadButton.vue")["default"];
@@ -3225,7 +3276,8 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
   data: function data() {
     return {
       newPostContent: '',
-      newPostMedia: ''
+      newPostMedia: '',
+      gameTime: '0'
     };
   },
   computed: {
@@ -3234,9 +3286,18 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
     },
     tinyConfig: function tinyConfig() {
       return window.globalTinyConfig;
+    },
+    active: function active() {
+      if (Boolean(Number(this.$parent.active))) {
+        return true;
+      }
+
+      return false;
+    },
+    showTimer: function showTimer() {
+      return this.$parent.showTimer;
     }
   },
-  mounted: function mounted() {},
   methods: {
     focusIT: function focusIT(event) {
       event.target.focus();
@@ -3307,7 +3368,8 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
                 data = {
                   'media': this.newPostMedia,
                   'content': this.newPostContent,
-                  'ticker_id': this.tickerID
+                  'ticker_id': this.tickerID,
+                  'time': this.gameTime
                 };
                 _context2.next = 5;
                 return this.savePost(data);
@@ -3348,7 +3410,7 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
               case 0:
                 attachment = attachments[0];
                 data = {
-                  'media': "<img src=\"/storage/uploads/".concat(attachment.url, "\">"),
+                  'media': "<img src=\"".concat(location.origin, "/storage/uploads/").concat(attachment.url, "\">"),
                   'content': '',
                   'ticker_id': this.tickerID
                 };
@@ -3375,7 +3437,7 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
     add_images_to_media: function add_images_to_media(attachments) {
       var images = '';
       attachments.forEach(function (attachment) {
-        images = images + "<img src=\"/storage/uploads/".concat(attachment.url, "\">");
+        images = images + "<img src=\"".concat(location.origin, "/storage/uploads/").concat(attachment.url, "\">");
       });
 
       if (attachments.length > 1) {
@@ -3684,6 +3746,13 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
     postList: function postList() {
       return this.$parent.postList;
     },
+    timeunit: function timeunit() {
+      if (this.post.time.indexOf(':') >= 0) {
+        return ' Uhr';
+      } else {
+        return ' Min';
+      }
+    },
     isImage: function isImage() {
       if (this.post.type == 'image') {
         return true;
@@ -3764,6 +3833,11 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
 
       tinymce.init(tinyConfig);
     },
+    makeEditable: function makeEditable(event) {
+      var element = event.currentTarget;
+      element.contentEditable = true;
+      element.classList.add('edit');
+    },
     savePost: function () {
       var _savePost = _asyncToGenerator(
       /*#__PURE__*/
@@ -3796,22 +3870,104 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
 
       return savePost;
     }(),
-    reorderTicker: function () {
-      var _reorderTicker = _asyncToGenerator(
+    saveTime: function () {
+      var _saveTime = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(event) {
+        var element, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                element = event.currentTarget;
+                _context2.next = 3;
+                return axios.patch('/post/' + this.post.id, {
+                  'time': element.innerText
+                });
+
+              case 3:
+                response = _context2.sent;
+                element.contentEditable = false;
+                element.classList.remove('edit');
+                this.$parent.refresh();
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function saveTime(_x2) {
+        return _saveTime.apply(this, arguments);
+      }
+
+      return saveTime;
+    }(),
+    saveDate: function () {
+      var _saveDate = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(event) {
+        var element, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                element = event.currentTarget;
+                element.contentEditable = false;
+                element.classList.remove('edit');
+
+                if (!(element.innerText != '')) {
+                  _context3.next = 11;
+                  break;
+                }
+
+                _context3.next = 6;
+                return axios.patch('/post/' + this.post.id, {
+                  'date': element.innerText
+                });
+
+              case 6:
+                response = _context3.sent;
+                element.contentEditable = false;
+                this.$parent.refresh();
+                _context3.next = 12;
+                break;
+
+              case 11:
+                element.innerText = 'error';
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function saveDate(_x3) {
+        return _saveDate.apply(this, arguments);
+      }
+
+      return saveDate;
+    }(),
+    reorderTicker: function () {
+      var _reorderTicker = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
                 return axios.patch('/ticker/' + this.tickerID + '/reorder', {
                   'post_ids': this.postList.join(',')
                 });
 
               case 2:
-                response = _context2.sent;
+                response = _context4.sent;
 
                 if (response.data.success) {
                   console.log(response.data.message);
@@ -3820,10 +3976,10 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
 
               case 4:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee4, this);
       }));
 
       function reorderTicker() {
@@ -3835,17 +3991,17 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
     deletePost: function () {
       var _deletePost = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(post) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(post) {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _context3.next = 2;
+                _context5.next = 2;
                 return axios["delete"]('/post/' + this.post.id);
 
               case 2:
-                response = _context3.sent;
+                response = _context5.sent;
                 console.log(response.data);
 
                 if (response.data.success) {
@@ -3855,13 +4011,13 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
 
               case 5:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee5, this);
       }));
 
-      function deletePost(_x2) {
+      function deletePost(_x4) {
         return _deletePost.apply(this, arguments);
       }
 
@@ -4238,20 +4394,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", true);
 
               case 7:
-                _context2.next = 12;
+                location.reload();
+                _context2.next = 13;
                 break;
 
-              case 9:
-                _context2.prev = 9;
+              case 10:
+                _context2.prev = 10;
                 _context2.t0 = _context2["catch"](1);
-                console.error(_context2.t0);
+                alert(_context2.t0);
 
-              case 12:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[1, 9]]);
+        }, _callee2, null, [[1, 10]]);
       }));
 
       function saveToUser(_x2) {
@@ -4378,7 +4535,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.flickity-viewport {transition: height 0.2s;}\n.flickity-viewport:hover .flickity-button {opacity:1}\n.flickity-button-icon {opacity:0.4;}\n.carousel img {width: 100%; margin-right: 1em; line-height:0; margin-bottom:0;}\n", ""]);
+exports.push([module.i, "\n.flickity-viewport {transition: height 0.2s;}\n.flickity-viewport:hover .flickity-button {opacity:1}\n.flickity-button-icon {opacity:0.4;}\n.carousel img {width: 100%; margin-right: 1em; line-height:0; margin-bottom:0;}\r\n", ""]);
 
 // exports
 
@@ -4416,7 +4573,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.post-layout.is-dragged {opacity:.3; background:#fff1cf;}\n.post-layout.is-target {opacity:.8; background:#fff1cf;}\n.post-layout.is-target > * {pointer-events: none !important;}\n", ""]);
+exports.push([module.i, "\n.post-layout.is-dragged {opacity:.3; background:#fff1cf;}\n.post-layout.is-target {opacity:.8; background:#fff1cf;}\n.post-layout.is-target > * {pointer-events: none !important;}\r\n", ""]);
 
 // exports
 
@@ -5222,28 +5379,6 @@ function getSize( elem ) {
 return getSize;
 
 });
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -7842,7 +7977,16 @@ var render = function() {
         "section",
         { staticClass: "ticker-editor" },
         [
-          _c("h2", { staticClass: "ticker-headline" }, [_vm._t("default")], 2),
+          _c(
+            "h2",
+            {
+              staticClass: "ticker-headline",
+              attrs: { contenteditable: "true" },
+              on: { blur: _vm.saveHeadline }
+            },
+            [_vm._t("default")],
+            2
+          ),
           _vm._v(" "),
           _c("ticker-editor", { on: { submitted: _vm.refresh_list } })
         ],
@@ -7904,7 +8048,15 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm._m(0),
+      _vm.active
+        ? _c("aside", { staticClass: "ticker-indicator" }, [
+            _c("div", { staticClass: "ticker-live-circle active" }),
+            _vm._v("Live")
+          ])
+        : _c("aside", { staticClass: "ticker-indicator" }, [
+            _c("div", { staticClass: "ticker-live-circle inactive" }),
+            _vm._v("Beendet")
+          ]),
       _vm._v(" "),
       _c(
         "button",
@@ -7937,25 +8089,36 @@ var render = function() {
         [_vm._v("HTML")]
       ),
       _vm._v(" "),
-      _c("img", {
-        staticClass: "ball",
-        attrs: { src: "/styles/img/ticker-icons/soccer.png" }
-      })
+      _vm.showTimer
+        ? _c("div", { staticClass: "gametime" }, [
+            _vm._v("Min: "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.gameTime,
+                  expression: "gameTime"
+                }
+              ],
+              attrs: { min: "0", type: "number" },
+              domProps: { value: _vm.gameTime },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.gameTime = $event.target.value
+                }
+              }
+            })
+          ])
+        : _vm._e()
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("aside", { staticClass: "ticker-indicator" }, [
-      _c("div", { staticClass: "ticker-live-circle active" }),
-      _vm._v("Live")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -8193,13 +8356,24 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("aside", { staticClass: "post-time" }, [
-            _c("span", [_vm._v(_vm._s(_vm.post.time))]),
-            _vm._v(" min")
+            _c(
+              "span",
+              {
+                attrs: { contenteditable: "true" },
+                on: { click: _vm.makeEditable, blur: _vm.saveTime }
+              },
+              [_vm._v(_vm._s(_vm.post.time))]
+            ),
+            _vm._v(_vm._s(this.timeunit))
           ]),
           _vm._v(" "),
           _c("aside", { staticClass: "post-date" }, [
             _vm._v("Datum: "),
-            _c("span", [_vm._v(_vm._s(_vm.post.date))])
+            _c(
+              "span",
+              { on: { click: _vm.makeEditable, blur: _vm.saveDate } },
+              [_vm._v(_vm._s(_vm.post.date))]
+            )
           ]),
           _vm._v(" "),
           _c("aside", { staticClass: "post-autor" }, [
@@ -8861,9 +9035,9 @@ window.globalTinyConfig = {
       expand: false,
       deep: true
     }]
-  } // Vue Instance
+  }
+}; // Vue Instance
 
-};
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 /***/ }),
@@ -9847,7 +10021,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! d:\webserver\lrapps\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Online\websites\test\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

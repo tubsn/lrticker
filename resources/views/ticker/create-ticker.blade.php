@@ -16,18 +16,33 @@
 @include('ticker/elements/errorhandler')
 
 <label>Interner Name:
-	<input type="text" name="name" value="{{ old('name')}}">
+	<input type="text" name="name" value="{{ old('name')}}" placeholder="interner Tickerbezeichner">
 </label>
 
 <label>Überschrift:
-	<input type="text" name="headline" value="{{ old('headline')}}">
+	<input type="text" name="headline" value="{{ old('headline')}}" placeholder="öffentliche Ticker Überschrift">
 </label>
 
+<label>Ortsmarke / Location:
+	<input type="text" name="location" value="{{ old('location')}}" placeholder="z.B. aus dem Energiestadion">
+</label>
+
+<!--
 <label>Startzeit:
 	<input type="date" name="start" value="{{ old('start') }}">
 </label>
+-->
 
-<button type="submit">Speichern</button> <a class="block ml" href="/ticker">oder zurück</a>
+<label>Ticker mit mehreren Autoren:
+	<select name="multiauthor">
+		<option value="1">Autorenfotos Anzeigen</option>
+		<option value="0">Autorenfotos deaktivieren</option>
+	</select>
+</label>
+
+
+<button class="mt" type="submit">Speichern</button>
+<a class="ml" href="/ticker">oder zurück</a>
 </form>
 
 {{--

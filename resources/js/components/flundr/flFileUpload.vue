@@ -105,14 +105,13 @@
 						return true;
 					}
 
+					location.reload();
+
 				} catch (error) {
-					console.error(error);
+					alert(error);
 				}
 
 			},
-
-
-
 		},
 
 	}

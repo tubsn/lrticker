@@ -3,18 +3,19 @@
 		<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
 		<editor class="ticker-textarea" v-model="newPostContent" :init="tinyConfig" @onInit="focusIT" ref="contentEditor"></editor>
 
-		<aside v-if ="newPostMedia" class="media-block">
+		<aside v-if="newPostMedia" class="media-block">
 			<p>Anhänge:</p>
 			<div class="media-holder" v-html="newPostMedia"></div>
 		</aside>
 
-		<aside class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
+		<aside v-if="active" class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
+		<aside v-else class="ticker-indicator"><div class="ticker-live-circle inactive"></div>Beendet</aside>
 
 		<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
 		<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
 		<video-button @submit="add_youtube_video" class="minor">Youtube</video-button>
 		<html-button @submit="add_html" class="minor">HTML</html-button>
-		<img class="ball" src="/styles/img/ticker-icons/soccer.png">
+		<div v-if="showTimer" class="gametime">Min: <input min="0" v-model="gameTime" type="number"></div>
 	</form>
 </template>
 
@@ -38,6 +39,7 @@
 			return {
 				newPostContent: '',
 				newPostMedia: '',
+				gameTime: '0',
 			}
 		},
 
@@ -49,11 +51,17 @@
 				return window.globalTinyConfig;
 			},
 
-		},
+			active: function () {
+				if (Boolean(Number(this.$parent.active))) {
+					return true;
+				}
+				return false;
+			},
+			showTimer: function () {
+				return this.$parent.showTimer;
+			},
 
-		mounted: function () {
 		},
-
 
 		methods: {
 
@@ -83,7 +91,8 @@
 				let data = {
 					'media': this.newPostMedia,
 					'content': this.newPostContent,
-					'ticker_id': this.tickerID
+					'ticker_id': this.tickerID,
+					'time': this.gameTime
 				}
 
 				if (await this.savePost(data)) {
@@ -100,7 +109,7 @@
 				let attachment = attachments[0];
 
 					let data = {
-						'media': `<img src="/storage/uploads/${attachment.url}">`,
+						'media': `<img src="${location.origin}/storage/uploads/${attachment.url}">`,
 						'content': '',
 						'ticker_id': this.tickerID
 					}
@@ -117,7 +126,7 @@
 				let images = '';
 
 				attachments.forEach(attachment => {
-					images = images + `<img src="/storage/uploads/${attachment.url}">`;
+					images = images + `<img src="${location.origin}/storage/uploads/${attachment.url}">`;
 				});
 
 				if (attachments.length > 1) {

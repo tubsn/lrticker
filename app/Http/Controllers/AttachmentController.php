@@ -20,6 +20,8 @@ class AttachmentController extends Controller
 
     public function store(Request $request){
 
+		//dd($request->all());
+
 		if (!$request->hasFile('files')) {
 			abort(400, 'No Files Uploaded');
 		}

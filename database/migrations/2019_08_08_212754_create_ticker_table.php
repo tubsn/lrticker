@@ -21,7 +21,9 @@ class CreateTickerTable extends Migration
 			$table->dateTime('start',)->nullable();
 			$table->string('ressort', 120)->nullable();
 			$table->string('headline')->nullable();
+			$table->string('location', 120)->nullable();
 			$table->text('post_ids')->nullable();
+			$table->boolean('multiauthor')->nullable();
 			$table->string('status', 60)->nullable();
 			$table->integer('author_id')->nullable();
         });

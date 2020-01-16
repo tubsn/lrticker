@@ -13,7 +13,7 @@
 
 		data: function () {
 			return {
-				maxFileSize: 5 * 1024*1024,
+				maxFileSize: 25 * 1024*1024,
 				allowedFormats : ['image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/png', 'image/bmp'],
 			}
 		},
@@ -41,14 +41,14 @@
 
 					// Check for Filesize
 					if (file.size > this.maxFileSize) {
-						file.reason = 'File is too big';
+						file.reason = 'Datei zu Groß';
 						rescrictedFiles.push(file);
 						return;
 					}
 
 					// Check for Extensions
 					if (!this.allowedFormats.includes(file.type)) {
-						file.reason = 'Filetype not allowed';
+						file.reason = 'Dateityp nicht erlaubt';
 						rescrictedFiles.push(file);
 						return;
 					}
@@ -63,7 +63,8 @@
 
 			announceRescrited: function(files) {
 				files.forEach(file => {
-					console.warn(`"${file.name}" rejected | ${file.reason}`);
+					//console.warn(`"${file.name}" rejected | ${file.reason}`);
+					alert(`"${file.name}" abgelehnt | ${file.reason}`);
 				});
 			},
 

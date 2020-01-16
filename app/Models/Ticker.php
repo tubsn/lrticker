@@ -67,7 +67,7 @@ class Ticker extends Model
 		return $this->hasOne(User::class, 'id', 'author_id')->withDefault([
 			'username' => 'Unbekannt',
 			'description' => 'keine Angaben',
-			'thumbnail' => '/styles/img/icons/no-thumb.svg',
+			//'thumbnail' => '/styles/img/icons/no-thumb.svg',
 		]);
 	}
 
@@ -75,7 +75,7 @@ class Ticker extends Model
 	private function as_json_with_posts() {
 
 		if ($this->posts()) {
-			$posts = $this->posts()->load('author:id,username')->toArray();
+			$posts = $this->posts()->load('author:id,username,thumbnail')->toArray();
 		}
 		else { $posts = '';}
 

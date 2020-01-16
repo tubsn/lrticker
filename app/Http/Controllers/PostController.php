@@ -29,8 +29,14 @@ class PostController extends Controller
 		$newPost->media = $request->media;
 		$newPost->ticker_id = $request->ticker_id;
 		$newPost->author_id = auth()->user()->id;
-		$newPost->time = date('G:i');
-		$newPost->date = now();
+
+		if ($request->time) {
+			$newPost->time = $request->time;
+		} else {
+			$newPost->time = date('G:i');
+		}
+
+		$newPost->date = date('d.m.Y');
 
 		$newPost->save();
 
@@ -57,7 +63,9 @@ class PostController extends Controller
     }
 
     public function update(Request $request, Post $post) {
-		$post->content = $request->content;
+		if ($request->content) {$post->content = $request->content;}
+		if ($request->time) {$post->time = $request->time;}
+		if ($request->date) {$post->date = $request->date;}
 		$post->save();
 		event(new TickerUpdated($post->ticker));
     }

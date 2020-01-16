@@ -11,7 +11,7 @@ class TickerController extends Controller
 
 	function __construct() {
 
-		$this->middleware('auth')->except('index');
+		$this->middleware('auth')->except(['preview']);
 
 	}
 
@@ -67,11 +67,20 @@ class TickerController extends Controller
     }
 
     public function update(Request $request, Ticker $ticker) {
-		$request->validate([
-			'name' => 'required',
-		]);
-		$ticker->update($request->all());
-		return redirect('/ticker/' . $ticker->id);
+
+		// non Ajax Call
+		if ($request->js == false) {
+			$request->validate([
+				'name' => 'required',
+			]);
+			$ticker->update($request->all());
+			return redirect('/ticker/' . $ticker->id);
+		}
+
+		// Ajax Calls
+		if ($request->headline) {$ticker->headline = $request->headline;}
+		$ticker->save();
+
     }
 
     public function destroy(Ticker $ticker) {
@@ -79,7 +88,7 @@ class TickerController extends Controller
 		$ticker->delete();
 
 		Post::where('ticker_id', $id)->delete();
-	
+
 		//return redirect('/ticker/');
 		return [
 			'message' => 'Ticker ' . $id  . 'deleted',

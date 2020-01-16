@@ -10,8 +10,8 @@
 		<div class="post-editor" @mouseenter.once="initTiny" @blur="savePost" v-html="post.content"></div>
 	</div>
 
-	<aside class="post-time"><span>{{post.time}}</span> min</aside>
-	<aside class="post-date">Datum: <span>{{post.date}}</span></aside>
+	<aside class="post-time"><span contenteditable="true" @click="makeEditable" @blur="saveTime">{{post.time}}</span>{{this.timeunit}}</aside>
+	<aside class="post-date">Datum: <span @click="makeEditable" @blur="saveDate">{{post.date}}</span></aside>
 	<aside class="post-autor">Autor: <span>{{post.author.username}}</span></aside>
 	<aside class="post-move" draggable="true" @dragstart="dragstart" @dragend="dragend">::</aside>
 	<aside class="post-delete" v-on:click="deletePost"></aside>
@@ -41,6 +41,14 @@ export default {
 	computed: {
 		tickerID: function() {return this.$parent.tickerID;},
 		postList: function() {return this.$parent.postList;},
+		timeunit: function() {
+			if (this.post.time.indexOf(':')>=0) {
+				return ' Uhr';
+			}
+			else {
+				return ' Min';
+			}
+		},
 		isImage: function() {
 			if (this.post.type == 'image') {
 				return true
@@ -130,9 +138,40 @@ export default {
 			tinymce.init(tinyConfig);
 		},
 
+		makeEditable: function(event) {
+			const element = event.currentTarget;
+			element.contentEditable = true;
+			element.classList.add('edit');
+		},
+
 		savePost: async function(event) {
 			const element = event.currentTarget;
 			const response = await axios.patch('/post/'+this.post.id, {'content': element.innerHTML});
+		},
+
+		saveTime: async function(event) {
+			const element = event.currentTarget;
+			const response = await axios.patch('/post/'+this.post.id, {'time': element.innerText});
+			element.contentEditable = false;
+			element.classList.remove('edit');
+			this.$parent.refresh();
+		},
+
+		saveDate: async function(event) {
+			const element = event.currentTarget;
+			element.contentEditable = false;
+			element.classList.remove('edit');
+
+			if (element.innerText != '') {
+				const response = await axios.patch('/post/'+this.post.id, {'date': element.innerText});
+				element.contentEditable = false;
+				this.$parent.refresh();				
+			}
+			else {
+				element.innerText= 'error';
+			}
+
+
 		},
 
 		reorderTicker: async function() {

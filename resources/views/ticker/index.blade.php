@@ -10,8 +10,8 @@
 	<nav class="ressorts">
 		<h2>Ressorts:</h2>
 		<ul>
-			<li>Lokales</li>
-			<li>Sport</li>
+			<li>hier könnten Ressorts zur auswahl stehen</li>
+			<li>Oder aktuelle Infos...</li>
 		</ul>
 	</nav>
 </aside>
@@ -39,7 +39,7 @@
 <tr>
 	<td>{{ $ticker->id }}</td>
 	<td><a href="/ticker/{{ $ticker->id }}">{{ $ticker->name }}</a></td>
-	<td><a href="/ticker/{{ $ticker->id }}/preview" class="vorschau">Link</a></td>
+	<td><a href="/ticker/{{ $ticker->id }}/preview" target="_blank" class="vorschau">Link</a></td>
 	<td>{{ ($ticker->author) ? $ticker->author->username : 'Redaktion' }}</td>
 	<td>{{ ($ticker->status) ? 'aktiv' : 'beendet' }}</td>
 	<td>{{ $ticker->typ }}</td>
