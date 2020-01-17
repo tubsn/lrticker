@@ -14,6 +14,9 @@ class Ticker extends Model
     protected $dispatchesEvents = [
         'saved' => TickerUpdated::class,
     ];
+	protected $attributes = [
+		'status' => 1 // Sets Ticker Active by Default
+	];
 
 	public function refresh_posts() {
 
