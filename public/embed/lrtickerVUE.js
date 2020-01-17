@@ -1,18 +1,12 @@
 Vue.component('lr-liveticker', {
 	data: function () {
 		return {
-<<<<<<< HEAD
 			headline : 'Tickerheadline',
 			location : 'Blog',
 			posts : '',
 			multiauthor : false,
 			refreshTime : 10000,
 			baseURL : 'http://test.lr-cottbus.de'
-=======
-			headline: 'Tickerheadline',
-			posts : '',
-			refreshTime : 10000
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 		}
 	},
 
@@ -28,41 +22,27 @@ Vue.component('lr-liveticker', {
 
 	methods: {
 		loadTickerJSON: function(){
-<<<<<<< HEAD
 			fetch(`${this.baseURL}/storage/ticker/${this.tickerId}.js`, {cache: "no-store"})
-=======
-			fetch(`http://test.lr-cottbus.de/storage/ticker/${this.tickerId}.js`, {cache: "no-store"})
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 				.then(response => response.json())
 				.then(tickerData => {
 					this.posts = tickerData.posts;
 					this.headline = tickerData.ticker.headline;
-<<<<<<< HEAD
 					if (tickerData.ticker.location) {
 						this.location = tickerData.ticker.location;
 					}
 					this.multiauthor = Boolean(Number(tickerData.ticker.multiauthor));
-=======
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 					document.title = this.headline;
 
 					// Interval Timer for Refresh
 					clearInterval(this.interval);
 					let self = this;
-<<<<<<< HEAD
+
 					this.interval = setInterval(function(){ self.refreshTicker(); }, this.refreshTime);
-=======
-					this.interval = setInterval(function(){ self.refreshTicker(); }, this.refreshTime);					
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 			});
 		},
 
 		refreshTicker: function() {
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 			this.loadTickerJSON();
 
 			// Reset the Refreshbar CSS Animation
@@ -77,13 +57,8 @@ Vue.component('lr-liveticker', {
 	template:`
 	<div id="ticker-container" class="ticker-container">
 		<div class="ticker-logo-area">
-<<<<<<< HEAD
 		<img :src="baseURL+'/embed/LRBadge.svg'" />
 		<span>Live</span> {{location}}
-=======
-		<img src="/embed/LRBadge.svg" />
-		<span>Live</span> aus Cottbus
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 		</div>
 		<div class="ticker-refresh">
 			<button @click="refreshTicker" class="ticker-refresh-button">aktualisieren</button>
@@ -113,11 +88,7 @@ Vue.component('ticker-post', {
 	computed: {
 		postID: function () {
 			return this.post.id;
-<<<<<<< HEAD
 		},
-=======
-		},			
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 		content: function () {
 			return this.post.content;
 		},
@@ -129,7 +100,6 @@ Vue.component('ticker-post', {
 		},
 		time: function () {
 			return this.post.time;
-<<<<<<< HEAD
 		},
 		timeunit: function () {
 			if (this.post.time.indexOf(':')>=0) {
@@ -145,12 +115,6 @@ Vue.component('ticker-post', {
 		multiauthor: function () {
 			return this.$parent.multiauthor;
 		}
-=======
-		},		
-		author: function () {
-			return this.post.author;
-		}			
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 	},
 
 	methods: {
@@ -172,11 +136,9 @@ Vue.component('ticker-post', {
 		this.resetState();
 
 		// Lazy Load possible Twitter Posts
-<<<<<<< HEAD
 		if (typeof twttr !== 'undefined' && twttr.widgets) { twttr.widgets.load(this.$el) }
 
 	},
-
 
 	mounted: function() {
 
@@ -191,34 +153,14 @@ Vue.component('ticker-post', {
 			});
 		}
 		*/
-=======
-		if (twttr.widgets) { twttr.widgets.load(this.$el) }
-
-	},
-
-	// Hier weitermachen...
-	mounted: function() {
-		let elem = document.querySelector('.ticker-slider');
-		let flkty = new Flickity( elem, {
-		  // options
-		  height: '100%'
-		});
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
-
 	},
 
 	template:`
 	<div :id="'post-'+postID" class="ticker-post" :class="transitionState">
-<<<<<<< HEAD
 		<div class="ticker-date" :title="time+' Uhr | '+date">{{time}}<span>{{timeunit}}</span></div>
 		<div class="ticker-post-media" v-if="media" v-html="media"></div>
 		<div class="ticker-post-content" v-if="content" v-html="content"></div>
 		<img v-if="multiauthor" class="ticket-post-authorthumb" :title="'Autor: ' + author.username" :src="$parent.baseURL+author.thumbnail">
-=======
-		<div class="ticker-date" :title="'Eintrag von '+author.username+' um: '+time+' Uhr am: '+date">{{time}} <span>Uhr</span></div>
-		<div class="ticker-post-media" v-if="media" v-html="media"></div>
-		<div class="ticker-post-content" v-if="content" v-html="content"></div>
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 	</div>
 	`
 })

@@ -6,13 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 	<meta name="author" content="Tub" />
 	<meta name="description" content="" />
-<<<<<<< HEAD
 	<link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400&display=swap" rel="stylesheet"> 	
-=======
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 	<link rel="stylesheet" type="text/css" media="all" href="/embed/lrticker.css" />
 	<link rel="shortcut icon" href="" />
-
 
 	<script>window.twttr = (function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0],
@@ -41,11 +37,6 @@
 	
 	<main class="main-wrapper">
 
-<<<<<<< HEAD
-	<main class="main-wrapper">
-
-=======
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 		<div class="ticker-container" >
 			<lr-liveticker ticker-id="{{$ticker['ticker']['id']}}"></lr-liveticker>
 		</div>

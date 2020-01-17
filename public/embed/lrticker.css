@@ -1,9 +1,5 @@
 body {margin:0; font-family: 'Fira Sans', sans-serif; color:#333}
-<<<<<<< HEAD
 .main-wrapper {box-sizing: border-box; width:80%; max-width: 1000px; margin:3% auto; font-size:1.2em}
-=======
-.main-wrapper {box-sizing: border-box; width:80%; max-width: 800px; margin:3% auto; font-size:1.2em}
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 
 a {color:#05a5c8;}
 a:hover {color:#0f86a1;}
@@ -19,7 +15,6 @@ a:hover {color:#0f86a1;}
 .ticker-posts {width:90%; max-width:600px; margin:0 auto;}
 
 .ticker-date {position:absolute; left:-6.2em; font-size:.8em; font-style: italic; color:#474747;
-<<<<<<< HEAD
  background:#f3f3f3; border-left:2px solid #05a5c8; padding: 0.0em 0.6em 0em 0.4em; opacity:0.5}
 .ticker-date span {font-size:0.8em;}
 
@@ -32,30 +27,14 @@ a:hover {color:#0f86a1;}
 .ticker-post p {word-wrap:break-word;}
 .ticker-post img.ball {vertical-align: bottom}
 .ticker-post strong {font-weight:700;}
-=======
- background:#f3f3f3; border-left:2px solid #05a5c8; padding: 0.0em 0.6em 0em 0.4em}
 
-.ticker-date span {font-size:0.8em;}
-
-.ticker-post:hover .ticker-date {border-left:2px solid #ad5656;}
-
-.ticker-post {border-bottom:1px dashed #dadada; background:none; margin-bottom:2em; padding-bottom:2em; position:relative;}
-.ticker-post p {word-wrap:break-word;}
-.ticker-post strong {font-weight:400;}
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 .ticker-post:last-of-type {border-bottom:none; padding-bottom:0;}
 .ticker-post p:last-of-type{margin-bottom:0;}
 .ticker-post-time {float:left; margin-right:.5em; color:#aaa; font-weight:bold;}
 .ticker-post-media {margin-top:1em;}
 .ticker-post-media:first-of-type {margin-top:1em;}
 .ticker-post-media img {max-width:100%;}
-<<<<<<< HEAD
 .ticker-post-media iframe {width:100%;}
-
-=======
-
-.ticker-post-media iframe {width:100%;}
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 
 .ticker-post.added .ticker-post-content {animation: ticker-added 0.5s; animation-timing-function: linear;}
 @keyframes ticker-added { from {background-color: #e0ffbe;} to {background-color: none} }
@@ -73,10 +52,7 @@ a:hover {color:#0f86a1;}
 .ticker-headline {text-align:center; font-size:2em}
 .ticker-date {position: static}
 .ticker-logo-area {margin-bottom:1em;}
-<<<<<<< HEAD
 .ticket-post-authorthumb {display:none;}
-=======
->>>>>>> 36fa41faea1e567f063f86693c0c7e49d380c2c3
 }
 
 
