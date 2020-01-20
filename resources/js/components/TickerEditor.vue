@@ -8,8 +8,8 @@
 			<div class="media-holder" v-html="newPostMedia"></div>
 		</aside>
 
-		<aside v-if="active" class="ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
-		<aside v-else class="ticker-indicator"><div class="ticker-live-circle inactive"></div>Beendet</aside>
+		<aside v-if="active" class="hide-mobile ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
+		<aside v-else class="hide-mobile ticker-indicator"><div class="ticker-live-circle inactive"></div>Beendet</aside>
 
 		<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
 		<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>

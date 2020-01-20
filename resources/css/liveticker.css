@@ -30,6 +30,14 @@ grid-template-areas:
 .nav-top .right {grid-area: right; justify-self: end; align-self:center}
 
 @media only screen and (max-width: 720px) {
+
+.nav-top {
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+	"left right";
+	margin-bottom:3vh;
+}
+
 .nav-top .nav-headline {display:none;}
 .hide-mobile{display:none;}
 }
@@ -137,6 +145,7 @@ grid-template-areas:
 "favoriten"
 "autor";}
 
+
 /* Autor Area */
 .autor-area {justify-self: center; text-align:center; transition: width 0.3s; margin-top:2em;}
 .autor-image {border-radius: 50%; }
@@ -156,6 +165,11 @@ background-color: var(--light-background);}
 	"autor ticker favoriten";}
 	.autor-area {max-width:220px;}
 	.fav-area {max-width:300px;}
+}
+
+@media only screen and (max-width: 720px) {
+	.layout-detail {width:100%;}
+	.autor-area {display:none;}
 }
 
 
@@ -184,12 +198,17 @@ button.minor, .minor button {background-color:#c8c8c8; color: white; }
 .ticker-editor .media-holder {display:grid; grid-gap: 1em; grid-template-columns: repeat(3,1fr) ;}
 
 .ticker-editor .gametime {display: inline; border: 1px solid #b2bdc6; padding: 0.6em 0.4em;
-box-sizing: border-box; font-size:0.8em; position:relative;top:-1px}
+box-sizing: border-box; font-size:0.8em; position:relative;top:-1px; white-space: nowrap; background-color:white;}
 .ticker-editor .gametime:hover {border: 1px solid var(--lrblau);}
 .ticker-editor .gametime input {display:inline-block; width:54px; border:0; padding:0; font-size:1.4em; margin-left:0.5em;}
 
 
-
+@media only screen and (max-width: 720px) {
+	.ticker-editor .gametime {width:100px; margin:0 auto; margin-top:0.5em; margin-bottom:1em; display:block; padding: .2em 0.4em 0em 0.4em; position:static;}
+	.ticker-editor {max-width:90%; margin:0 auto; text-align:center;}
+	.ticker-editor button {text-transform: capitalize;}
+	.ticker-textarea {min-height:90px;}
+}
 
 
 
@@ -261,6 +280,11 @@ background-image: url('/styles/img/icons/icon-delete.svg');}
 	.post-layout:hover {background-color:var(--light-background);}
 }
 
+@media only screen and (max-width: 720px) {
+	.post-layout {padding:0.5em;}
+	.post-move {margin-left:0.3em;}
+	.post-delete {margin-right:0.5em;}
+}
 
 /* Post Types */
 .post-content.image {}

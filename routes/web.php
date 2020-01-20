@@ -1,7 +1,8 @@
 <?php
 
 /* Authentication and Userprofile Routes */
-Auth::routes();
+Auth::routes(['register' => false]);
+
 Route::get('/profil', 'Auth\UserProfileController@index')->name('profile');
 Route::get('/profil/edit', 'Auth\UserProfileController@edit')->name('profile.edit');
 Route::patch('/profil', 'Auth\UserProfileController@update')->name('profile.update');
