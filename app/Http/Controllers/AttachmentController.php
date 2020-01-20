@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AttachmentController extends Controller
 {
@@ -33,7 +34,24 @@ class AttachmentController extends Controller
 		foreach ($request->file('files') as $file) {
 
 			$fileInfos = $this->collect_info($file);
-			$fileInfos['url'] = $file->store('img','uploads');
+			$timeStampedName = time() . $file->getClientOriginalName();
+
+			$maxWidth = 1080;
+			$maxHeight = 1080;
+
+			$img = Image::make($file);
+			$img->height() > $img->width() ? $maxWidth=null : $maxHeight=null;
+			$img->resize($maxWidth, $maxHeight, function ($constraint) { $constraint->aspectRatio(); });
+
+			$img->save(Storage::disk('uploads')->path('/') . $timeStampedName);
+
+			// Duplicate and save Thumb!!!
+
+			$fileInfos['url'] = Storage::disk('uploads')->url('/') . $timeStampedName;
+
+			// Laravel IMG URL without Resize
+			//$fileInfos['url'] = $file->store('img','uploads');
+
 			$newAttachment = Attachment::create($fileInfos);
 			$newAttachment->save();
 			array_push($newAttachments, ['id' => $newAttachment->id, 'url' => $newAttachment->url]);

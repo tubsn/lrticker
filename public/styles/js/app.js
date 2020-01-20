@@ -3410,7 +3410,7 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
               case 0:
                 attachment = attachments[0];
                 data = {
-                  'media': "<img src=\"".concat(location.origin, "/storage/uploads/").concat(attachment.url, "\">"),
+                  'media': "<img src=\"".concat(location.origin).concat(attachment.url, "\">"),
                   'content': '',
                   'ticker_id': this.tickerID
                 };
@@ -3437,7 +3437,7 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
     add_images_to_media: function add_images_to_media(attachments) {
       var images = '';
       attachments.forEach(function (attachment) {
-        images = images + "<img src=\"".concat(location.origin, "/storage/uploads/").concat(attachment.url, "\">");
+        images = images + "<img src=\"".concat(location.origin).concat(attachment.url, "\">");
       });
 
       if (attachments.length > 1) {

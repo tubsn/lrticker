@@ -6,17 +6,13 @@
 <h1>Temporäre Startseite</h1>
 <h3>Dinge die noch offen sind</h3>
 <ol>
-	<li>Bild beim hochladen runterrechnen</li>
-	<li>Bild heranzoomen</li>
+	<li>Upload Thumbnails</li>
+	<li>Bilder ranzoomen</li>
 	<li>Bildergalerien</li>
-	<li>Fussball Minutencounter</li>
 	<li>Rechteverwaltung für Benutzer</li>
 	<li>Schnürsenkel</li>
 </ol>
 <br /><br />
-
-
-↓
 
 <h2><a href="/ticker">Zu den Tickern</a></h2>
 <br />

@@ -109,7 +109,7 @@
 				let attachment = attachments[0];
 
 					let data = {
-						'media': `<img src="${location.origin}/storage/uploads/${attachment.url}">`,
+						'media': `<img src="${location.origin}${attachment.url}">`,
 						'content': '',
 						'ticker_id': this.tickerID
 					}
@@ -126,7 +126,7 @@
 				let images = '';
 
 				attachments.forEach(attachment => {
-					images = images + `<img src="${location.origin}/storage/uploads/${attachment.url}">`;
+					images = images + `<img src="${location.origin}${attachment.url}">`;
 				});
 
 				if (attachments.length > 1) {
