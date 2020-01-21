@@ -201,6 +201,10 @@ ticker-app {font-weight:bold; font-size: 2.25em; text-align: center; border-bott
 input:focus {border-color: var(--lrblau)}
 textarea:focus {border-color: var(--lrblau)}
 
+/* Textarea Border on Android Phones */
+textarea:focus, div:focus, input:focus, h2:focus {
+outline: none; -webkit-box-shadow: none !important; -moz-box-shadow: none !important; box-shadow: none !important;}
+
 .ticker-editor button {padding:0.4em 0.6em;}
 button.minor, .minor button {background-color:#c8c8c8; color: white; }
 

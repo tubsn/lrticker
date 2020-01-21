@@ -3096,19 +3096,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 2:
+                this.$emit('fileloading');
                 data = new FormData();
                 files.forEach(function (file) {
                   data.append('files[]', file);
                 });
-                _context.next = 6;
+                _context.next = 7;
                 return axios.post('/attachment', data);
 
-              case 6:
+              case 7:
                 response = _context.sent;
                 console.log(response.data);
                 this.$emit('fileuploaded', response.data);
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -3258,6 +3259,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 var Editor = __webpack_require__(/*! @tinymce/tinymce-vue */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/index.js")["default"];
 
 var FileUploadButton = __webpack_require__(/*! ./FileUploadButton.vue */ "./resources/js/components/FileUploadButton.vue")["default"];
@@ -3277,6 +3279,8 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
     return {
       newPostContent: '',
       newPostMedia: '',
+      mediaContainer: false,
+      mediaLoading: false,
       gameTime: '0'
     };
   },
@@ -3376,16 +3380,17 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
 
               case 5:
                 if (!_context2.sent) {
-                  _context2.next = 10;
+                  _context2.next = 11;
                   break;
                 }
 
                 this.$emit('submitted');
                 this.newPostContent = '';
                 this.newPostMedia = '';
+                this.mediaContainer = false;
                 this.$refs.contentEditor.$el.focus();
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -3434,6 +3439,10 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
 
       return postImage;
     }(),
+    showLoadAnimation: function showLoadAnimation() {
+      this.mediaContainer = true;
+      this.mediaLoading = true;
+    },
     add_images_to_media: function add_images_to_media(attachments) {
       var images = '';
       attachments.forEach(function (attachment) {
@@ -3444,6 +3453,7 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
         images = '<div class="ticker-slider">' + images + '</div>';
       }
 
+      this.mediaLoading = false;
       this.newPostMedia = images;
     },
     add_youtube_video: function add_youtube_video(embed) {
@@ -8037,9 +8047,17 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm.newPostMedia
+      _vm.mediaContainer
         ? _c("aside", { staticClass: "media-block" }, [
             _c("p", [_vm._v("Anhänge:")]),
+            _vm._v(" "),
+            _vm.mediaLoading
+              ? _c("div", { staticClass: "loadIndicator" }, [
+                  _c("div"),
+                  _c("div"),
+                  _c("div")
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("div", {
               staticClass: "media-holder",
@@ -8072,7 +8090,10 @@ var render = function() {
         {
           staticClass: "minor",
           attrs: { action: "/attachment", method: "post" },
-          on: { fileuploaded: _vm.add_images_to_media }
+          on: {
+            fileloading: _vm.showLoadAnimation,
+            fileuploaded: _vm.add_images_to_media
+          }
         },
         [_vm._v("Bilder")]
       ),

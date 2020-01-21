@@ -34,12 +34,13 @@ class AttachmentController extends Controller
 		foreach ($request->file('files') as $file) {
 
 			$fileInfos = $this->collect_info($file);
-			$timeStampedName = time() . $file->getClientOriginalName();
+			$timeStampedName = time() . '_' . $file->getClientOriginalName();
 
 			$maxWidth = 1080;
 			$maxHeight = 1080;
 
 			$img = Image::make($file);
+			$img->orientate();
 			$img->height() > $img->width() ? $maxWidth=null : $maxHeight=null;
 			$img->resize($maxWidth, $maxHeight, function ($constraint) { $constraint->aspectRatio(); });
 

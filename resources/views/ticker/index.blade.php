@@ -35,15 +35,15 @@
 	<th>Update</th>
 </tr>
 
-@foreach ($tickers as $ticker)
+@foreach ($tickers as $tickerinfo)
 <tr>
-	<td>{{ $ticker->id }}</td>
-	<td><a href="/ticker/{{ $ticker->id }}">{{ $ticker->name }}</a></td>
-	<td><a href="/ticker/{{ $ticker->id }}/preview" target="_blank" class="vorschau">Link</a></td>
-	<td>{{ ($ticker->author) ? $ticker->author->username : 'Redaktion' }}</td>
-	<td>{{ ($ticker->status) ? 'aktiv' : 'beendet' }}</td>
-	<td>{{ $ticker->typ }}</td>
-	<td class="nowrap">{{ $ticker->updated_at->format('d. M H:i') }}&thinsp;<small>Uhr</small></td>
+	<td>{{ $tickerinfo->id }}</td>
+	<td><a href="/ticker/{{ $tickerinfo->id }}">{{ $tickerinfo->name }}</a></td>
+	<td><a href="/ticker/{{ $tickerinfo->id }}/preview" target="_blank" class="vorschau">Link</a></td>
+	<td>{{ ($tickerinfo->author) ? $tickerinfo->author->username : 'Redaktion' }}</td>
+	<td>{{ ($tickerinfo->status) ? 'aktiv' : 'beendet' }}</td>
+	<td>{{ $tickerinfo->typ }}</td>
+	<td class="nowrap">{{ $tickerinfo->updated_at->format('d. M H:i') }}&thinsp;<small>Uhr</small></td>
 </tr>
 @endforeach
 </table>

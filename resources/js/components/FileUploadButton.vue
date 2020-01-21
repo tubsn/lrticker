@@ -71,10 +71,9 @@
 
 			uploadFiles: async function(files) {
 
-				if (files.length == 0) {
-					return;
-				}
-
+				if (files.length == 0) { return;}
+				this.$emit('fileloading');
+				
 				let data = new FormData();
 
 				files.forEach(file => {

@@ -3,8 +3,9 @@
 		<!--<textarea class="ticker-textarea" name="content" autofocus placeholder="Neue Nachricht"></textarea>-->
 		<editor class="ticker-textarea" v-model="newPostContent" :init="tinyConfig" @onInit="focusIT" ref="contentEditor"></editor>
 
-		<aside v-if="newPostMedia" class="media-block">
+		<aside v-if="mediaContainer" class="media-block">
 			<p>Anhänge:</p>
+			<div v-if="mediaLoading" class="loadIndicator"><div></div><div></div><div></div></div>
 			<div class="media-holder" v-html="newPostMedia"></div>
 		</aside>
 
@@ -12,7 +13,7 @@
 		<aside v-else class="hide-mobile ticker-indicator"><div class="ticker-live-circle inactive"></div>Beendet</aside>
 
 		<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
-		<file-upload class="minor" action="/attachment" method="post" @fileuploaded="add_images_to_media">Bilder</file-upload>
+		<file-upload class="minor" action="/attachment" method="post" @fileloading="showLoadAnimation" @fileuploaded="add_images_to_media">Bilder</file-upload>
 		<video-button @submit="add_youtube_video" class="minor">Youtube</video-button>
 		<html-button @submit="add_html" class="minor">HTML</html-button>
 		<div v-if="showTimer" class="gametime">Min: <input min="0" v-model="gameTime" type="number"></div>
@@ -39,6 +40,8 @@
 			return {
 				newPostContent: '',
 				newPostMedia: '',
+				mediaContainer: false,
+				mediaLoading: false,
 				gameTime: '0',
 			}
 		},
@@ -99,6 +102,7 @@
 					this.$emit('submitted');
 					this.newPostContent = '';
 					this.newPostMedia = '';
+					this.mediaContainer = false;
 					this.$refs.contentEditor.$el.focus();
 				}
 
@@ -120,6 +124,10 @@
 
 			},
 
+			showLoadAnimation: function() {
+				this.mediaContainer = true;
+				this.mediaLoading = true;
+			},
 
 			add_images_to_media: function(attachments) {
 
@@ -133,6 +141,7 @@
 					images = '<div class="ticker-slider">' + images + '</div>';
 				}
 
+				this.mediaLoading = false;
 				this.newPostMedia = images;
 
 			},

@@ -70,7 +70,7 @@ class UserProfileController extends Controller
 		$currentUserID = auth()->user()->id;
 		$user = User::find($currentUserID);
 
-		$user->thumbnail = '/storage/uploads/'.$request->thumbnail;
+		$user->thumbnail = $request->thumbnail;
 		$user->save();
 
 		//echo $request->thumbnail;

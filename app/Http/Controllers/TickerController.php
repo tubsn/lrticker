@@ -88,6 +88,7 @@ class TickerController extends Controller
 		$ticker->delete();
 
 		Post::where('ticker_id', $id)->delete();
+		\Storage::disk('ticker')->delete($id . '.js');
 
 		//return redirect('/ticker/');
 		return [

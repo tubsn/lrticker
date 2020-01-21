@@ -15,7 +15,8 @@ class Ticker extends Model
         'saved' => TickerUpdated::class,
     ];
 	protected $attributes = [
-		'status' => 1 // Sets Ticker Active by Default
+		'status' => 1, // Sets Ticker Active by Default
+		'multiauthor' => 0 // Hides User Avatars by Default
 	];
 
 	public function refresh_posts() {
