@@ -8,16 +8,16 @@
 
 <aside class="area-ressorts">
 	<nav class="ressorts">
-		<h2>Ressorts:</h2>
+		<h2>Infos:</h2>
 		<ul>
-			<li>hier könnten Ressorts zur auswahl stehen</li>
-			<li>Oder aktuelle Infos...</li>
+			<li>Ticker v2.07 <span class="small">(Alpha)</span></li>
+			<li class="small">aktuelle Entwickler Infos gibts hier...</li>
 		</ul>
 	</nav>
 </aside>
 
 <div class="area-button">
-	<input class="searchfield" type="text" placeholder="Suchen &hellip;">
+	<!--<input class="searchfield" type="text" disabled placeholder="Suchen &hellip;">-->
 	<a class="button" href="/ticker/create">Neuen Ticker anlegen</a>
 </div>
 

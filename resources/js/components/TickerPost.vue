@@ -58,11 +58,14 @@ export default {
 
 		mediaGallery: function() {
 
+			// Broken :/ elements.isArray is always false -> no flickity Gallery
+
 			if (!this.post.media) {return null}
+
 			let elements = this.stringToTemplate(this.post.media);
 
 			// Check if Media Elements are in Slider Div
-			if (elements[0].classList.contains('ticker-slider')) {
+			if ((elements.isArray) && elements[0].classList.contains('ticker-slider')) {
 				return elements[0].children;
 			}
 
@@ -165,7 +168,7 @@ export default {
 			if (element.innerText != '') {
 				const response = await axios.patch('/post/'+this.post.id, {'date': element.innerText});
 				element.contentEditable = false;
-				this.$parent.refresh();				
+				this.$parent.refresh();
 			}
 			else {
 				element.innerText= 'error';

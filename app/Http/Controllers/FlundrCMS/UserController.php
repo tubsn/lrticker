@@ -45,7 +45,6 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user) {
-
 		$request->validate([
 			'username' => 'required',
 			'email' => ['nullable','email']
@@ -56,13 +55,13 @@ class UserController extends Controller
 			$request->merge([
 				'password' => Hash::make($request->password)
 			]);
+
 			$user->update($request->all());
 		}
 		else {
 			$user->update($request->except('password'));
 		}
 
-		$user->update($request->all());
 		return redirect('/admin');
     }
 

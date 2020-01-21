@@ -6,11 +6,10 @@
 <h1>Temporäre Startseite</h1>
 <h3>Dinge die noch offen sind</h3>
 <ol>
-	<li>Upload Thumbnails</li>
-	<li>Bilder ranzoomen</li>
+	<li>Bilder ranzoomen?</li>
 	<li>Bildergalerien</li>
 	<li>Rechteverwaltung für Benutzer</li>
-	<li>Schnürsenkel</li>
+	<li>die Schnürsenkel</li>
 </ol>
 <br /><br />
 

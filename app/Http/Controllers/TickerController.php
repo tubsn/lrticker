@@ -51,8 +51,10 @@ class TickerController extends Controller
 
     public function store(Request $request) {
 		$request->validate([
-			'name' => ['required','min:3'],
+			'headline' => ['required','min:3'],
+			'location' => ['required','min:3'],
 		]);
+		$request->merge(['name' => $request->headline]);
 
 		$newTicker = Ticker::create($request->all());
 		return redirect('/ticker/' . $newTicker->id);

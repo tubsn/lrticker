@@ -7,7 +7,7 @@
 
 /* Body Reset */
 body {margin:3%; padding:0;}
-body {font: 1em/140% var(--font-body); color:#111;}
+body {font: 1.125em/140% var(--font-body); color:#111;}
 
 h1 {font-size:2em; line-height: 1.25em}
 h2 {font-size:1.625em; line-height: 1.15384615em}

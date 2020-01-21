@@ -66,6 +66,10 @@
 	<input type="text" name="nachname" placeholder="z.B. Schuster" value="{{$user->nachname ?? old('nachname')}}">
 </label>
 
+<label>Infos:
+	<input type="text" name="info" placeholder="z.B. Abteilung" value="{{$user->info ?? old('info')}}">
+</label>
+
 <label>Rechtegruppen:
 	<input type="text" name="rights" placeholder="Kommasepariert z.B. Recht1,Recht2,Recht3 ..." value="{{$user->rights ?? old('rights')}}">
 </label>

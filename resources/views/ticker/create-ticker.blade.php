@@ -15,12 +15,8 @@
 
 @include('ticker/elements/errorhandler')
 
-<label>Interner Name:
-	<input type="text" name="name" value="{{ old('name')}}" placeholder="interner Tickerbezeichner">
-</label>
-
 <label>Überschrift:
-	<input type="text" name="headline" value="{{ old('headline')}}" placeholder="öffentliche Ticker Überschrift">
+	<input type="text" name="headline" value="{{ old('headline')}}" placeholder="Überschrift für den Liveticker">
 </label>
 
 <label>Ortsmarke / Location:
@@ -35,8 +31,8 @@
 
 <label>Ticker mit mehreren Autoren:
 	<select name="multiauthor">
-		<option value="1">Autorenfotos Anzeigen</option>
 		<option value="0">Autorenfotos deaktivieren</option>
+		<option value="1">Autorenfotos Anzeigen</option>
 	</select>
 </label>
 

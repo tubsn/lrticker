@@ -9,8 +9,8 @@
 			<div class="media-holder" v-html="newPostMedia"></div>
 		</aside>
 
-		<aside v-if="active" class="hide-mobile ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
-		<aside v-else class="hide-mobile ticker-indicator"><div class="ticker-live-circle inactive"></div>Beendet</aside>
+		<aside v-if="active" title="Pausieren über die Tickereinstellungen" class="hide-mobile ticker-indicator"><div class="ticker-live-circle active"></div>Live</aside>
+		<aside v-else title="Aktivieren über die Tickereinstellungen" class="hide-mobile ticker-indicator"><div class="ticker-live-circle inactive"></div>Beendet</aside>
 
 		<button type="button" @click="submitPost"><span class="hide-mobile">Nachricht </span>senden</button>
 		<file-upload class="minor" action="/attachment" method="post" @fileloading="showLoadAnimation" @fileuploaded="add_images_to_media">Bilder</file-upload>
@@ -164,12 +164,14 @@
 
 				let embedCode = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${videoID}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
 
+				this.mediaContainer = true;
 				this.newPostMedia = embedCode;
 
 			},
 
 
 			add_html: function(embed) {
+				this.mediaContainer = true;
 				this.newPostMedia = embed;
 			},
 

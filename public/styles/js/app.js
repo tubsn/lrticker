@@ -3472,9 +3472,11 @@ var HTMLButton = __webpack_require__(/*! ./TickerHtmlButton.vue */ "./resources/
       }
 
       var embedCode = "<div class=\"media-container\"><iframe src=\"https://www.youtube.com/embed/".concat(videoID, "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></div>");
+      this.mediaContainer = true;
       this.newPostMedia = embedCode;
     },
     add_html: function add_html(embed) {
+      this.mediaContainer = true;
       this.newPostMedia = embed;
     }
   }
@@ -3771,13 +3773,14 @@ var TickerGallery = __webpack_require__(/*! ./TickerGallery.vue */ "./resources/
       }
     },
     mediaGallery: function mediaGallery() {
+      // Broken :/ elements.isArray is always false -> no flickity Gallery
       if (!this.post.media) {
         return null;
       }
 
       var elements = this.stringToTemplate(this.post.media); // Check if Media Elements are in Slider Div
 
-      if (elements[0].classList.contains('ticker-slider')) {
+      if (elements.isArray && elements[0].classList.contains('ticker-slider')) {
         return elements[0].children;
       } else {
         return null;
@@ -8067,14 +8070,28 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.active
-        ? _c("aside", { staticClass: "hide-mobile ticker-indicator" }, [
-            _c("div", { staticClass: "ticker-live-circle active" }),
-            _vm._v("Live")
-          ])
-        : _c("aside", { staticClass: "hide-mobile ticker-indicator" }, [
-            _c("div", { staticClass: "ticker-live-circle inactive" }),
-            _vm._v("Beendet")
-          ]),
+        ? _c(
+            "aside",
+            {
+              staticClass: "hide-mobile ticker-indicator",
+              attrs: { title: "Pausieren über die Tickereinstellungen" }
+            },
+            [
+              _c("div", { staticClass: "ticker-live-circle active" }),
+              _vm._v("Live")
+            ]
+          )
+        : _c(
+            "aside",
+            {
+              staticClass: "hide-mobile ticker-indicator",
+              attrs: { title: "Aktivieren über die Tickereinstellungen" }
+            },
+            [
+              _c("div", { staticClass: "ticker-live-circle inactive" }),
+              _vm._v("Beendet")
+            ]
+          ),
       _vm._v(" "),
       _c(
         "button",

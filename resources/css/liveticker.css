@@ -15,7 +15,7 @@ main {width:80%; margin-left: auto; margin-right: auto; transition: width 0.3s;}
 footer {margin-bottom:2em;}
 
 /* Top - Navigation */
-.nav-top {margin-bottom:6vh; background-color: var(--lrblau)}
+.nav-top {margin-bottom:6vh; background-color: var(--lrblau); padding:0.2em;}
 .nav-top a:link {color:white;}
 .nav-top a:hover {background-color:var(--highlight);}
 .nav-top {display:grid;
@@ -80,9 +80,9 @@ grid-template-areas:
 	grid-gap: 1em;
 	grid-template-areas:
 	"logo"
-	"ressorts"
 	"ticker"
-	"button";
+	"button"
+	"ressorts";
 	}
 }
 
@@ -181,13 +181,22 @@ background-color: var(--light-background);}
 
 @media only screen and (max-width: 720px) {
 	.layout-detail {width:100%;}
+	.fav-area {text-align:center; margin-top:0;}
 }
 
 .ticker-meta {display:none;}
 
 
 /* Ticker App */
-ticker-app {font-weight:bold; font-size: 2.25em; text-align: center; border-bottom: 10em solid #e8eff6;}
+ticker-app {font-weight:bold; font-size: 1.625em; line-height: 1.15384615em; text-align: center; border-bottom: 10em solid #e8eff6; font-family: var(--font-highlight);}
+
+@media only screen and (min-width: 720px) {
+	ticker-app {font-size:2em; line-height: 1.25em}
+}
+
+@media only screen and (min-width: 1920px) {
+	ticker-app {font-size:2.25em; line-height: 1.25em}
+}
 
 
 /* Ticker Editor */
