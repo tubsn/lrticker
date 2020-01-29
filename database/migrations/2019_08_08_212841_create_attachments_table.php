@@ -22,6 +22,7 @@ class CreateAttachmentsTable extends Migration
 			$table->string('type', 120)->nullable();
 	        $table->string('size', 60)->nullable();
 	        $table->string('url');
+			$table->string('thumb');
         });
     }
 

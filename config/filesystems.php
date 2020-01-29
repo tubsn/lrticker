@@ -58,17 +58,22 @@ return [
         'ticker' => [
             'driver' => 'local',
             'root' => storage_path('app/public/ticker'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('API_STORAGE_URL').'/ticker',
             'visibility' => 'public',
         ],
 
         'uploads' => [
             'driver' => 'local',
             'root' => storage_path('app/public/uploads'),
-            'url' => '/storage/uploads',
+            'url' => env('API_STORAGE_URL').'/uploads',
             'visibility' => 'public',
         ],
-
+        'thumbnails' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/uploads/thumb'),
+            'url' => env('API_STORAGE_URL').'/uploads/thumb',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

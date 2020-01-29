@@ -36,19 +36,32 @@ class AttachmentController extends Controller
 			$fileInfos = $this->collect_info($file);
 			$timeStampedName = time() . '_' . $file->getClientOriginalName();
 
+			$img = Image::make($file);
+			$img->orientate();
+
 			$maxWidth = 1080;
 			$maxHeight = 1080;
 
-			$img = Image::make($file);
-			$img->orientate();
 			$img->height() > $img->width() ? $maxWidth=null : $maxHeight=null;
-			$img->resize($maxWidth, $maxHeight, function ($constraint) { $constraint->aspectRatio(); });
-
+			$img->resize($maxWidth, $maxHeight, function ($constraint) {
+				$constraint->aspectRatio();
+				$constraint->upsize();
+			 });
 			$img->save(Storage::disk('uploads')->path('/') . $timeStampedName);
 
-			// Duplicate and save Thumb!!!
+			// Duplicate for Thumbnail
+			$maxWidth = 512;
+			$maxHeight = 512;
+
+			$img->height() > $img->width() ? $maxWidth=null : $maxHeight=null;
+			$img->resize($maxWidth, $maxHeight, function ($constraint) {
+				$constraint->aspectRatio();
+				$constraint->upsize();
+			 });
+			$img->save(Storage::disk('thumbnails')->path('/') . $timeStampedName);
 
 			$fileInfos['url'] = Storage::disk('uploads')->url('/') . $timeStampedName;
+			$fileInfos['thumb'] = Storage::disk('thumbnails')->url('/') . $timeStampedName;
 
 			// Laravel IMG URL without Resize
 			//$fileInfos['url'] = $file->store('img','uploads');

@@ -9,8 +9,10 @@ Route::patch('/profil', 'Auth\UserProfileController@update')->name('profile.upda
 Route::patch('/profil/thumbnail', 'Auth\UserProfileController@add_thumbnail');
 
 /* Home */
-Route::get('/', 'HomeController@index')->name('home');
-
+//Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return redirect('/ticker');
+});
 /* Ticker Stuff */
 //Route::redirect('/', '/ticker');
 Route::resource('/post', 'PostController');

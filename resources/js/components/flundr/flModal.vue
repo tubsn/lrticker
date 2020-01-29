@@ -1,6 +1,6 @@
 <template>
 	<div @click="openDialog">
-		<button class="button minor danger">{{ button }}</button>
+		<button class="button">{{ button }}</button>
 		<div v-show="isVisible" class="modal-container" ref="modalContainer" @click.self="destroyModal">
 			<div class="centered-box">
 				<slot></slot>

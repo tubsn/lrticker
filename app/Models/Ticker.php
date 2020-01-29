@@ -16,7 +16,8 @@ class Ticker extends Model
     ];
 	protected $attributes = [
 		'status' => 1, // Sets Ticker Active by Default
-		'multiauthor' => 0 // Hides User Avatars by Default
+		'multiauthor' => 0, // Hides User Avatars by Default
+		'typ' => 'Standard' // Default Tickertyp
 	];
 
 	public function refresh_posts() {
@@ -28,7 +29,7 @@ class Ticker extends Model
 	}
 
 	public function update_cachefile() {
-		\Storage::disk('ticker')->put($this->id . '.js', $this->as_json_with_posts());
+		\Storage::disk('ticker')->put($this->id . '.json', $this->as_json_with_posts());
 	}
 
 	public function posts() {

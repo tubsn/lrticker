@@ -20,9 +20,15 @@
 
 @if ($ticker->typ == 'Fussball')
 	<h3 class="fav-headline">Mini-Icons</h3>
-
-	<img class="ball" src="/styles/img/ticker-icons/soccer.png"><img class="ball" src="/styles/img/ticker-icons/rot.png"><img class="ball" src="/styles/img/ticker-icons/gelb.png">
-	<p style="text-align:center; font-size:14px; margin-top:4px">(drag&drop)</p>
+	<div class="mini-icons">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/schiri.svg">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/ball.svg">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/pfeife.svg">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/wechsel.svg">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/gelb.svg">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/rot.svg">
+		<img class="icon" src="{{env('API_STORAGE_URL')}}/static/gelb-rot.svg">
+	</div>
 @endif
 
 	<h3 class="fav-headline">Kurzlinks</h3>
@@ -36,7 +42,14 @@
 	<!--<small>Erstellt von: {{ $ticker->author->username }}</small>-->
 
 	<!--<a class="button block mb" href="{{ $ticker->id }}/edit">Einstellungen</a>-->
-	<a class="button block" href="{{ $ticker->id }}/preview/" target="_blank">Vorschau</a>
+	<a class="button block" href="{{env('API_STORAGE_URL')}}/view/{{ $ticker->id }}" target="_blank">Vorschau</a>
+
+	<fl-modal class="mt" button="Embed Code">
+		<h2>Liveticker einbinden:</h2>
+		<p>Code kopieren und in ein HTML-Element im Artikel einfügen</p>
+		<textarea class="embed-code"><div class="ticker-container"><lr-liveticker ticker-id="{{ $ticker->id }}"></lr-liveticker><link rel="stylesheet" type="text/css" href="{{env('API_STORAGE_URL')}}/css/lrticker.css"><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script type="text/javascript" src="{{env('API_STORAGE_URL')}}/js/lrtickerVUE.js"></script></div></textarea>
+	</fl-modal>
+
 </aside>
 
 </main>
