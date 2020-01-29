@@ -4,7 +4,7 @@
 	</ul>
 
 	@if (isset($ticker))
-	<div class="nav-headline"><a target="_blank" href="/ticker/{{ $ticker->id }}/preview">@yield('navtitle', '')</a></div>
+	<div class="nav-headline"><a target="_blank" href="{{env('API_STORAGE_URL')}}/view/{{ $ticker->id }}">@yield('navtitle', '')</a></div>
 	@endif
 
 	<fl-menu class="right" direction="left" background="var(--lrblau)" v-cloak>

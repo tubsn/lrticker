@@ -68,7 +68,10 @@ class AttachmentController extends Controller
 
 			$newAttachment = Attachment::create($fileInfos);
 			$newAttachment->save();
-			array_push($newAttachments, ['id' => $newAttachment->id, 'url' => $newAttachment->url]);
+			array_push($newAttachments, [
+				'id' => $newAttachment->id,
+				'url' => $newAttachment->url,
+				'thumbnail' => $newAttachment->thumb]);
 		}
 
 		return $newAttachments;

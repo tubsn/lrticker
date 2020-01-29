@@ -39,7 +39,7 @@
 <tr>
 	<td>{{ $tickerinfo->id }}</td>
 	<td><a href="/ticker/{{ $tickerinfo->id }}">{{ $tickerinfo->name }}</a></td>
-	<td><a href="/ticker/{{ $tickerinfo->id }}/preview" target="_blank" class="vorschau">Link</a></td>
+	<td><a href="{{env('API_STORAGE_URL')}}/view/{{ $tickerinfo->id }}" target="_blank" class="vorschau">Link</a></td>
 	<td>{{ ($tickerinfo->author) ? $tickerinfo->author->username : 'Redaktion' }}</td>
 	<td>{{ ($tickerinfo->status) ? 'aktiv' : 'beendet' }}</td>
 	<td>{{ $tickerinfo->typ }}</td>
