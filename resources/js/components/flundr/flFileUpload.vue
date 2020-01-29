@@ -91,8 +91,8 @@
 				});
 
 				const response = await axios.post('/attachment', data);
-				console.log(response.data);
-				this.saveToUser(response.data[0].url);
+				//console.log(response.data);
+				this.saveToUser(response.data[0].thumbnail);
 			},
 
 			saveToUser: async function(url) {
