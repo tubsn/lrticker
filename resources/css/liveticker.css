@@ -227,10 +227,11 @@ button.minor, .minor button {background-color:#c8c8c8; color: white; }
 .ticker-editor .gametime {display: inline; border: 1px solid #b2bdc6; padding: 0.6em 0.4em;
 box-sizing: border-box; font-size:0.8em; position:relative;top:-1px; white-space: nowrap; background-color:white;}
 .ticker-editor .gametime:hover {border: 1px solid var(--lrblau);}
-.ticker-editor .gametime input {display:inline-block; width:54px; border:0; padding:0; font-size:1.4em; margin-left:0.5em;}
+.ticker-editor .gametime input {display:inline-block; width:54px; border:0; padding:0; font-size:1.4em; margin-left:0.5em; background:none;}
 
 @media only screen and (max-width: 720px) {
 	.ticker-editor .gametime {width:100px; margin:0 auto; margin-top:0.5em; margin-bottom:1em; display:block; padding: .2em 0.4em 0em 0.4em; position:static;}
+	.ticker-editor .gametime input {width: 46px}
 	.ticker-editor {max-width:90%; margin:0 auto; text-align:center; margin-bottom:1em;}
 	.ticker-editor button {text-transform: capitalize;}
 	.ticker-textarea {min-height:90px;}
@@ -319,7 +320,7 @@ background-image: url('/styles/img/icons/icon-delete.svg');}
 /* Post Mini Icons */
 .embed-code {font-size:0.7em; height:7em;}
 .mini-icons {text-align:center;}
-.mini-icons .icon {display:inline; vertical-align:middle; padding-bottom:6px;}
+.mini-icons .icon {display:inline; vertical-align:middle; padding-bottom:6px; cursor:grab;}
 .post-content .icon, .ticker-editor .icon {vertical-align:middle}
 
 

@@ -71,7 +71,7 @@ window.globalTinyConfig = {
 
 		paste_enable_default_filters: false,
 		paste_word_valid_elements: "b,strong,i,em,p",
-		invalid_elements : 'div, aside, section, article, iframe, span, ul, li, ol',
+		invalid_elements : 'div, aside, section, article, iframe, ul, li, ol',
 		fix_list_elements : true,
 
 		extended_valid_elements : 'a[href|target=_blank]', // Converts all Links to target _blank
@@ -82,8 +82,12 @@ window.globalTinyConfig = {
 				split: true, block_expand: true, expand: false, deep: true, remove: 'all' },
 				{ selector: '*', attributes: ['style', 'class'], split: false, expand: false, deep: true }
 			]
-		}
+		},
 
+		mobile: {
+			quickbars_selection_toolbar: 'bold italic strikethrough | blockquote | alignleft aligncenter alignright | forecolor backcolor | quicklink removeformat',
+			contextmenu: '',
+		},
 
 }
 

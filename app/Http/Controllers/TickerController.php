@@ -23,7 +23,7 @@ class TickerController extends Controller
 
 	public function preview($tickerID) {
 
-		$tickerJson = \Storage::disk('ticker')->get($tickerID . '.js');
+		$tickerJson = \Storage::disk('ticker')->get($tickerID . '.json');
 		$ticker = json_decode($tickerJson, true);
 
     	return view('ticker/preview')->with([
