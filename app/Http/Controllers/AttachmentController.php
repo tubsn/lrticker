@@ -11,6 +11,10 @@ use Intervention\Image\ImageManagerStatic as Image;
 class AttachmentController extends Controller
 {
 
+	function __construct() {
+		$this->middleware('auth');
+	}
+
     public function index(){
         return Attachment::all();
     }

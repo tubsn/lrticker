@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
+	function __construct() {
+		$this->middleware('auth');
+	}
+
     public function index() {
 		return 'nothing to see here';
     }
