@@ -112,6 +112,8 @@ table.styled tr:hover a:hover {color:#0059a9}
 
 table.styled th {background-color:var(--highlight); color:white;}
 
+table.uebersicht:last-child {margin-bottom:4em}
+
 .uebersicht {font-size:0.9em;}
 .uebersicht a {color:inherit; text-decoration:none;}
 .uebersicht a:focus {color:black; background-color:#aad3f0;}
@@ -352,6 +354,3 @@ background-color:#ececec;
 .user-info span {display:block; text-transform: uppercase; opacity:0.6; font-size:0.6em; margin-bottom:0.3em}
 
 .fullwidth {grid-column-end: span 2;}
-
-
-

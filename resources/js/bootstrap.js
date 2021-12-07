@@ -71,6 +71,7 @@ window.globalTinyConfig = {
 
 		paste_enable_default_filters: false,
 		paste_word_valid_elements: "b,strong,i,em,p",
+		paste_data_images: true,
 		invalid_elements : 'div, aside, section, article, iframe, ul, li, ol',
 		fix_list_elements : true,
 
@@ -96,5 +97,3 @@ window.globalTinyConfig = {
 
 // Vue Instance
 window.Vue = require('vue');
-
-
