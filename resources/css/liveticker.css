@@ -112,8 +112,6 @@ table.styled tr:hover a:hover {color:#0059a9}
 
 table.styled th {background-color:var(--highlight); color:white;}
 
-table.uebersicht:last-child {margin-bottom:4em}
-
 .uebersicht {font-size:0.9em;}
 .uebersicht a {color:inherit; text-decoration:none;}
 .uebersicht a:focus {color:black; background-color:#aad3f0;}
@@ -202,7 +200,7 @@ ticker-app {font-weight:bold; font-size: 1.625em; line-height: 1.15384615em; tex
 
 
 /* Ticker Editor */
-.ticker-editor {margin-bottom:4em;}
+.ticker-editor {margin-bottom:2em;}
 .ticker-headline {text-align:center; margin-bottom:.5em;}
 .ticker-headline:focus {background-color:var(--light-background);}
 .ticker-textarea {min-height: 160px; text-align: left; margin-bottom:.75em; padding:0.5em; border:1px solid #999; overflow: auto;}
@@ -239,6 +237,22 @@ box-sizing: border-box; font-size:0.8em; position:relative;top:-1px; white-space
 	.ticker-textarea {min-height:90px;}
 }
 
+
+/* Ticker-Fixed-Post */
+
+.ticker-fixed-post {margin-bottom:1em; display:flex; justify-content:center}
+.ticker-fp-note {font-size:0.7em; color:#999; padding: 0.1em 1em; cursor:pointer;}
+.ticker-fp-note:hover {background-color: var(--light-background)}
+.ticker-fp-container {width:80%; position:relative;}
+/*.ticker-fp-x {position:absolute; right:0; top:0;}*/
+.ticker-fp-editor {width:100%; min-height: 100px; box-sizing: border-box; text-align: left; margin-bottom:.75em; padding:0.5em; border:1px solid #ddd; overflow: auto;}
+.ticker-fp-editor:hover {resize: vertical;}
+.ticker-fp-editor:focus {border-color: var(--lrblau)}
+
+.ticker-fp-delete {cursor:pointer; display:block; width:25px; height:25px; opacity:0.3;
+background-image: url('/styles/img/icons/icon-delete.svg'); position:absolute;
+right:-2em; top:30%;}
+.ticker-fp-delete:hover {opacity:1;}
 
 
 

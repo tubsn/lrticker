@@ -4,6 +4,7 @@
 			<h2 class="ticker-headline" contenteditable="true" v-on:blur="saveHeadline"><slot></slot></h2>
 			<ticker-editor @submitted="refresh_list"></ticker-editor>
 		</section>
+		<ticker-fixed-post></ticker-fixed-post>
 		<ticker-list ref="list"></ticker-list>
 	</div>
 </template>
@@ -12,12 +13,14 @@
 
 // Vue Components
 let TickerEditor = require('./TickerEditor.vue').default;
+let TickerFixedPost = require('./TickerFixedPost.vue').default;
 let TickerList = require('./TickerList.vue').default;
 
 export default {
 
 	components: {
 		'ticker-editor': TickerEditor,
+		'ticker-fixed-post': TickerFixedPost,
 		'ticker-list': TickerList,
 	},
 

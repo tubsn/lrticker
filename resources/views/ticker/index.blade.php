@@ -10,8 +10,8 @@
 	<nav class="ressorts">
 		<h2>Infos:</h2>
 		<ul>
-			<li>Ticker v2.07 <span class="small">(Alpha)</span></li>
-			<li class="small">aktuelle Entwickler Infos gibts hier...</li>
+			<li>Ticker v2.1</li>
+			<li class="small">Neue Funktion: Sticky Note</li>
 		</ul>
 	</nav>
 </aside>
@@ -21,7 +21,7 @@
 	<a class="button" href="/ticker/create">Neuen Ticker anlegen</a>
 </div>
 
-<section class="area-uebersicht">
+<section class="area-uebersicht mb">
 
 
 <table class="styled uebersicht">
@@ -50,7 +50,7 @@
 
 </section>
 
-
+<br><br>
 
 
 </main>

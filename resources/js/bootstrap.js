@@ -64,16 +64,19 @@ window.globalTinyConfig = {
 		quickbars_insert_toolbar: '',
 		//quickbars_selection_toolbar: 'h1 h2 h3 blockquote | bold italic strikethrough | forecolor backcolor | bullist | quicklink | removeformat',
 		quickbars_selection_toolbar: 'bold italic strikethrough | blockquote | alignleft aligncenter alignright | forecolor backcolor | quicklink removeformat',
-		contextmenu: 'hr link | inserttable cell row column deletetable | code removeformat',
+		contextmenu: 'hr link | fontsizes lineheight | inserttable cell row column deletetable | code removeformat',
 		relative_urls: false,
 		remove_script_host: false,
 		link_assume_external_targets: true,
 
+		fontsize_formats: ".8em .9em 1em 1.1em 1.2em 1.3em",
+		lineheight_formats: '100% 120% 140% 160%',
+
 		paste_enable_default_filters: false,
-		paste_word_valid_elements: "b,strong,i,em,p",
-		paste_data_images: true,
+		//paste_word_valid_elements: "b,strong,i,em,p",
 		invalid_elements : 'div, aside, section, article, iframe, ul, li, ol',
 		fix_list_elements : true,
+		paste_data_images: true,
 
 		extended_valid_elements : 'a[href|target=_blank]', // Converts all Links to target _blank
 

@@ -1,0 +1,2 @@
+Liveticker NPM Watch benötigt folgenden Code in der CMD Console upfront
+set NODE_OPTIONS=--openssl-legacy-provider

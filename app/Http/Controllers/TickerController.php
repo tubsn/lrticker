@@ -35,6 +35,15 @@ class TickerController extends Controller
 		return $ticker->refresh_posts();
 	}
 
+	public function get_info(Ticker $ticker) {
+		return response()->json(['info' => $ticker->info]);
+	}
+
+	public function reset_info(Ticker $ticker) {
+		$ticker->update(['info' => null]);
+		$ticker->save();
+	}
+
     public function reorder_posts(Request $request, Ticker $ticker) {
 
 		$ticker->update($request->all());
@@ -81,6 +90,7 @@ class TickerController extends Controller
 
 		// Ajax Calls
 		if ($request->headline) {$ticker->headline = $request->headline;}
+		if ($request->info) {$ticker->info = $request->info;}
 		$ticker->save();
 
     }

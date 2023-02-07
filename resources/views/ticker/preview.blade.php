@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 	<meta name="author" content="Tub" />
 	<meta name="description" content="" />
-	<link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400&display=swap" rel="stylesheet"> 	
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="all" href="/embed/lrticker.css" />
 	<link rel="shortcut icon" href="" />
 
@@ -34,7 +34,7 @@
 
 </head>
 <body>
-	
+
 	<main class="main-wrapper">
 
 		<div class="ticker-container" >

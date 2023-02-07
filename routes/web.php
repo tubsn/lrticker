@@ -1,29 +1,40 @@
 <?php
 
-/* Authentication and Userprofile Routes */
-Auth::routes(['register' => false]);
+use App\Http\Controllers\TickerController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\FlundrCMS\FlundrController;
+use App\Http\Controllers\FlundrCMS\UserController;
+use App\Http\Controllers\Auth\UserProfileController;
 
-Route::get('/profil', 'Auth\UserProfileController@index')->name('profile');
-Route::get('/profil/edit', 'Auth\UserProfileController@edit')->name('profile.edit');
-Route::patch('/profil', 'Auth\UserProfileController@update')->name('profile.update');
-Route::patch('/profil/thumbnail', 'Auth\UserProfileController@add_thumbnail');
+/* Authentication and Userprofile Routes */
+Auth::routes([
+  'register' => false, // Registration Routes...
+  'reset' => true, // Password Reset Routes...
+  'verify' => true, // Email Verification Routes...
+]);
+
 
 /* Home */
 //Route::get('/', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return redirect('/ticker');
 });
-/* Ticker Stuff */
-//Route::redirect('/', '/ticker');
-Route::resource('/post', 'PostController');
-Route::resource('/ticker', 'TickerController');
-Route::resource('/attachment', 'AttachmentController');
 
-Route::patch('/ticker/{ticker}/reorder', 'TickerController@reorder_posts');
-Route::get('/ticker/{ticker}/refresh', 'TickerController@get_live_posts');
-Route::get('/ticker/{tickerID}/preview', 'TickerController@preview');
+Route::get('/profil', [UserProfileController::class,'index'])->name('profile');
+Route::get('/profil/edit', [UserProfileController::class,'edit'])->name('profile.edit');
+Route::patch('/profil', [UserProfileController::class,'update'])->name('profile.update');
+Route::patch('/profil/thumbnail', [UserProfileController::class,'add_thumbnail']);
 
-/* FlundrCMS Default Routes */
-Route::get('/admin', 'FlundrCMS\FlundrController@index')->name('admin.home');
-Route::resource('/admin/user', 'FlundrCMS\UserController');
+Route::resource('/post', PostController::class);
+Route::resource('/ticker', TickerController::class);
+Route::resource('/attachment', AttachmentController::class);
 
+Route::patch('/ticker/{ticker}/reorder', [TickerController::class,'reorder_posts']);
+Route::get('/ticker/{ticker}/refresh', [TickerController::class,'get_live_posts']);
+Route::get('/ticker/{ticker}/info', [TickerController::class,'get_info']);
+Route::patch('/ticker/{ticker}/reset_info', [TickerController::class,'reset_info']);
+Route::get('/ticker/{tickerID}/preview', [TickerController::class,'preview']);
+
+Route::get('/admin', [FlundrController::class,'index'])->name('admin.home');
+Route::resource('/admin/user', UserController::class);
